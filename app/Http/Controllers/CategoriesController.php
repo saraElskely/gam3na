@@ -24,17 +24,17 @@ class CategoriesController extends Controller
     public function store(Request $request)
     {
           $this->validate($request , [
-            'name' => 'required',
-            'description' => 'required',
-            'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'category_name' => 'required',
+            'category_description' => 'required',
+            'category_photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
 
             $data = $request->all();
-            $photo = $request->file('photo');
-            $data['photo'] = time().'.'.$photo->getClientOriginalExtension();
-            $photo->move(public_path('images'), $data['photo'] );
+            $category_photo = $request->file('category_photo');
+            $data['category_photo'] = time().'.'.$category_photo->getClientOriginalExtension();
+            $category_photo->move(public_path('images'), $data['category_photo'] );
             Category::create($data);
-            Session::flash('success_msg','category created successfuly');
+            Session::flash('success_msg','category created successfully');
             return redirect()->route('categories.index');
 
 

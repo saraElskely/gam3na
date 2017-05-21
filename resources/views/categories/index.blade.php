@@ -35,11 +35,11 @@
                       @foreach($categories as $category)
                           <tr>
                               <td class="table-text">
-                                  <div>{{$category->name}}</div>
-                                <img src=  {{ asset("/images/$category->photo") }} height="42" width="42">
+                                  <div>{{$category->category_name}}</div>
+                                <img src=  {{ asset("/images/$category->category_photo") }} height="42" width="42">
                               </td>
                               <td class="table-text">
-                                  <div>{{$category->description}}</div>
+                                  <div>{{$category->category_description}}</div>
                               </td>
                                   <td class="table-text">
                                   <div>{{$category->created_at}}</div>

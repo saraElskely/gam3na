@@ -11,9 +11,9 @@ class Commentscontroller extends Controller
     public function store(Event $event)
     {
         $this->validate(request(),[
-            'commentbody'=>'required'
+            'comment_content'=>'required'
         ]);
-        $event->addComment(request('commentbody'));
+        $event->addComment(request('comment_content'));
 
         return back();
     }

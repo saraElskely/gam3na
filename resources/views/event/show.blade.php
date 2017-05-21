@@ -2,9 +2,9 @@
 @include('event.partials.nav')
 @section('content')
 	<br>
-<styl
-<div class="col-lg-offset-4 col-lg-4"><h1>{{$item->name}}</h1>
-	<p>{{$item->description}}</p>
+
+<div class="col-lg-offset-4 col-lg-4"><h1>{{$item->event_name}}</h1>
+	<p>{{$item->event_description}}</p>
 </div>
 	<div class="form-group">
 		<div class="col-lg-10">
@@ -27,19 +27,19 @@
 		<ul class="list-group">
 			@foreach($item->comments as $comment)
 				<li class="list-group">
-					{{ $comment->commentbody }}
+					{{ $comment->comment_content }}
 				</li>
 
 			@endforeach
 		</ul>
-	
+
 
 	<div class="card">
 		<div class="card-block">
 			<form method="post" action="/event/{{$item->id}}/comments">
 				{{csrf_field()}}
 				<div class="form-group">
-					<textarea name="commentbody" placeeholder="your comment here" class="form-controller"></textarea>
+					<textarea name="comment_content" placeeholder="your comment here" class="form-controller"></textarea>
 				</div>
 
 				<div class="form-group">
@@ -47,7 +47,7 @@
 
 				</div>
 		</form>
-		
+
 		</div>
 {{--------------------------------------------------------------------------------------}}
 		<div class="container">
@@ -55,7 +55,7 @@
 				<ul class="list-group">
 					@foreach($item->reviews as $review)
 						<li class="list-group">
-							{{ $review->reviewBody }}
+							{{ $review->review_content }}
 						</li>
 
 					@endforeach
@@ -67,7 +67,7 @@
 						<form method="post" action="/event/{{$item->id}}/reviews">
 							{{csrf_field()}}
 							<div class="form-group">
-								<textarea name="reviewBody" placeeholder="Review our event" class="form-controller"></textarea>
+								<textarea name="review_content" placeeholder="Review our event" class="form-controller"></textarea>
 							</div>
 
 							<div class="form-group">
@@ -82,7 +82,7 @@
 								<form method="post" action="/event/{{$item->id}}/reports">
 									{{csrf_field()}}
 									<div class="form-group">
-										<textarea name="reportBody" placeeholder="Report this event" class="form-controller"></textarea>
+										<textarea name="report_content" placeeholder="Report this event" class="form-controller"></textarea>
 									</div>
 
 									<div class="form-group">

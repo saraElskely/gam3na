@@ -10,9 +10,9 @@ class ReportsController extends Controller
     public function store (Event $event)
     {
         $this->validate(request(),[
-            'reportBody'=>'required'
+            'report_content'=>'required'
         ]);
-        $event->addReport(request('reportBody'));
+        $event->addReport(request('report_content'));
 
         return back();
     }
