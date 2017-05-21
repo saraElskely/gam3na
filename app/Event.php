@@ -18,7 +18,7 @@ class Event extends Model
 
     public function setBodyAttribute($value)
     {
-        return $this->attributes['description'] = ucfirst($value);
+        return $this->attributes['event_description'] = ucfirst($value);
     }
     use Notifiable;
 
@@ -28,7 +28,7 @@ class Event extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'description', 'event_date','address',
+        'event_name', 'event_description', 'event_date','event_address',
     ];
 
     protected $hidden = ['user_id','subcategory_id'];
@@ -38,9 +38,9 @@ class Event extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function addComment($commentbody)
+    public function addComment($comment_content)
     {
-        $this->comments()->create(compact('commentbody'));
+        $this->comments()->create(compact('comment_content'));
     }
 
 
@@ -49,9 +49,9 @@ class Event extends Model
         return $this->hasMany(Review::class);
     }
 
-    public function addReview($reviewBody)
+    public function addReview($review_content)
     {
-        $this->reviews()->create(compact('reviewBody'));
+        $this->reviews()->create(compact('review_content'));
     }
 
     public function reports()
@@ -59,9 +59,9 @@ class Event extends Model
         return $this->hasMany(Report::class);
     }
 
-    public function addReport($reportBody)
+    public function addReport($report_content)
     {
-        $this->reports()->create(compact('reportBody'));
+        $this->reports()->create(compact('report_content'));
     }
 
 

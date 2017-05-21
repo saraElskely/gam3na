@@ -36,14 +36,14 @@ class Events extends Controller
     {
         $event = new event;
         $this->validate($request,[
-            'name'=>'required|unique:events',
-            'description'=>'required'
+            'event_name'=>'required|unique:events',
+            'event_description'=>'required'
 
         ]);
-        $event->name = $request->name;
-        $event->description = $request->description;
+        $event->event_name = $request->event_name;
+        $event->event_description = $request->event_description;
         $event->event_date = $request->event_date;
-        $event->address = $request->address;
+        $event->event_address = $request->event_address;
         $event->save();
         return redirect('event');
     }
@@ -84,13 +84,13 @@ class Events extends Controller
     {
         $event = Event::find($id);
         $this->validate($request,[
-            'description'=>'required',
-            'name'=>'required'
+            'event_description'=>'required',
+            'event_name'=>'required'
         ]);
-        $event->name = $request->name;
-        $event->description = $request->description;
+        $event->event_name = $request->event_name;
+        $event->event_description = $request->event_description;
         $event->event_date = $request->event_date;
-        $event->address = $request->address;
+        $event->event_address = $request->event_address;
         $event->save();
         session()->flash('message','updated successfully');
         return redirect('event');
