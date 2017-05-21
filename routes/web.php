@@ -19,3 +19,5 @@ Route::get('/home/{id}','homeController@show');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+Route::resource('/categories','CategoriesController',['except'=>['edit','update','destroy']]);

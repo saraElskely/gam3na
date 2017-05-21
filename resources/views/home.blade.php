@@ -11,7 +11,8 @@
                     You are logged in!
                     <br>
                     <br>
-                    <passport-personal-access-tokens></passport-personal-access-tokens>
+                    <a href="{{ route('categories.index') }}" class="label label-primary pull-right"> Ctegories </a>
+                    {{-- <passport-personal-access-tokens></passport-personal-access-tokens> --}}
                 </div>
             </div>
         </div>
