@@ -1,0 +1,9 @@
+1. composer create-project --prefer-dist laravel/laravel blog
+
+2. .env change db
+
+3. php artisan make:model User -m   //make model and migration
+
+4. database/migrations/.... change table structure
+
+5. php artisan migrate
