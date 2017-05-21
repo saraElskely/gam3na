@@ -15,9 +15,9 @@ class CreateSubcategoriesTable extends Migration
     {
         Schema::create('subcategories', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->text('description');
-            $table->string('photo')->nullable();
+            $table->string('subcategory_name');
+            $table->text('Subcategory_description');
+            $table->string('Subcategory_photo')->nullable();
             $table->integer('category_id')->unsigned();
             $table->foreign('category_id')
                 ->references('id')
@@ -39,3 +39,4 @@ class CreateSubcategoriesTable extends Migration
         Schema::dropIfExists('subcategories');
     }
 }
+

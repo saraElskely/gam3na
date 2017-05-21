@@ -1,0 +1,106 @@
+@extends('layouts.app')
+@include('event.partials.nav')
+@section('content')
+	<br>
+<styl
+<div class="col-lg-offset-4 col-lg-4"><h1>{{$item->name}}</h1>
+	<p>{{$item->description}}</p>
+</div>
+	<div class="form-group">
+		<div class="col-lg-10">
+			<div class="radio">
+				<label>
+					<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="" >
+					Going
+				</label>
+			</div>
+			<div class="radio">
+				<label>
+					<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+					Not Interested
+				</label>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+	<div class="comments">
+		<ul class="list-group">
+			@foreach($item->comments as $comment)
+				<li class="list-group">
+					{{ $comment->commentbody }}
+				</li>
+
+			@endforeach
+		</ul>
+	
+
+	<div class="card">
+		<div class="card-block">
+			<form method="post" action="/event/{{$item->id}}/comments">
+				{{csrf_field()}}
+				<div class="form-group">
+					<textarea name="commentbody" placeeholder="your comment here" class="form-controller"></textarea>
+				</div>
+
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary">Add Comment</button>
+
+				</div>
+		</form>
+		
+		</div>
+{{--------------------------------------------------------------------------------------}}
+		<div class="container">
+			<div class="reviews">
+				<ul class="list-group">
+					@foreach($item->reviews as $review)
+						<li class="list-group">
+							{{ $review->reviewBody }}
+						</li>
+
+					@endforeach
+				</ul>
+
+
+				<div class="card">
+					<div class="card-block">
+						<form method="post" action="/event/{{$item->id}}/reviews">
+							{{csrf_field()}}
+							<div class="form-group">
+								<textarea name="reviewBody" placeeholder="Review our event" class="form-controller"></textarea>
+							</div>
+
+							<div class="form-group">
+								<button type="submit" class="btn btn-info">Add Review</button>
+
+							</div>
+						</form>
+
+{{-------------------------------------------------------------------------------------------------------------------------------}}
+						<div class="card">
+							<div class="card-block">
+								<form method="post" action="/event/{{$item->id}}/reports">
+									{{csrf_field()}}
+									<div class="form-group">
+										<textarea name="reportBody" placeeholder="Report this event" class="form-controller"></textarea>
+									</div>
+
+									<div class="form-group">
+										<button type="submit" class="btn btn-danger">Add Report</button>
+
+									</div>
+								</form>
+						@include('event.partials.errors')
+
+					</div>
+
+				</div>
+					</div>
+				</div>
+	</div>
+		</div>
+	</div>
+
+	</div>
+	</div>
+	@endsection

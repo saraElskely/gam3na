@@ -3,12 +3,17 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Category;
 
 class Subcategory extends Model
 {
-    //
-    public function category(){
+    protected $fillable = ['subcategory_name','subcategory_description','subcategory_photo',];
 
-    	return $this->belongsTo(Subcategory::class);
+    protected $hidden = [ 'category_id', ];
+
+    public function category()
+    {
+        return $this->belongsTo('App\Category');
     }
 }
+
