@@ -15,8 +15,8 @@ class CreateEventsTable extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->text('description');
+            $table->string('event_name');
+            $table->text('event_description');
             $table->dateTime('event_date');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')
@@ -30,9 +30,11 @@ class CreateEventsTable extends Migration
                 ->on('subcategories')
                 ->onDelete('cascade');
 
-            $table->string('address');
-            $table->string('latitude')->nullable();
-            $table->string('longitude')->nullable();
+
+            $table->string('event_address');
+            $table->string('event_latitude');
+            $table->string('event_longitude');
+
 
             $table->timestamps();
         });
