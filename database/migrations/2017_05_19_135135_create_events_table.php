@@ -31,8 +31,8 @@ class CreateEventsTable extends Migration
                 ->onDelete('cascade');
 
             $table->string('address');
-            $table->string('latitude');
-            $table->string('longitude');
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
 
             $table->timestamps();
         });

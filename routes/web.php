@@ -19,3 +19,8 @@ Route::get('/home/{id}','homeController@show');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+Route::resource('event','Events');
+Route::post('/event/{event}/comments','Commentscontroller@store');
+Route::post('/event/{event}/reviews','ReviewsController@store');
+Route::post('/event/{event}/reports','ReportsController@store');
