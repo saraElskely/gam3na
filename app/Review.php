@@ -24,3 +24,4 @@ class Review extends Model
     ];
 
 }
+
