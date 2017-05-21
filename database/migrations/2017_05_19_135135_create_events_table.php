@@ -30,9 +30,11 @@ class CreateEventsTable extends Migration
                 ->on('subcategories')
                 ->onDelete('cascade');
 
+
             $table->string('event_address');
             $table->string('event_latitude');
             $table->string('event_longitude');
+
 
             $table->timestamps();
         });

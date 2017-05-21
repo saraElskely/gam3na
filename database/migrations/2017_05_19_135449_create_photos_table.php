@@ -42,3 +42,4 @@ class CreatePhotosTable extends Migration
         Schema::dropIfExists('photos');
     }
 }
+

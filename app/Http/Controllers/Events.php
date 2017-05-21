@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Event;
 class Events extends Controller
 {
     /**
@@ -12,8 +12,8 @@ class Events extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return \App\Event::all();
+    {   $events = Event::all();
+        return view('event.home', compact('events'));
     }
 
     /**
@@ -23,7 +23,7 @@ class Events extends Controller
      */
     public function create()
     {
-        //
+        return view('event.create');
     }
 
     /**
@@ -34,7 +34,18 @@ class Events extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $event = new event;
+        $this->validate($request,[
+            'name'=>'required|unique:events',
+            'description'=>'required'
+
+        ]);
+        $event->name = $request->name;
+        $event->description = $request->description;
+        $event->event_date = $request->event_date;
+        $event->address = $request->address;
+        $event->save();
+        return redirect('event');
     }
 
     /**
@@ -45,7 +56,9 @@ class Events extends Controller
      */
     public function show($id)
     {
-        //
+        $item = Event::find($id);
+
+        return view('event.show', compact('item'));
     }
 
     /**
@@ -56,7 +69,8 @@ class Events extends Controller
      */
     public function edit($id)
     {
-        //
+        $item = Event::find($id);
+        return view('event.edit', compact('item'));
     }
 
     /**
@@ -68,17 +82,32 @@ class Events extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $event = Event::find($id);
+        $this->validate($request,[
+            'description'=>'required',
+            'name'=>'required'
+        ]);
+        $event->name = $request->name;
+        $event->description = $request->description;
+        $event->event_date = $request->event_date;
+        $event->address = $request->address;
+        $event->save();
+        session()->flash('message','updated successfully');
+        return redirect('event');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified resource from storage.ss
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
+        $item = Event::find($id);
+        $item->delete();
+        session()->flash('message','Deleted successfully');
+        return redirect('/event');
     }
 }
+

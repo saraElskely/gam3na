@@ -39,3 +39,4 @@ class CreateSubcategoriesTable extends Migration
         Schema::dropIfExists('subcategories');
     }
 }
+
