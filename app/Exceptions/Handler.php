@@ -66,7 +66,7 @@ class Handler extends ExceptionHandler
                 $login='admin.login';
                 # code...
                 break;
-
+            
             default:
                 $login = 'login';
                 # code...
@@ -76,3 +76,4 @@ class Handler extends ExceptionHandler
         return redirect()->guest(route($login));
     }
 }
+
