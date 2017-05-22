@@ -20,6 +20,6 @@ class Comment extends Model
      * @var array
      */
     protected $fillable = [
-        'commentbody',
+        'comment_content',
     ];
 }

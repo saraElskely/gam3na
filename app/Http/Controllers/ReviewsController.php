@@ -10,9 +10,9 @@ class ReviewsController extends Controller
     public function store (Event $event)
     {
         $this->validate(request(),[
-            'reviewBody'=>'required'
+            'review_content'=>'required'
         ]);
-        $event->addReview(request('reviewBody'));
+        $event->addReview(request('review_content'));
 
         return back();
     }

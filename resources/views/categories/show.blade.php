@@ -19,6 +19,7 @@
               {{ $category->category_name}}
               <img src=  {{ asset("upload/image/$category->category_photo") }} height="42" width="42">
 
+
           </div>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-12">

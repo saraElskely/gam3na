@@ -30,11 +30,12 @@ class CategoriesController extends Controller
             ]);
 
             $data = $request->all();
+
             $category_photo = $request->file('category_photo');
             $data['category_photo'] = time().'.'.$category_photo->getClientOriginalExtension();
             $category_photo->move(public_path('upload/image'), $data['category_photo'] );
             Category::create($data);
-            Session::flash('success_msg','category created successfuly');
+            Session::flash('success_msg','category created successfully');
             return redirect()->route('categories.index');
 
 

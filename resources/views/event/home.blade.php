@@ -9,7 +9,7 @@
 		<ul class="list-group col-lg-8">
 			@foreach($events as $event)
   <li class="list-group-item">
-    	<a href="{{'/event/'.$event->id}}">{{$event->description}}</a>
+    	<a href="{{'/event/'.$event->id}}">{{$event->event_description}}</a>
     	<span class="pull-right">{{$event->created_at->diffForHumans()}}</span>
     	</li>
     	@endforeach
@@ -29,4 +29,3 @@
 		</ul>
 	</div>
 @endsection
-

@@ -48,23 +48,23 @@
       </div>
   </div>
 
-  <script type="text/javascript">
+  {{--<script type="text/javascript">--}}
 
-    $("body").on("click",".upload-image",function(e){
-      $(this).parents("form").ajaxForm(options);
-    });
+    {{--$("body").on("click",".upload-image",function(e){--}}
+      {{--$(this).parents("form").ajaxForm(options);--}}
+    {{--});--}}
 
-    var options = {
-      complete: function(response)
-      {
-      	if($.isEmptyObject(response.responseJSON.error)){
-      		$("input[name='title']").val('');
-      		alert('Image Upload Successfully.');
-      	}else{
-      		alert('Image Upload faild.');
-      	}
-      }
-    };
+    {{--var options = {--}}
+      {{--complete: function(response)--}}
+      {{--{--}}
+      	{{--if($.isEmptyObject(response.responseJSON.error)){--}}
+      		{{--$("input[name='title']").val('');--}}
+      		{{--alert('Image Upload Successfully.');--}}
+      	{{--}else{--}}
+      		{{--alert('Image Upload failed.');--}}
+      	{{--}--}}
+      {{--}--}}
+    {{--};--}}
 
-  </script>
+  {{--</script>--}}
 @endsection
