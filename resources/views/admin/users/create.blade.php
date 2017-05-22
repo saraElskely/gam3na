@@ -42,8 +42,8 @@
 
 
 <div class="form-group">
-<label for="photo">Photo</label>
-<input type="file" name="photo" value="@yield('photo')">
+<label for="user_photo">user_photo</label>
+<input type="file" name="user_photo" value="@yield('edituser_photo')">
 
 </div>
 
