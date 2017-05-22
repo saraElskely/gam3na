@@ -13,7 +13,7 @@
   <th>Name</th>
   <th>Email</th>
   <th>Gender</th>
-  <th>Photo</th>
+  <th>user_photo</th>
   <th>DOB</th>
   <th>BLOCK</th>
   <th>JOB</th>
@@ -29,7 +29,7 @@
   <td>{{$user->name}}</td>
   <td>{{$user->email}}</td>
   <td>{{$user->gender}}</td>
-  <td><img src={{asset("/upload/image/$user->photo")}} width="42" height="42" ></td>
+  <td><img src={{asset("/upload/image/$user->user_photo")}} width="42" height="42" ></td>
   <td>{{$user->date_of_birth}}</td>
   <td>{{$user->block}}</td>
   <td>{{$user->job}}</td>

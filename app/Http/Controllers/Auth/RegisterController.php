@@ -53,37 +53,18 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return User
      */
-    public function create( array $data)
-    {    
 
-        // return view('auth.register');
-
-         return User::create([
+    protected function create(array $data)
+    {
+        return User::create([
             'name' => $data['name'],
             'job' => $data['job'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
 
-        ]);
-       
+        ]);   
 
     }
-    // public function store()
-
-    // {
-    //     $this->validate(request(), [
-    //     'user_name' => 'required|max:255',
-    //     'user_email' => 'required|email|max:255|unique:users',
-    //     'password' => 'required|min:6|confirmed',
-    //     'job' => 'required|max:255',
-    //     ]);
-
-    //   $user =  User::create(request(['user_name','user_email','password','job']));
-
-    //   auth()->login($user);
-
-    //   return redirect()->home();
-    // }
   
 }
 

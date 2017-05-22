@@ -31,7 +31,7 @@
                           </div>
                       </div>
                       <div class="form-group">
-                          <label class="control-label col-sm-2" >Description</label>
+                          <label class="control-label col-sm-2" >Photo</label>
                           <div class="col-sm-10">
                               <input type="file" name="category_photo" id="photo" class="form-control">
                           </div>

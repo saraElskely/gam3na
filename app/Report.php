@@ -18,5 +18,3 @@ class Report extends Model
         'report_content','user_id'
     ];
 }
-
-

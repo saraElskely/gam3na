@@ -12,15 +12,15 @@
 @section('editmethod')
 @show
 <div class="form-group">
-<label for="name">Name</label>
-<input type="text" name="name" value="@yield('editname')">
+<label for="subcategory_name">Name</label>
+<input type="text" name="subcategory_name" value="@yield('editname')">
 </div>
 <div class="form-group">
-<label for="description">Description</label>
-<input   type="text" name="description" value="@yield('editdescription')"> 
+<label for="subcategory_description">Description</label>
+<input   type="text" name="subcategory_description" value="@yield('editdescription')"> 
 <div class="form-group">
-<label for="photo">Photo</label>
-<input type="file" name="photo" value="@yield('editphoto')">
+<label for="subcategory_photo">Photo</label>
+<input type="file" name="subcategory_photo" value="@yield('editphoto')">
 </div>
 <div class="form-group">
 <label for="category_id">category_id</label>
@@ -33,3 +33,4 @@
 @include('admin.subcategories.errors')
 </center>
 @endsection
+

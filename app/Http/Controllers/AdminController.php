@@ -26,3 +26,14 @@ class AdminController extends Controller
         return view('admin');
     }
 }
+
+
+
+// to create new admin
+// open terminal :
+// php artisan tinker
+// $admin = new App\Admin
+// $admin->name ="admin"
+// $admin->email = "admin@gam3na.com"
+// $admin->password = Hash::make('password')
+// $admin->save()

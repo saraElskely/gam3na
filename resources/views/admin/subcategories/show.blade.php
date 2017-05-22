@@ -5,6 +5,7 @@
 <table class="table">
 <thead>
 <tr>
+
   <th>ID</th>
   <th>Name</th>
   <th>Descrption</th>
@@ -29,16 +30,16 @@
 
   <td>
       <h1>
-        {{$subcategory->name}}
+        {{$subcategory->subcategory_name}}
       </h1>
 </td>
 
 <td>
-<h1>{{$subcategory->description}}
+<h1>{{$subcategory->subcategory_description}}
 </h1>
 </td>
 <td>
-  <img src={{asset("/upload/image/$subcategory->photo")}} width="42" height="42" >
+  <img src={{asset("/upload/image/$subcategory->subcategory_photo")}} width="42" height="42" >
 </td>
 <td>
 <h1>
@@ -49,3 +50,5 @@
 </tbody>
 </table>
 @endsection
+
+

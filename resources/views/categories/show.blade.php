@@ -17,7 +17,8 @@
           <div class="form-group">
               <strong>Name:</strong>
               {{ $category->category_name}}
-              <img src=  {{ asset("/images/$category->category_photo") }} height="42" width="42">
+              <img src=  {{ asset("upload/image/$category->category_photo") }} height="42" width="42">
+
 
           </div>
       </div>

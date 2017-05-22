@@ -10,7 +10,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::prefix('admin')->group(function(){
+Route::get('/login', 'Auth\AdminLoginControler@showLoginForm')->name('admin.login');
+Route::post('/login', 'Auth\AdminLoginControler@login')->name('admin.login.submit');
+Route::get('/', 'AdminController@index')->name('admin.dashboard');
 
+Route::resource('/users','AdminusersController');
+Route::resource('/categories','AdmincategoriesController');
+Route::resource('/subcategories','AdmincsubcategoriesController');
+});
 Route::get('/', function () {
     return view('welcome');
 });
@@ -20,11 +28,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-// Route::get('/register','Auth\RegisterController@create');
-// Route::post('/register','Auth\RegisterController@store');
-// Route::get('/login','Auth\LoginController@create');
-
-// Route::get('/event','Events@index')->name('home');
 Route::resource('event','Events');
 Route::post('/event/{event}/comments','Commentscontroller@store');
 Route::post('/event/{event}/reviews','ReviewsController@store');
@@ -32,12 +35,3 @@ Route::post('/event/{event}/reports','ReportsController@store');
 
 Route::resource('/categories','CategoriesController',['except'=>['edit','update','destroy']]);
 
-Route::resource('/admin/users','AdminusersController');
-Route::resource('/admin/categories','AdmincategoriesController');
-Route::resource('/admin/subcategories','AdmincsubcategoriesController');
-
-Route::prefix('admin')->group(function(){
-Route::get('/login', 'Auth\AdminLoginControler@showLoginForm')->name('admin.login');
-Route::post('/login', 'Auth\AdminLoginControler@login')->name('admin.login.submit');
-Route::get('/', 'AdminController@index')->name('admin.dashboard');
-});

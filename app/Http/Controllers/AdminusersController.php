@@ -35,12 +35,12 @@ class AdminusersController extends Controller
 
 
       $fileName = 'null';
-      if ($request->hasFile('photo')) {
-          if($request->file('photo')->isValid()) {
+      if ($request->hasFile('user_photo')) {
+          if($request->file('user_photo')->isValid()) {
           $destinationPath = public_path('upload/image');
-         $extension =$request->file('photo')->getClientOriginalExtension();
+         $extension =$request->file('user_photo')->getClientOriginalExtension();
          $fileName = uniqid().'.'.$extension;
-         $request->file('photo')->move($destinationPath, $fileName);
+         $request->file('user_photo')->move($destinationPath, $fileName);
           }
       }
 
@@ -50,7 +50,7 @@ class AdminusersController extends Controller
       $user->gender=$request->gender;
       $user->date_of_birth=$request->date_of_birth;
       $user->job=$request->job;
-      $user->photo=$fileName;
+      $user->user_photo=$fileName;
       $user->block=$request->block;
       $user->password=$request->password;
       $user->save();
@@ -70,22 +70,26 @@ class AdminusersController extends Controller
         'email'=>'required',
        ]);
       //  $data=$request->all();
-      $fileName = 'null';
-      if ($request->hasFile('image')) {
-          if($request->file('image')->isValid()) {
-          $destinationPath = public_path('img');
-         $extension =$request->file('image')->getClientOriginalExtension();
-         $fileName = uniqid().'.'.$extension;
-         $request->file('image')->move($destinationPath, $fileName);
-          }
-      }
+     $fileName = 'null';
 
+     
+      if ($request->hasFile('user_photo')) {
+        
+          if($request->file('user_photo')->isValid()) {
+          $destinationPath = public_path('upload/image');
+         $extension =$request->file('user_photo')->getClientOriginalExtension();
+         $fileName = uniqid().'.'.$extension;
+         $request->file('user_photo')->move($destinationPath, $fileName);
+          }
+      
+      }
+      
       $user->name=$request->name;
       $user->email=$request->email;
       $user->gender=$request->gender;
       $user->date_of_birth=$request->date_of_birth;
       $user->job=$request->job;
-      $user->photo=$request->$fileName;
+      $user->user_photo=$fileName;
       $user->block=$request->block;
       $user->password=$request->password;
       $user->save();

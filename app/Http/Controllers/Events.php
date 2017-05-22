@@ -116,4 +116,3 @@ class Events extends Controller
         return redirect('/event');
     }
 }
-

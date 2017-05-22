@@ -29,4 +29,3 @@
 		</ul>
 	</div>
 @endsection
-

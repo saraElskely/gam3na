@@ -2,6 +2,7 @@
 @include('event.partials.nav')
 @section('content')
 	<br>
+
 <div class="col-lg-offset-4 col-lg-4"><h1>{{$item->event_name}}</h1>
 
 	<p> {{ $item->user->name }}
@@ -36,7 +37,7 @@
 
 			@endforeach
 		</ul>
-	
+
 
 	<div class="card">
 		<div class="card-block">
@@ -51,7 +52,7 @@
 
 				</div>
 		</form>
-		
+
 		</div>
 {{--------------------------------------------------------------------------------------}}
 		<div class="container">
