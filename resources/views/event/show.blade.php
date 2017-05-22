@@ -3,6 +3,11 @@
 @section('content')
 	<br>
 <div class="col-lg-offset-4 col-lg-4"><h1>{{$item->event_name}}</h1>
+
+	<p> {{ $item->user->name }}
+		{{$item->created_at->toFormattedDateString()}}
+		
+	</p>
 	<p>{{$item->event_description}}</p>
 </div>
 	<div class="form-group">

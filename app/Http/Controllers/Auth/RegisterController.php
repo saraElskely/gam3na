@@ -38,12 +38,14 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'user_name' => 'required|max:255',
-            'user_email' => 'required|email|max:255|unique:users',
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
             'job' => 'required|max:255',
         ]);
     }
+        
+
 
     /**
      * Create a new user instance after a valid registration.
@@ -51,14 +53,37 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return User
      */
-    protected function create(array $data)
-    {
-        return User::create([
-            'user_name' => $data['user_name'],
+    public function create( array $data)
+    {    
+
+        // return view('auth.register');
+
+         return User::create([
+            'name' => $data['name'],
             'job' => $data['job'],
-            'user_email' => $data['user_email'],
+            'email' => $data['email'],
             'password' => bcrypt($data['password']),
+
         ]);
+       
+
     }
+    // public function store()
+
+    // {
+    //     $this->validate(request(), [
+    //     'user_name' => 'required|max:255',
+    //     'user_email' => 'required|email|max:255|unique:users',
+    //     'password' => 'required|min:6|confirmed',
+    //     'job' => 'required|max:255',
+    //     ]);
+
+    //   $user =  User::create(request(['user_name','user_email','password','job']));
+
+    //   auth()->login($user);
+
+    //   return redirect()->home();
+    // }
+  
 }
 

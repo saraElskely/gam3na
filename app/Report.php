@@ -15,7 +15,7 @@ class Report extends Model
 
     use Notifiable;
     protected $fillable = [
-        'report_content',
+        'report_content','user_id'
     ];
 }
 

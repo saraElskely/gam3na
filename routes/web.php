@@ -20,7 +20,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
+// Route::get('/register','Auth\RegisterController@create');
+// Route::post('/register','Auth\RegisterController@store');
+// Route::get('/login','Auth\LoginController@create');
 
+// Route::get('/event','Events@index')->name('home');
 Route::resource('event','Events');
 Route::post('/event/{event}/comments','Commentscontroller@store');
 Route::post('/event/{event}/reviews','ReviewsController@store');

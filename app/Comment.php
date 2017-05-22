@@ -12,6 +12,11 @@ class Comment extends Model
         return $this->belongsTo(Event::class);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     use Notifiable;
 
     /**
@@ -19,7 +24,7 @@ class Comment extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'comment_content',
+    protected $fillable= [
+        'comment_content','user_id'
     ];
 }
