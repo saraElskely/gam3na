@@ -20,7 +20,7 @@ class Review extends Model
      * @var array
      */
     protected $fillable = [
-        'review_content',
+        'review_content','user_id'
     ];
 
 }

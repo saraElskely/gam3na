@@ -14,7 +14,9 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="/event">Events <span class="sr-only">(current)</span></a></li>
         <li><a href="/event/create" class="glyphicon glyphicon-plus"></a></li>
-        
+        @if(Auth::check())
+          <li><a class="nav-link ml-auto" href="#">{{ Auth::user()->name }}</a></li>
+        @endif
       </ul>
 
     </div>

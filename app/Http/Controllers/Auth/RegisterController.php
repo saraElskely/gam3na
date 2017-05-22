@@ -44,6 +44,8 @@ class RegisterController extends Controller
             'job' => 'required|max:255',
         ]);
     }
+        
+
 
     /**
      * Create a new user instance after a valid registration.
@@ -51,6 +53,7 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return User
      */
+
     protected function create(array $data)
     {
         return User::create([
@@ -58,7 +61,10 @@ class RegisterController extends Controller
             'job' => $data['job'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-        ]);
+
+        ]);   
+
     }
+  
 }
 

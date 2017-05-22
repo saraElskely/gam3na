@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Event;
+use Illuminate\Support\Facades\Auth;
 class Events extends Controller
 {
     /**
@@ -37,13 +38,17 @@ class Events extends Controller
         $event = new event;
         $this->validate($request,[
             'event_name'=>'required|unique:events',
-            'event_description'=>'required'
+            'event_description'=>'required',
 
         ]);
         $event->event_name = $request->event_name;
         $event->event_description = $request->event_description;
         $event->event_date = $request->event_date;
         $event->event_address = $request->event_address;
+        $event->user_id=Auth::id();
+        $event->subcategory_id = 1;
+        $event->event_longitude ="2";
+        $event->event_latitude ="3";
         $event->save();
         return redirect('event');
     }
@@ -57,6 +62,7 @@ class Events extends Controller
     public function show($id)
     {
         $item = Event::find($id);
+
 
         return view('event.show', compact('item'));
     }
