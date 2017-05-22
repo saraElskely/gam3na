@@ -6,7 +6,7 @@
 @section('editname', $user->name)
 @section('editemail', $user->email)
 @section('editjob', $user->job)
-@section('editphoto', $user->photo)
+@section('edituser_photo', $user->user_photo)
 @section('editblock', $user->block)
 @section('editpassword', $user->password)
 @section('editdate_of_birth', $user->date_of_birth)

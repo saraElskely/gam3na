@@ -22,12 +22,13 @@
   @foreach($subcategories as $subcategory)
   <tr>
   <td>{{$subcategory->id}}</td>
-  <td>{{$subcategory->name}}</td>
-  <td>{{$subcategory->description}}</td>
+  <td>{{$subcategory->subcategory_name}}</td>
+  <td>{{$subcategory->subcategory_description}}</td>
   <td>{{$subcategory->category_id}}</td>
-  <td><img src={{asset("/upload/image/$subcategory->photo")}} width="42" height="42" ></td>
+  <td><img src={{asset("/upload/image/$subcategory->subcategory_photo")}} width="42" height="42" ></td>
 
   <td>
+
              
     <a href="subcategories/{{$subcategory->id}}">Show</a>
    <a href="subcategories/{{$subcategory->id}}/edit">Edit</a>

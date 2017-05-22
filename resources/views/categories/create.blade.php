@@ -21,19 +21,19 @@
                       <div class="form-group">
                           <label class="control-label col-sm-2" >Category Name :</label>
                           <div class="col-sm-10">
-                              <input type="text" name="name" id="name" class="form-control">
+                              <input type="text" name="category_name" id="name" class="form-control">
                           </div>
                       </div>
                       <div class="form-group">
                           <label class="control-label col-sm-2" >Description</label>
                           <div class="col-sm-10">
-                              <textarea name="description" id="description" class="form-control"></textarea>
+                              <textarea name="category_description" id="description" class="form-control"></textarea>
                           </div>
                       </div>
                       <div class="form-group">
-                          <label class="control-label col-sm-2" >Description</label>
+                          <label class="control-label col-sm-2" >Photo</label>
                           <div class="col-sm-10">
-                              <input type="file" name="photo" id="photo" class="form-control">
+                              <input type="file" name="category_photo" id="photo" class="form-control">
                           </div>
                       </div>
 

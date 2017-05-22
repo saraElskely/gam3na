@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Subcategory;
 use App\Category;
 class AdmincsubcategoriesController extends Controller
-{
+{ 
     /**
      * Display a listing of the resource.
      *
@@ -47,20 +47,20 @@ class AdmincsubcategoriesController extends Controller
 
 
       $fileName = 'null';
-      if ($request->hasFile('photo')) {
-          if($request->file('photo')->isValid()) {
+      if ($request->hasFile('subcategory_photo')) {
+          if($request->file('subcategory_photo')->isValid()) {
           $destinationPath = public_path('upload/image');
-         $extension =$request->file('photo')->getClientOriginalExtension();
+         $extension =$request->file('subcategory_photo')->getClientOriginalExtension();
          $fileName = uniqid().'.'.$extension;
-         $request->file('photo')->move($destinationPath, $fileName);
+         $request->file('subcategory_photo')->move($destinationPath, $fileName);
           }
       }
 
 
-      $subcategory->name=$request->name;
-      $subcategory->description=$request->description;
+      $subcategory->subcategory_name=$request->subcategory_name;
+      $subcategory->subcategory_description=$request->subcategory_description;
       $subcategory->category_id=$request->category_id;
-      $subcategory->photo=$fileName;
+      $subcategory->subcategory_photo=$fileName;
     
       $subcategory->save();
       return redirect('admin/subcategories');
@@ -109,19 +109,19 @@ class AdmincsubcategoriesController extends Controller
        ]);
       //  $data=$request->all();
       $fileName = 'null';
-      if ($request->hasFile('photo')) {
-          if($request->file('photo')->isValid()) {
+      if ($request->hasFile('subcategory_photo')) {
+          if($request->file('subcategory_photo')->isValid()) {
           $destinationPath = public_path('upload/image');
-         $extension =$request->file('photo')->getClientOriginalExtension();
+         $extension =$request->file('subcategory_photo')->getClientOriginalExtension();
          $fileName = uniqid().'.'.$extension;
-         $request->file('photo')->move($destinationPath, $fileName);
+         $request->file('subcategory_photo')->move($destinationPath, $fileName);
           }
       }
 
-      $subcategory->name=$request->name;
-      $subcategory->description=$request->description;
+      $subcategory->subcategory_name=$request->subcategory_name;
+      $subcategory->subcategory_description=$request->subcategory_description;
       $subcategory->category_id=$request->category_id;
-      $subcategory->photo=$fileName;
+      $subcategory->subcategory_photo=$fileName;
     
       $subcategory->save();
       return redirect('admin/subcategories');
@@ -136,8 +136,8 @@ class AdmincsubcategoriesController extends Controller
     public function destroy($id)
     {
         $subcategory= Subcategory::find($id) ;
-      $subcategory->delete();
-      session()->flash('message','Deleted successfully');
-      return redirect('admin/subcategories');
+        $subcategory->delete();
+        session()->flash('message','Deleted successfully');
+        return redirect('admin/subcategories');
     }
 }

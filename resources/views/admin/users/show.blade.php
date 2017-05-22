@@ -9,7 +9,7 @@
   <th>Name</th>
   <th>Email</th>
   <!-- <th>Gender</th>
-  <th>Photo</th>
+  <th>user_photo</th>
   <th>DOB</th>
   <th>BLOCK</th>
   <th>JOB</th>

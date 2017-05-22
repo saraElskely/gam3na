@@ -16,14 +16,17 @@ class AdmincategoriesController extends Controller
      */
     public function index()
     {
-        //
-      $category = DB::table('categories')
-            ->join('subcategories', 'subcategories.category_id', '=', 'categories.id')
-            ->select('subcategories.*', 'categories.*')
-            ->get();
-            dd($category);
+     $categories= Category::all();
+      return view ('admin.categories.index',compact('categories'));
 
-        return view('admin.categories.index',['categories'=>$category]);
+
+      // $category = DB::table('categories')
+      //       ->join('subcategories', 'subcategories.category_id', '=', 'categories.id')
+      //       ->select('subcategories.*', 'categories.*')
+      //       ->get();
+            
+      //   return view('admin.categories.index',['categories'=>$category]);
+
     }
 
     /**
@@ -34,6 +37,7 @@ class AdmincategoriesController extends Controller
     public function create()
     {
         //
+        return view ('admin.categories.create');
     }
 
     /**
@@ -45,6 +49,30 @@ class AdmincategoriesController extends Controller
     public function store(Request $request)
     {
         //
+            $category= new Category;
+       $this->validate($request,[
+        
+       ]);
+      //  $data=$request->all();
+      $fileName = 'null';
+      if ($request->hasFile('category_photo')) {
+          if($request->file('category_photo')->isValid()) {
+          $destinationPath = public_path('upload/image');
+         $extension =$request->file('category_photo')->getClientOriginalExtension();
+         $fileName = uniqid().'.'.$extension;
+         $request->file('category_photo')->move($destinationPath, $fileName);
+          }
+      }
+
+
+      $category->category_name=$request->category_name;
+      $category->category_description=$request->category_description;
+    
+      $category->category_photo=$fileName;
+    
+      $category->save();
+      return redirect('admin/categories');
+
     }
 
     /**
@@ -56,6 +84,9 @@ class AdmincategoriesController extends Controller
     public function show($id)
     {
         //
+     $category = Category::findOrFail($id);
+     return view ('admin.categories.show',compact('category'));
+
     }
 
     /**
@@ -67,6 +98,8 @@ class AdmincategoriesController extends Controller
     public function edit($id)
     {
         //
+          $category = Category::find($id);
+         return view ('admin.categories.edit',compact('category'));
     }
 
     /**
@@ -79,6 +112,28 @@ class AdmincategoriesController extends Controller
     public function update(Request $request, $id)
     {
         //
+              $category= Category::find($id) ;
+            $this->validate($request,[
+       
+            ]);
+      //  $data=$request->all();
+     $fileName = 'null';
+      if ($request->hasFile('category_photo')) {
+          if($request->file('category_photo')->isValid()) {
+          $destinationPath = public_path('upload/image');
+         $extension =$request->file('category_photo')->getClientOriginalExtension();
+         $fileName = uniqid().'.'.$extension;
+         $request->file('category_photo')->move($destinationPath, $fileName);
+          }
+      }
+
+      $category->category_name=$request->category_name;
+      $category->category_description=$request->category_description;
+      
+      $category->category_photo=$fileName;
+    
+      $category->save();
+      return redirect('admin/categories');
     }
 
     /**
@@ -90,5 +145,9 @@ class AdmincategoriesController extends Controller
     public function destroy($id)
     {
         //
+        $category= Category::find($id) ;
+        $category->delete();
+        session()->flash('message','Deleted successfully');
+        return redirect('admin/categories');
     }
 }

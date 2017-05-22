@@ -16,15 +16,15 @@
       <div class="col-xs-12 col-sm-12 col-md-12">
           <div class="form-group">
               <strong>Name:</strong>
-              {{ $category->name}}
-              <img src=  {{ asset("/images/$category->photo") }} height="42" width="42">
+              {{ $category->category_name}}
+              <img src=  {{ asset("upload/image/$category->category_photo") }} height="42" width="42">
 
           </div>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-12">
           <div class="form-group">
               <strong>Description:</strong>
-              {{ $category->description }}
+              {{ $category->category_description }}
           </div>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-12">
@@ -39,7 +39,7 @@
           <div class="col-xs-12 col-sm-12 col-md-12">
               <div class="form-group">
                   <strong>Subcategory :</strong>
-                  {{ $subcategory->name}}
+                  {{ $subcategory->subcategory_name}}
               </div>
           </div>
         @endforeach
