@@ -13,8 +13,13 @@ class ReportsController extends Controller
         $this->validate(request(),[
             'report_content'=>'required'
         ]);
-        $event->addReport(request('report_content'));
-        $event->user_id=Auth::id();
+
+        $data = [ 
+	        'report_content' => request('report_content'),
+	        'user_id' => Auth::id(),
+	        'event_id' => $event->id,
+	        ] ;
+        Report::create($data);
 
         return back();
     }

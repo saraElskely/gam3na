@@ -10,12 +10,14 @@ use Session;
 
 class Commentscontroller extends Controller
 {
-    public function store(Event $event)
+    public function store(Event $event )
     {
     	 // dd($event->id);
         $this->validate(request(),[
             'comment_content'=>'required'
         ]);
+
+        // $commentData = array_merge($request->all(), ['user_id' => Auth::id() ,'event_id' => $event->id ]);
 
         $data = [ 
 	        'comment_content' => request('comment_content'),
