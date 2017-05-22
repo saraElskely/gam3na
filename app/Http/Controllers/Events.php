@@ -34,6 +34,7 @@ class Events extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
+    
     {
         $event = new event;
         $this->validate($request,[
@@ -41,18 +42,19 @@ class Events extends Controller
             'event_description'=>'required',
 
         ]);
+
         $event->event_name = $request->event_name;
         $event->event_description = $request->event_description;
         $event->event_date = $request->event_date;
         $event->event_address = $request->event_address;
         $event->user_id=Auth::id();
-        $event->subcategory_id = 1;
+        $event->subcategory_id = 3;
         $event->event_longitude ="2";
         $event->event_latitude ="3";
         $event->save();
         return redirect('event');
+    
     }
-
     /**
      * Display the specified resource.
      *
