@@ -38,31 +38,18 @@ class Event extends Model
         return $this->hasMany(Comment::class);
     }
 
-    // public function addComment($comment_content)
-    // {
-    //     $this->comments()->create(compact('comment_content'),$user_id);
-    // }
-
 
     public function reviews()
     {
         return $this->hasMany(Review::class);
     }
 
-    public function addReview($review_content)
-    {
-        $this->reviews()->create(compact('review_content'));
-    }
 
     public function reports()
     {
         return $this->hasMany(Report::class);
     }
 
-    public function addReport($report_content)
-    {
-        $this->reports()->create(compact('report_content'));
-    }
 
 
 

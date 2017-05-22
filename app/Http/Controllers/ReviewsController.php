@@ -13,8 +13,13 @@ class ReviewsController extends Controller
         $this->validate(request(),[
             'review_content'=>'required'
         ]);
-        $event->addReview(request('review_content'));
-        $event->user_id=Auth::id();
+
+        $data = [ 
+	        'review_content' => request('review_content'),
+	        'user_id' => Auth::id(),
+	        'event_id' => $event->id,
+	        ] ;
+        Review::create($data);
 
         return back();
     }
