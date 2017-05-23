@@ -36,23 +36,39 @@ class Events extends Controller
     public function store(Request $request)
     
     {
-        $event = new event;
+        $event = new Event;
         $this->validate($request,[
             'event_name'=>'required|unique:events',
             'event_description'=>'required',
 
         ]);
 
+
+           $fileName = 'null';
+        if ($request->hasFile('event_photo')) {
+          if($request->file('event_photo')->isValid()) {
+          $destinationPath = public_path('upload/image');
+          $extension =$request->file('event_photo')->getClientOriginalExtension();
+          $fileName = uniqid().'.'.$extension;
+          $request->file('event_photo')->move($destinationPath, $fileName);
+          }
+      }
+
+
         $event->event_name = $request->event_name;
         $event->event_description = $request->event_description;
         $event->event_date = $request->event_date;
         $event->event_address = $request->event_address;
+        $event->event_photo =$fileName;
         $event->user_id=Auth::id();
         $event->subcategory_id = 3;
         $event->event_longitude ="2";
         $event->event_latitude ="3";
         $event->save();
         return redirect('event');
+
+  
+
     
     }
     /**
@@ -95,9 +111,21 @@ class Events extends Controller
             'event_description'=>'required',
             'event_name'=>'required'
         ]);
+        $fileName = 'null';
+        if ($request->hasFile('event_photo')) {
+          if($request->file('event_photo')->isValid()) {
+          $destinationPath = public_path('upload/image');
+          $extension =$request->file('event_photo')->getClientOriginalExtension();
+          $fileName = uniqid().'.'.$extension;
+          $request->file('event_photo')->move($destinationPath, $fileName);
+          }
+      
+    }
+
         $event->event_name = $request->event_name;
         $event->event_description = $request->event_description;
         $event->event_date = $request->event_date;
+        $event->event_photo = $fileName;
         $event->event_address = $request->event_address;
         $event->save();
         session()->flash('message','updated successfully');

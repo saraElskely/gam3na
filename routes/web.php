@@ -18,6 +18,7 @@ Route::get('/', 'AdminController@index')->name('admin.dashboard');
 Route::resource('/users','AdminusersController');
 Route::resource('/categories','AdmincategoriesController');
 Route::resource('/subcategories','AdmincsubcategoriesController');
+Route::resource('/events','AdmineventsController');
 });
 Route::get('/', function () {
     return view('welcome');
