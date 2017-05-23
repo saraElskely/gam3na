@@ -10,7 +10,7 @@ class AdminusersController extends Controller
     {
         $this->middleware('auth:admin');
     }
-    
+
     public function index(){
 
       $users= User::all();
@@ -78,12 +78,13 @@ class AdminusersController extends Controller
 
 
       if ($request->hasFile('user_photo')) {
+        
+        if($request->file('user_photo')->isValid()) {
+        $destinationPath = public_path('upload/image');
+        $extension =$request->file('user_photo')->getClientOriginalExtension();
+        $fileName = uniqid().'.'.$extension;
+        $request->file('user_photo')->move($destinationPath, $fileName);
 
-          if($request->file('user_photo')->isValid()) {
-          $destinationPath = public_path('upload/image');
-         $extension =$request->file('user_photo')->getClientOriginalExtension();
-         $fileName = uniqid().'.'.$extension;
-         $request->file('user_photo')->move($destinationPath, $fileName);
           }
 
       }

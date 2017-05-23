@@ -17,6 +17,7 @@ class CreateEventsTable extends Migration
             $table->increments('id');
             $table->string('event_name');
             $table->text('event_description');
+            $table->text('event_photo');
             $table->dateTime('event_date');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')

@@ -28,7 +28,7 @@ class Event extends Model
      * @var array
      */
     protected $fillable = [
-        'event_name', 'event_description', 'event_date','event_address',
+        'event_name', 'event_description', 'event_date','event_address','event_photo',
     ];
 
     protected $hidden = ['user_id','subcategory_id'];
