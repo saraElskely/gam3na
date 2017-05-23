@@ -10,6 +10,11 @@ use Session;
 
 class Commentscontroller extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function store(Event $event )
     {
     	 // dd($event->id);
@@ -19,7 +24,7 @@ class Commentscontroller extends Controller
 
         // $commentData = array_merge($request->all(), ['user_id' => Auth::id() ,'event_id' => $event->id ]);
 
-        $data = [ 
+        $data = [
 	        'comment_content' => request('comment_content'),
 	        'user_id' => Auth::id(),
 	        'event_id' => $event->id,

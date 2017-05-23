@@ -8,13 +8,17 @@ use Illuminate\Support\Facades\Auth;
 
 class ReportsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function store (Event $event)
     {
         $this->validate(request(),[
             'report_content'=>'required'
         ]);
 
-        $data = [ 
+        $data = [
 	        'report_content' => request('report_content'),
 	        'user_id' => Auth::id(),
 	        'event_id' => $event->id,

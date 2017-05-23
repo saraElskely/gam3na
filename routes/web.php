@@ -34,4 +34,3 @@ Route::post('/event/{event}/reviews','ReviewsController@store');
 Route::post('/event/{event}/reports','ReportsController@store');
 
 Route::resource('/categories','CategoriesController',['except'=>['edit','update','destroy']]);
-
