@@ -11,6 +11,11 @@
 	</p>
 	<p>{{$item->event_description}}</p>
 </div>
+
+
+<img src={{asset("/upload/image/$item->event_photo")}} width="42" height="42" >
+
+
 	<div class="form-group">
 		<div class="col-lg-10">
 			<div class="radio">

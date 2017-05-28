@@ -35,8 +35,8 @@
           </div>
       </div>
 
-      @if(!empty($category->Subcategories))
-        @foreach($category->Subcategories as $subcategory)
+      @if(!empty($category->subcategories))
+        @foreach($category->subcategories as $subcategory)
           <div class="col-xs-12 col-sm-12 col-md-12">
               <div class="form-group">
                   <strong>Subcategory :</strong>
@@ -49,3 +49,6 @@
   </div>
 
 @endsection
+
+
+

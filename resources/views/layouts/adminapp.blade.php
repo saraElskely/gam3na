@@ -39,7 +39,7 @@
   <a class="navbar-brand" href="/admin/subcategories">Subcategories</a>
   <a class="navbar-brand" href="/admin/users">Users</a>
   <a class="navbar-brand" href="/admin/categories">Categories</a>
-  <a class="navbar-brand" href="#">Events</a>
+  <a class="navbar-brand" href="/admin/events">Events</a>
   <a class="navbar-brand" href="#">Admins</a>
 </div>
 
