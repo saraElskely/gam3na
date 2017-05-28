@@ -23,7 +23,20 @@ Route::resource('/events','AdmineventsController');
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::get('/home/{id}','homeController@show');
+
+Route::prefix('profile')->group(function(){
+	Route::get('/{id}','Profilecontroller@show');
+	Route::get('/edit','Profilecontroller@editprofile')->name('profile.editprofile');
+	Route::put('/update','Profilecontroller@updateprofile')->name('profile.updateprofile');
+	Route::get('/','Profilecontroller@profile');
+
+});
+
+
+
+
 
 Auth::routes();
 
@@ -35,4 +48,5 @@ Route::post('/event/{event}/reviews','ReviewsController@store');
 Route::post('/event/{event}/reports','ReportsController@store');
 
 Route::resource('/categories','CategoriesController',['except'=>['edit','update','destroy']]);
+Route::get('MarkAllSeen','Events@AllSeen');
 

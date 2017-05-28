@@ -4,9 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Event;
+use App\User;
+use Notification;
+use App\Notifications\AddEvent;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
+use StreamLab\StreamLabProvider\Facades\StreamLabFacades;
+
 class Events extends Controller
 {
+    use  Notifiable;
+
     /**
      * Display a listing of the resource.
      *
@@ -61,12 +69,17 @@ class Events extends Controller
         $event->event_address = $request->event_address;
         $event->event_photo =$fileName;
         $event->user_id=Auth::id();
-        $event->subcategory_id = 3;
-        $event->event_longitude ="2";
-        $event->event_latitude ="3";
-        $event->save();
-        return redirect('event');
-
+        $event->subcategory_id =2;
+        $event->event_longitude =$request->event_longitude;
+        $event->event_latitude =$request->event_latitude;
+      if($event->save()){
+         $user = User::all();
+        Notification::send($user ,new AddEvent($event));
+        $data = 'we Have New Event '.$event->event_name.'<br>Added By'.auth()->user()->name;
+      StreamLabFacades::pushMessage('gam3na','AddEvent',$data); 
+           
+      }
+       return redirect('event');
   
 
     
@@ -127,6 +140,8 @@ class Events extends Controller
         $event->event_date = $request->event_date;
         $event->event_photo = $fileName;
         $event->event_address = $request->event_address;
+        $event->event_longitude =$request->event_longitude;
+        $event->event_latitude =$request->event_latitude;
         $event->save();
         session()->flash('message','updated successfully');
         return redirect('event');
@@ -145,4 +160,14 @@ class Events extends Controller
         session()->flash('message','Deleted successfully');
         return redirect('/event');
     }
+    public function AllSeen(){
+      foreach(auth()->user()->unreadNotifications as $note){
+       $note->markAsRead(); 
+      }
+    }
 }
+
+
+
+
+ // AIzaSyD_0JrPnBAl85q8GhoExBWLry7hat2u8p4 
