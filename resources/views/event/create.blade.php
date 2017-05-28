@@ -28,6 +28,13 @@
 
 		  	</div>
 
+				<select name= "subcategory_id" >
+					@foreach ($subcategories as $subcategory)
+						<option value="{{$subcategory->id}}">{{$subcategory->subcategory_name}}</option>
+					@endforeach
+
+				</select>
+
 		    <div class="form-group">
 		      <div class="col-lg-10">
 
@@ -45,13 +52,15 @@
 				  <br>
 				  <input type="text" class="form-control" placeholder="Event will take place in" name="event_address">
 
+
 				<div id="googleMap" style="width:100%;height:400px;">
 
-				</div>  
-				<input id="1" name="event_latitude" class="lat" type="hidden" value="@yield('event_latitude')">  
+				</div>
+				<input id="1" name="event_latitude" class="lat" type="hidden" value="@yield('event_latitude')">
 
-				<input id="2" name="event_longitude" class="lon" type="hidden" value="@yield('event_longitude')">  
-				  
+				<input id="2" name="event_longitude" class="lon" type="hidden" value="@yield('event_longitude')">
+
+
 
 				  <br>
 		        <button type="submit" class="btn btn-primary">Submit</button>
@@ -71,9 +80,9 @@
 					    zoom:5,
 					};
 					var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
-					var longt = document.getElementById('2').value;	
+					var longt = document.getElementById('2').value;
 					var latt = document.getElementById('1').value;
-					
+
 					if(latt && longt){
 
 						var u = {'lat': latt, 'lng': longt};
@@ -92,7 +101,7 @@
 						google.maps.event.addListener(map, 'click', function(event) {
 							// alert(event.latLng);
 						    placeMarker(map, event.latLng ,marker);
-						    
+
 						  });
 
 
@@ -101,18 +110,18 @@
 					alert(location);
 					marker = marker.setPosition(location);
 					map.panTo(location);
-					$('.lat').val(location.lat());  
+					$('.lat').val(location.lat());
 
-   				   	$('.lon').val(location.lng());  
+   				   	$('.lon').val(location.lng());
    				   	// alert(marker);
 
 					// var infowindow = new google.maps.InfoWindow({
 					//     content: 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng()
 					// });
 					// infowindow.open(map,marker);
-					
+
 				}
-			
+
 
 
 			</script>
@@ -126,6 +135,3 @@
      	@include('event.partials.errors')
 </div>
 @endsection
-
-
-	

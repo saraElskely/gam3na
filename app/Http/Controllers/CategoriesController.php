@@ -5,7 +5,10 @@ use App\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 use Session;
+use DB;
+use App\User;
 
 class CategoriesController extends Controller
 {
@@ -18,7 +21,9 @@ class CategoriesController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view('categories.index',['categories'=>$categories]);
+        $user_subscribe =  User::find(Auth::id())->subscribed_categories;
+        // $user_subscribe =  User::find(Auth::id());
+        return view('categories.index',['categories'=>$categories,'user_subscribe'=>$user_subscribe]);
     }
 
     public function create()
@@ -57,5 +62,27 @@ class CategoriesController extends Controller
         Category::find($id)->delete();
         Session::flash('success_msg','category deleted successfuly');
         return redirect()->route('categories.index');
+    }
+
+
+    public function user_subscribe($id){
+      $category = Category::find($id);
+      $select = DB::table('category_user')->where('user_id','=',Auth::id())
+                    ->where('category_id','=',$id)
+                    ->first();
+
+      // dd( $s);
+      //  $category->subscribed_users()->where('user_id', '=', Auth::id())->get()
+      if(is_null($select) ){
+        $category->subscribed_users()->attach(Auth::id());
+        return "'status': '1'";
+      }else{
+        $status= (! $select->status);
+
+        $category->subscribed_users()->updateExistingPivot(Auth::id(),['status'=>$status]);
+        return "'status':$status" ;
+      }
+
+
     }
 }

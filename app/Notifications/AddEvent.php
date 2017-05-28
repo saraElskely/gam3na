@@ -17,11 +17,11 @@ class Addevent extends Notification
         $this->event = $event;
     }
 
+
     public function via($notifiable)
     {
         return ['database'];
     }
-
     public function toArray($notifiable)
     {
         return [
