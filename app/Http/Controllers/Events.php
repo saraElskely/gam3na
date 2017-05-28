@@ -13,7 +13,8 @@ class Events extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   $events = Event::all();
+    {   
+        $events = Event::all();
         return view('event.home', compact('events'));
     }
 
@@ -39,7 +40,6 @@ class Events extends Controller
         $this->validate($request,[
             'event_name'=>'required|unique:events',
             'event_description'=>'required',
-
         ]);
         $event->event_name = $request->event_name;
         $event->event_description = $request->event_description;
@@ -103,7 +103,7 @@ class Events extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.ss
+     * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
