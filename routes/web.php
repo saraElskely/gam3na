@@ -46,7 +46,12 @@ Route::resource('event','Events');
 Route::post('/event/{event}/comments','Commentscontroller@store');
 Route::post('/event/{event}/reviews','ReviewsController@store');
 Route::post('/event/{event}/reports','ReportsController@store');
+Route::post('/event/{event}/photos','photosController@store');
+
 
 Route::resource('/categories','CategoriesController',['except'=>['edit','update','destroy']]);
 Route::get('MarkAllSeen','Events@AllSeen');
 
+//facebook socilaite routes
+Route::get('login/facebook', 'Auth\LoginController@redirectToProvider');
+Route::get('login/facebook/callback', 'Auth\LoginController@handleProviderCallback');

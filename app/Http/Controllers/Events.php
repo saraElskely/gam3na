@@ -13,6 +13,7 @@ use StreamLab\StreamLabProvider\Facades\StreamLabFacades;
 
 class Events extends Controller
 {
+<<<<<<< HEAD
     use  Notifiable;
 
     /**
@@ -20,8 +21,22 @@ class Events extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+||||||| merged common ancestors
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+=======
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+>>>>>>> 6a5195727d5caf380699b0d5d0a18b08ebef4ae4
     public function index()
-    {   $events = Event::all();
+    {   
+        $events = Event::all();
         return view('event.home', compact('events'));
     }
 
@@ -42,26 +57,23 @@ class Events extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    
     {
         $event = new Event;
         $this->validate($request,[
             'event_name'=>'required|unique:events',
             'event_description'=>'required',
-
         ]);
 
 
-           $fileName = 'null';
+        $fileName = 'null';
         if ($request->hasFile('event_photo')) {
           if($request->file('event_photo')->isValid()) {
-          $destinationPath = public_path('upload/image');
-          $extension =$request->file('event_photo')->getClientOriginalExtension();
-          $fileName = uniqid().'.'.$extension;
-          $request->file('event_photo')->move($destinationPath, $fileName);
+            $destinationPath = public_path('upload/image');
+            $extension =$request->file('event_photo')->getClientOriginalExtension();
+            $fileName = uniqid().'.'.$extension;
+            $request->file('event_photo')->move($destinationPath, $fileName);
           }
-      }
-
+        }
 
         $event->event_name = $request->event_name;
         $event->event_description = $request->event_description;
@@ -69,6 +81,7 @@ class Events extends Controller
         $event->event_address = $request->event_address;
         $event->event_photo =$fileName;
         $event->user_id=Auth::id();
+<<<<<<< HEAD
         $event->subcategory_id =2;
         $event->event_longitude =$request->event_longitude;
         $event->event_latitude =$request->event_latitude;
@@ -83,6 +96,23 @@ class Events extends Controller
   
 
     
+||||||| merged common ancestors
+        $event->subcategory_id = 3;
+        $event->event_longitude ="2";
+        $event->event_latitude ="3";
+        $event->save();
+        return redirect('event');
+
+  
+
+    
+=======
+        $event->subcategory_id = 3;
+        $event->event_longitude ="2";
+        $event->event_latitude ="3";
+        $event->save();
+        return redirect('event');
+>>>>>>> 6a5195727d5caf380699b0d5d0a18b08ebef4ae4
     }
     /**
      * Display the specified resource.
@@ -127,13 +157,13 @@ class Events extends Controller
         $fileName = 'null';
         if ($request->hasFile('event_photo')) {
           if($request->file('event_photo')->isValid()) {
-          $destinationPath = public_path('upload/image');
-          $extension =$request->file('event_photo')->getClientOriginalExtension();
-          $fileName = uniqid().'.'.$extension;
-          $request->file('event_photo')->move($destinationPath, $fileName);
+            $destinationPath = public_path('upload/image');
+            $extension =$request->file('event_photo')->getClientOriginalExtension();
+            $fileName = uniqid().'.'.$extension;
+            $request->file('event_photo')->move($destinationPath, $fileName);
           }
-      
-    }
+
+        }
 
         $event->event_name = $request->event_name;
         $event->event_description = $request->event_description;
@@ -148,7 +178,7 @@ class Events extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.ss
+     * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

@@ -6,24 +6,28 @@ use Illuminate\Http\Request;
 use App\User;
 class AdminusersController extends Controller
 {
-    //
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+
     public function index(){
 
       $users= User::all();
-     return view ('admin.users.index',compact('users'));
-  }
+      return view ('admin.users.index',compact('users'));
+    }
 
-   public function create(){
+    public function create(){
 
       return view ('admin.users.create');
-  }
+    }
 
-   public function edit($id){
+     public function edit($id){
 
-    $user = User::find($id);
-     return view ('admin.users.edit',compact('user'));
+        $user = User::find($id);
+        return view ('admin.users.edit',compact('user'));
 
- }
+     }
 
   public function store(Request $request){
        $user= new User;
@@ -31,7 +35,7 @@ class AdminusersController extends Controller
         'email'=>'required|unique:users',
        ]);
       //  $data=$request->all();
-           
+
 
 
       $fileName = 'null';
@@ -72,7 +76,7 @@ class AdminusersController extends Controller
       //  $data=$request->all();
      $fileName = 'null';
 
-     
+
       if ($request->hasFile('user_photo')) {
         
         if($request->file('user_photo')->isValid()) {
@@ -80,10 +84,11 @@ class AdminusersController extends Controller
         $extension =$request->file('user_photo')->getClientOriginalExtension();
         $fileName = uniqid().'.'.$extension;
         $request->file('user_photo')->move($destinationPath, $fileName);
+
           }
-      
+
       }
-      
+
       $user->name=$request->name;
       $user->email=$request->email;
       $user->gender=$request->gender;

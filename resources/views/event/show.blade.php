@@ -59,7 +59,34 @@
 		</form>
 
 		</div>
-{{--------------------------------------------------------------------------------------}}
+
+@if(!empty($item->photos))
+  <div class="photos">
+	<ul class="list-group">
+		@foreach($item->photos as $userEvent_photo)
+			<li class="list-group">
+				{{ $item->user->name }}, 
+              <img src=  {{ asset("upload/image/$userEvent_photo->user_event_photo") }} height="42" width="42"> 
+
+			</li>
+		@endforeach
+	</ul>
+</div>
+@endif
+<div class="card">
+	<div class="card-block">
+		<form method="post" action="/event/{{$item->id}}/photos" enctype="multipart/form-data">
+			{{csrf_field()}}
+			<div class="form-group">
+                 <input type="file" name="user_event_photo"  class="form-control">
+			</div>
+
+			<div class="form-group">
+				<button type="submit" class="btn btn-primary">Upload photos</button>
+			</div>
+	</form>
+	</div>
+
 		<div class="container">
 			<div class="reviews">
 				<ul class="list-group">
@@ -86,7 +113,6 @@
 							</div>
 						</form>
 
-{{-------------------------------------------------------------------------------------------------------------------------------}}
 						<div class="card">
 							<div class="card-block">
 								<form method="post" action="/event/{{$item->id}}/reports">

@@ -9,11 +9,11 @@ use DB;
 
 class AdmincategoriesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+
     public function index()
     {
      $categories= Category::all();
@@ -24,7 +24,7 @@ class AdmincategoriesController extends Controller
       //       ->join('subcategories', 'subcategories.category_id', '=', 'categories.id')
       //       ->select('subcategories.*', 'categories.*')
       //       ->get();
-            
+
       //   return view('admin.categories.index',['categories'=>$category]);
 
     }
@@ -51,7 +51,7 @@ class AdmincategoriesController extends Controller
         //
             $category= new Category;
        $this->validate($request,[
-        
+
        ]);
       //  $data=$request->all();
       $fileName = 'null';
@@ -67,9 +67,9 @@ class AdmincategoriesController extends Controller
 
       $category->category_name=$request->category_name;
       $category->category_description=$request->category_description;
-    
+
       $category->category_photo=$fileName;
-    
+
       $category->save();
       return redirect('admin/categories');
 
@@ -114,7 +114,7 @@ class AdmincategoriesController extends Controller
         //
               $category= Category::find($id) ;
             $this->validate($request,[
-       
+
             ]);
       //  $data=$request->all();
      $fileName = 'null';
@@ -129,9 +129,9 @@ class AdmincategoriesController extends Controller
 
       $category->category_name=$request->category_name;
       $category->category_description=$request->category_description;
-      
+
       $category->category_photo=$fileName;
-    
+
       $category->save();
       return redirect('admin/categories');
     }

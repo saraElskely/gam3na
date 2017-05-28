@@ -6,12 +6,12 @@ use Illuminate\Http\Request;
 use App\Subcategory;
 use App\Category;
 class AdmincsubcategoriesController extends Controller
-{ 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+{
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+
     public function index()
     {
       $subcategories= Subcategory::all();
@@ -43,7 +43,7 @@ class AdmincsubcategoriesController extends Controller
         'category_id'=>'required',
        ]);
       //  $data=$request->all();
-           
+
 
 
       $fileName = 'null';
@@ -61,7 +61,7 @@ class AdmincsubcategoriesController extends Controller
       $subcategory->subcategory_description=$request->subcategory_description;
       $subcategory->category_id=$request->category_id;
       $subcategory->subcategory_photo=$fileName;
-    
+
       $subcategory->save();
       return redirect('admin/subcategories');
     }
@@ -122,7 +122,7 @@ class AdmincsubcategoriesController extends Controller
       $subcategory->subcategory_description=$request->subcategory_description;
       $subcategory->category_id=$request->category_id;
       $subcategory->subcategory_photo=$fileName;
-    
+
       $subcategory->save();
       return redirect('admin/subcategories');
     }
