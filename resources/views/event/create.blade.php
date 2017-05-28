@@ -20,6 +20,13 @@
 
 		  	</div>
 
+				<select name= "subcategory_id" >
+					@foreach ($subcategories as $subcategory)
+						<option value="{{$subcategory->id}}">{{$subcategory->subcategory_name}}</option>
+					@endforeach
+
+				</select>
+
 		    <div class="form-group">
 		      <div class="col-lg-10">
 
@@ -36,7 +43,7 @@
 				  <input type="datetime-local"class="form-control" name="event_date">
 				  <br>
 				  <input type="text" class="form-control" placeholder="Event will take place in" name="event_address">
-				  
+
 
 				  <br>
 		        <button type="submit" class="btn btn-primary">Submit</button>
@@ -48,6 +55,3 @@
      	@include('event.partials.errors')
 </div>
 @endsection
-
-
-	

@@ -2,7 +2,83 @@
 
 @section('content')
 
-  <div class="row">
+  @if(!empty($categories))
+
+    <div id="category" class="container text-center  ">
+      <h2 >CATEGORIES</h2>
+      <h4>What we offer</h4>
+      <br>
+
+      <div class="row  container slide ">
+        @foreach($categories as $category)
+          <div class="col-sm-4 slide panel  ">
+            <div class="">
+              <img class="img-responsive center-block" src= {{ asset("/upload/image/$category->category_photo") }} />
+              <h4>{{$category->category_name}}</h4>
+              <p>{{$category->created_at}}</p>
+              <a href="{{ route('categories.show', $category->id) }}" class="label label-success">Details</a>
+
+              @if($user_subscribe->where('id', $category->id)->isEmpty())
+              <div class="container">
+                  <div class="content">
+                      <button style="border:none;display:none" type="button" id="{{$category->category_name}}subscribed" class="{{$category->category_name}}subscribed glyphicon glyphicon-ok" ></button>
+                      <button style="border:none;" type="button" id="{{$category->category_name}}unsubscribed" class="{{$category->category_name}}unsubscribed glyphicon glyphicon-plus"></button>
+                  </div>
+              </div>
+            @else
+              {{-- if($user_subscribe->where('id', $category->id)->all()) --}}
+                {{-- {{dd($user_subscribe->where('id', $category->id)->all())}}; --}}
+              <div class="container">
+                  <div class="content">
+                      <button style="border:none;" type="button" id="{{$category->category_name}}subscribed" class="{{$category->category_name}}subscribed glyphicon glyphicon-ok" ></button>
+                      <button style="border:none;display:none" type="button" id="{{$category->category_name}}unsubscribed" class="{{$category->category_name}}unsubscribed glyphicon glyphicon-plus"></button>
+                  </div>
+              </div>
+              @endif
+
+              <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+              <script>
+              $(document).ready(function(){
+                  $("#{{$category->category_name}}subscribed").click(function(){
+                      $.ajax({url: "{{ route('subscribe', $category->id) }}", success: function(result){
+                        if (result.status == null){
+                          $("#{{$category->category_name}}unsubscribed").show();
+                          $("#{{$category->category_name}}subscribed").hide();
+                        }
+
+                      }
+                    });
+                  });
+              });
+              $(document).ready(function(){
+                  $("#{{$category->category_name}}unsubscribed").click(function(){
+                      $.ajax({url: "{{ route('subscribe', $category->id) }}", success: function(result){
+                        if (!result.status){
+                          $("#{{$category->category_name}}subscribed").show();
+                          $("#{{$category->category_name}}unsubscribed").hide();
+
+                        }
+
+                      }
+                    });
+                  });
+              });
+              </script>
+
+
+
+
+          </div>
+         </div>
+        @endforeach
+     </div>
+
+  </div>
+
+  @endif
+
+
+  {{-- <div class="row">
       <div class="col-lg-12">
           @if(Session::has('success_msg'))
           <div class="alert alert-success">{{ Session::get('success_msg') }}</div>
@@ -49,7 +125,7 @@
                               <td>
                                   <a href="{{ route('categories.show', $category->id) }}" class="label label-success">Details</a>
                                   {{-- <a href="{{ route('categories.destroy', $category->id) }}" class="label label-danger" onclick="return confirm('Are you sure to delete?')">Delete</a> --}}
-                              </td>
+                              {{-- </td>
                           </tr>
                       @endforeach
                       </tbody>
@@ -58,7 +134,7 @@
           </div>
       @endif
       </div>
-  </div>
+  </div> --}}
 
 
 @endsection

@@ -17,7 +17,7 @@
 </div>
 <div class="form-group">
 <label for="subcategory_description">Description</label>
-<input   type="text" name="subcategory_description" value="@yield('editdescription')"> 
+<input   type="text" name="subcategory_description" value="@yield('editdescription')">
 <div class="form-group">
 <label for="subcategory_photo">Photo</label>
 <input type="file" name="subcategory_photo" value="@yield('editphoto')">
@@ -33,4 +33,3 @@
 @include('admin.subcategories.errors')
 </center>
 @endsection
-

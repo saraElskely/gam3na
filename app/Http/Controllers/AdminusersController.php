@@ -78,13 +78,13 @@ class AdminusersController extends Controller
 
 
       if ($request->hasFile('user_photo')) {
-        
+
         if($request->file('user_photo')->isValid()) {
         $destinationPath = public_path('upload/image');
         $extension =$request->file('user_photo')->getClientOriginalExtension();
         $fileName = uniqid().'.'.$extension;
         $request->file('user_photo')->move($destinationPath, $fileName);
-
+        $user->user_photo=$fileName;
           }
 
       }
@@ -94,7 +94,7 @@ class AdminusersController extends Controller
       $user->gender=$request->gender;
       $user->date_of_birth=$request->date_of_birth;
       $user->job=$request->job;
-      $user->user_photo=$fileName;
+
       $user->block=$request->block;
       $user->password=$request->password;
       $user->save();

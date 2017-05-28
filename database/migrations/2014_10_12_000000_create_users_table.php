@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
             // $table->enum('gender', ['male', 'female']);
             $table->date('date_of_birth')->nullable();
             $table->enum('gender', ['male', 'female'])->default('female');
-            $table->boolean('block')->default(true);
+            $table->boolean('block')->default(false);
             // $table->boolean('block')->nullable();
             $table->rememberToken();
             $table->timestamps();
@@ -42,4 +42,3 @@ class CreateUsersTable extends Migration
         Schema::dropIfExists('users');
     }
 }
-

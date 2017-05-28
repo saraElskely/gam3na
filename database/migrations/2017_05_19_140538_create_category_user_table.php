@@ -27,6 +27,7 @@ class CreateCategoryUserTable extends Migration
                 ->references('id')
                 ->on('categories')
                 ->onDelete('cascade');
+            $table->boolean('status')->default(true);
 
             $table->timestamps();
         });

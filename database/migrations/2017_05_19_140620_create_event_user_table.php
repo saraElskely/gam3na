@@ -27,6 +27,8 @@ class CreateEventUserTable extends Migration
                 ->references('id')
                 ->on('events')
                 ->onDelete('cascade');
+                
+            $table->boolean('status')->default(true);
 
             $table->timestamps();
         });

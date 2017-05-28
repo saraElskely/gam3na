@@ -17,7 +17,7 @@
 </div>
 <div class="form-group">
 <label for="category_description">Description</label>
-<input   type="text" name="category_description" value="@yield('editdescription')"> 
+<input   type="text" name="category_description" value="@yield('editdescription')">
 <div class="form-group">
 <label for="category_photo">Photo</label>
 <input type="file" name="category_photo" value="@yield('editphoto')">
@@ -30,4 +30,3 @@
 @include('admin.categories.errors')
 </center>
 @endsection
-

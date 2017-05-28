@@ -50,7 +50,10 @@ class Event extends Model
         return $this->hasMany(Report::class);
     }
 
-
+    public function users_attend_event()
+    {
+      return $this->belongsToMany('App\User');
+    }
 
 
 }

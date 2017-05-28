@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Event;
+use App\Subcategory;
 use Illuminate\Support\Facades\Auth;
+use App\User;
 class Events extends Controller
 {
     public function __construct()
@@ -13,8 +15,10 @@ class Events extends Controller
     }
 
     public function index()
-    {   $events = Event::all();
-        return view('event.home', compact('events'));
+    {
+        $events = Event::all();
+        $user_attend =  User::find(Auth::id())->events_attend_by_user;
+        return view('event.home', ['events'=>$events,'user_attend'=>$user_attend]);
     }
 
     /**
@@ -24,7 +28,9 @@ class Events extends Controller
      */
     public function create()
     {
-        return view('event.create');
+        $subcategories = Subcategory::all();
+        // dd($subcategories);
+        return view('event.create',['subcategories'=>$subcategories]);
     }
 
     /**
@@ -59,7 +65,7 @@ class Events extends Controller
         $event->event_address = $request->event_address;
         $event->event_photo =$fileName;
         $event->user_id=Auth::id();
-        $event->subcategory_id = 3;
+        $event->subcategory_id =$request->subcategory_id;
         $event->event_longitude ="2";
         $event->event_latitude ="3";
         $event->save();
@@ -112,6 +118,7 @@ class Events extends Controller
             $extension =$request->file('event_photo')->getClientOriginalExtension();
             $fileName = uniqid().'.'.$extension;
             $request->file('event_photo')->move($destinationPath, $fileName);
+            $event->event_photo = $fileName;
           }
 
         }
@@ -119,7 +126,7 @@ class Events extends Controller
         $event->event_name = $request->event_name;
         $event->event_description = $request->event_description;
         $event->event_date = $request->event_date;
-        $event->event_photo = $fileName;
+
         $event->event_address = $request->event_address;
         $event->save();
         session()->flash('message','updated successfully');
@@ -139,4 +146,24 @@ class Events extends Controller
         session()->flash('message','Deleted successfully');
         return redirect('/event');
     }
+
+    public function user_attend($id){
+      $event = Event::find($id);
+      $select = DB::table('event_user')->where('user_id','=',Auth::id())
+                    ->where('event_id','=',$id)
+                    ->first();
+                      dd('select');
+      if(is_null($select) ){
+        $event->users_attend_event()->attach(Auth::id());
+        // dd($select);
+        return "'attend_status': 1";
+      }else{
+        $status= (! $select->status);
+
+        $event->users_attend_event()->updateExistingPivot(Auth::id(),['status'=>$status]);
+        return "'attend_status':$status" ;
+      }
+    }
+
+
 }

@@ -124,13 +124,14 @@ class AdmincategoriesController extends Controller
          $extension =$request->file('category_photo')->getClientOriginalExtension();
          $fileName = uniqid().'.'.$extension;
          $request->file('category_photo')->move($destinationPath, $fileName);
+         $category->category_photo=$fileName;
           }
       }
 
       $category->category_name=$request->category_name;
       $category->category_description=$request->category_description;
 
-      $category->category_photo=$fileName;
+
 
       $category->save();
       return redirect('admin/categories');

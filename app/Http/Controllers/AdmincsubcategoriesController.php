@@ -115,13 +115,14 @@ class AdmincsubcategoriesController extends Controller
          $extension =$request->file('subcategory_photo')->getClientOriginalExtension();
          $fileName = uniqid().'.'.$extension;
          $request->file('subcategory_photo')->move($destinationPath, $fileName);
+         $subcategory->subcategory_photo=$fileName;
           }
       }
 
       $subcategory->subcategory_name=$request->subcategory_name;
       $subcategory->subcategory_description=$request->subcategory_description;
       $subcategory->category_id=$request->category_id;
-      $subcategory->subcategory_photo=$fileName;
+
 
       $subcategory->save();
       return redirect('admin/subcategories');
