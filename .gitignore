@@ -10,11 +10,12 @@ app/storage/
 public/storage
 public/upload
 public/hot
+public/web
 storage/*.key
 .env.*.php
 .env.php
 .env
-.idea/workspace.xml
+.idea
 Homestead.yaml
 Homestead.json
 
