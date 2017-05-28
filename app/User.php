@@ -5,16 +5,12 @@ use Eloquent;
 
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
-<<<<<<< HEAD
-use Illuminate\Foundation\Auth\User as Authenticatable;
+
+//use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Notifications\AddEvent;
-||||||| merged common ancestors
-use Illuminate\Foundation\Auth\User as Authenticatable;
-=======
- // use Illuminate\Foundation\Auth\User as Authenticatable;
+// use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Auth\Authenticatable as AuthenticableTrait;
->>>>>>> 6a5195727d5caf380699b0d5d0a18b08ebef4ae4
 
 class User extends Eloquent implements Authenticatable
 {

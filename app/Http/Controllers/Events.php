@@ -13,27 +13,13 @@ use StreamLab\StreamLabProvider\Facades\StreamLabFacades;
 
 class Events extends Controller
 {
-<<<<<<< HEAD
     use  Notifiable;
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-||||||| merged common ancestors
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-=======
     public function __construct()
     {
         $this->middleware('auth');
     }
 
->>>>>>> 6a5195727d5caf380699b0d5d0a18b08ebef4ae4
     public function index()
     {   
         $events = Event::all();
@@ -81,7 +67,6 @@ class Events extends Controller
         $event->event_address = $request->event_address;
         $event->event_photo =$fileName;
         $event->user_id=Auth::id();
-<<<<<<< HEAD
         $event->subcategory_id =2;
         $event->event_longitude =$request->event_longitude;
         $event->event_latitude =$request->event_latitude;
@@ -94,32 +79,8 @@ class Events extends Controller
       }
        return redirect('event');
   
-
-    
-||||||| merged common ancestors
-        $event->subcategory_id = 3;
-        $event->event_longitude ="2";
-        $event->event_latitude ="3";
-        $event->save();
-        return redirect('event');
-
-  
-
-    
-=======
-        $event->subcategory_id = 3;
-        $event->event_longitude ="2";
-        $event->event_latitude ="3";
-        $event->save();
-        return redirect('event');
->>>>>>> 6a5195727d5caf380699b0d5d0a18b08ebef4ae4
     }
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+  
     public function show($id)
     {
         $item = Event::find($id);
@@ -140,13 +101,6 @@ class Events extends Controller
         return view('event.edit', compact('item'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $event = Event::find($id);
@@ -177,12 +131,6 @@ class Events extends Controller
         return redirect('event');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $item = Event::find($id);
@@ -197,7 +145,3 @@ class Events extends Controller
     }
 }
 
-
-
-
- // AIzaSyD_0JrPnBAl85q8GhoExBWLry7hat2u8p4 
