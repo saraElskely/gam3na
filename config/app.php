@@ -162,7 +162,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-    
+
         /*
          * Package Service Providers...
          */
@@ -178,14 +178,10 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
-<<<<<<< HEAD
-         StreamLab\StreamLabProvider\StreamLabServiceProvider::class,
-||||||| merged common ancestors
+        StreamLab\StreamLabProvider\StreamLabServiceProvider::class,
 
-=======
         Laravel\Socialite\SocialiteServiceProvider::class,
 
->>>>>>> 6a5195727d5caf380699b0d5d0a18b08ebef4ae4
 
     ],
 
