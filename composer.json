@@ -6,9 +6,11 @@
     "type": "project",
     "require": {
         "php": ">=5.6.4",
+        "5dmatweb/streamlab": "dev-master",
         "barryvdh/laravel-debugbar": "^2.3",
         "laravel/framework": "5.4.*",
         "laravel/passport": "^2.0",
+        "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0"
     },
     "require-dev": {

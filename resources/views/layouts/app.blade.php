@@ -17,10 +17,10 @@
           'csrfToken' => csrf_token(),
       ]) !!};
   </script>
-
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style>
+    .unread{background-color:red;}</style>
 </head>
-
-
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -40,6 +40,7 @@
           <li><a href="#contact">CONTACT</a></li>
           @if (Auth::guest())
 
+<<<<<<< HEAD
             <li><a href="login">Login</a></li>
             <li><a href="register">Register</a></li>
           @else
@@ -55,34 +56,40 @@
             </li>
             <li>
               <a href="#"   role="button" aria-expanded="false">
-                  {{ Auth::user()->name }} 
+                  {{ Auth::user()->name }}
               </a>
             </li>
-            {{-- <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                    {{ Auth::user()->name }} <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu" role="menu">
-                    <li>
-                        <a href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                                     document.getElementById('logout-form').submit();">
-                            Logout
-                        </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            {{ csrf_field() }}
-                        </form>
-                    </li>
-                </ul>
-            </li> --}}
+
+            <li class="dropdown">
+               <a href="#" class="dropdown-toggle notification" data-toggle="dropdown" role="button" aria-expanded="false">
+                   Notification
+                    <span id="count">{{count(auth()->user()->unreadNotifications)}}</span>
+                    <span class="caret"></span>
+               </a>
+
+               <ul class="dropdown-menu " role="menu" id="shownotification">
+               @foreach(auth()->user()->notifications as $note)
+
+
+
+                   <li>
+                       <a href="" class="{{$note->read_at == null?'unread':''}}">
+                       {!! $note->data['data'] !!}
+
+                       </a>
+                   </li>
+               @endforeach
+               </ul>
+           </li>
+
           @endif
         </ul>
       </div>
     </div>
   </nav>
 
-  @yield('content')
 
+  @yield('content')
 
   <footer class=" ftr container-fluid text-center ">
   <div class="container">
@@ -98,6 +105,42 @@
   </footer>
 
     <!-- Scripts -->
+
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/StreamLab/StreamLab.js"></script>
+    <script>
+           var message, showdiv=$('#shownotification'),count=$('#count'),c;
+           var slh = new StreamLabHtml();
+           var sls = new StreamLabSocket({
+           appId:'{{config("stream_lab.app_id")}}',
+           channelName:"gam3na",
+           event:"*"
+
+         });
+    var slh = new StreamLabHtml()
+    sls.socket.onmessage = function(res){
+    slh.setData(res);
+
+    if(slh.getSource()== 'messages'){
+        c=parseInt(count.html());
+        count.html(c+1);
+        message=slh.getMessage();
+        showdiv.prepend('<li><a href="" class="unread">'+message+'</a></li>');
+    }
+
+   }
+    $('.notification').on('click',function(){
+        $.get('MarkAllSeen',function(){
+            setTimeout(function(){
+            count.html(0);
+            $('.unread').each(function(){
+            $(this).removeClass('unread');
+        });
+        },3000);
+        });
+
+    });
+ </script>
 </body>
 </html>

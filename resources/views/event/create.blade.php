@@ -2,6 +2,14 @@
 @include('event.partials.nav')
 @section('content')
 	<br>
+
+
+
+
+
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_0JrPnBAl85q8GhoExBWLry7hat2u8p4&callback=myMap"></script>
+ -->
+
 	<a href="/event" class="btn btn-info">Back</a>
 	<div class="col-lg-4 col-lg-offset-4">
 		<h1>{{substr(Route::currentRouteName(),6)}} Item</h1>
@@ -45,12 +53,83 @@
 				  <input type="text" class="form-control" placeholder="Event will take place in" name="event_address">
 
 
+				<div id="googleMap" style="width:100%;height:400px;">
+
+				</div>
+				<input id="1" name="event_latitude" class="lat" type="hidden" value="@yield('event_latitude')">
+
+				<input id="2" name="event_longitude" class="lon" type="hidden" value="@yield('event_longitude')">
+
+
+
 				  <br>
 		        <button type="submit" class="btn btn-primary">Submit</button>
 		      </div>
 		    </div>
 		  </fieldset>
-		</for
+		</form>
+
+			<script>
+				// var marker ;
+				function myMap() {
+					var uluru = {lat: 31.200092, lng: 29.918739};
+
+					var mapProp= {
+					    center:new google.maps.LatLng(31.200092,29.918739),
+					    zoom:5,
+					};
+					var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+					var longt = document.getElementById('2').value;
+					var latt = document.getElementById('1').value;
+
+					if(latt && longt){
+
+						var u = {'lat': latt, 'lng': longt};
+						var marker = new google.maps.Marker({
+				          position: u,
+				          map: map
+				        });
+						alert(u.lng);
+					}else{
+						var marker = new google.maps.Marker({
+				          position: uluru,
+				          map: map
+				        });
+					}
+
+						google.maps.event.addListener(map, 'click', function(event) {
+							// alert(event.latLng);
+						    placeMarker(map, event.latLng ,marker);
+
+						  });
+
+
+				}
+				function placeMarker(map, location ,marker) {
+					alert(location);
+					marker = marker.setPosition(location);
+					map.panTo(location);
+					$('.lat').val(location.lat());
+
+   				   	$('.lon').val(location.lng());
+   				   	// alert(marker);
+
+					// var infowindow = new google.maps.InfoWindow({
+					//     content: 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng()
+					// });
+					// infowindow.open(map,marker);
+
+				}
+
+
+
+			</script>
+
+
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_0JrPnBAl85q8GhoExBWLry7hat2u8p4&callback=myMap"
+  type="text/javascript"></script>
+
+
 
      	@include('event.partials.errors')
 </div>

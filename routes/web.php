@@ -20,8 +20,24 @@ Route::resource('/categories','AdmincategoriesController');
 Route::resource('/subcategories','AdmincsubcategoriesController');
 Route::resource('/events','AdmineventsController');
 });
+
 Route::get('/','homeController@home');
+
+
+
 Route::get('/home/{id}','homeController@show');
+
+Route::prefix('profile')->group(function(){
+	Route::get('/{id}','Profilecontroller@show');
+	Route::get('/edit','Profilecontroller@editprofile')->name('profile.editprofile');
+	Route::put('/update','Profilecontroller@updateprofile')->name('profile.updateprofile');
+	Route::get('/','Profilecontroller@profile');
+
+});
+
+
+
+
 
 Auth::routes();
 
@@ -31,8 +47,15 @@ Route::resource('event','Events');
 Route::post('/event/{event}/comments','Commentscontroller@store');
 Route::post('/event/{event}/reviews','ReviewsController@store');
 Route::post('/event/{event}/reports','ReportsController@store');
+Route::post('/event/{event}/photos','photosController@store');
+
 
 Route::get('/event/{event}/attendance','Events@user_attend')->name('attended');
 
 Route::get('/categories/{id}/subscribe','CategoriesController@user_subscribe')->name('subscribe');
 Route::resource('/categories','CategoriesController',['except'=>['edit','update','destroy']]);
+Route::get('MarkAllSeen','Events@AllSeen');
+
+//facebook socilaite routes
+Route::get('login/facebook', 'Auth\LoginController@redirectToProvider');
+Route::get('login/facebook/callback', 'Auth\LoginController@handleProviderCallback');
