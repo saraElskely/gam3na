@@ -46,7 +46,7 @@
 						<script>
 						$(document).ready(function(){
 								$("#{{$event->id}}attended").click(function(){
-										$.ajax({url: "{{ route('attended', $event->id) }}", success: function(result){
+										$.ajax({url: "/event/{{$event->id}}/attendance", success: function(result){
 											if (result.attend_status == null){
 												$("#{{$event->id}}notAttended").show();
 												$("#{{$event->id}}attended").hide();
@@ -58,8 +58,8 @@
 
 								$("#{{$event->id}}notAttended").click(function(){
 
-										$.ajax({url: "{{ route('attended', $event->id) }}", success: function(result){
-											alert(result);
+										$.ajax({url: "/event/{{$event->id}}/attendance", success: function(result){
+											// alert(result.attend_status);
 											if (!result.attend_status){
 												$("#{{$event->id}}attended").show();
 												$("#{{$event->id}}notAttended").hide();
@@ -79,6 +79,9 @@
 
 			  </li>
     	@endforeach
+
 		</ul>
+		<div style="height:20%">
+		</div>
 	</div>
 @endsection

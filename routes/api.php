@@ -17,4 +17,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('/events','Events',['middleware' => 'auth:api']);
+// Route::resource('/events','Events',['middleware' => 'auth:api']);
