@@ -17,7 +17,6 @@
           'csrfToken' => csrf_token(),
       ]) !!};
   </script>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
     .unread{background-color:red;}</style>
 </head>
@@ -40,7 +39,6 @@
           <li><a href="#contact">CONTACT</a></li>
           @if (Auth::guest())
 
-<<<<<<< HEAD
             <li><a href="login">Login</a></li>
             <li><a href="register">Register</a></li>
           @else
