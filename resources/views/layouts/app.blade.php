@@ -7,9 +7,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href={{ asset("web/bootstrap-3.3.7-dist/css/bootstrap.min.css") }} >
   <link rel="stylesheet" href={{ asset("web/font-awesome-4.7.0/css/font-awesome.min.css") }} >
-     <link href={{ asset("web/css/main.css") }} rel="stylesheet" type="text/css">
+  <link href={{ asset("web/css/main.css") }} rel="stylesheet" type="text/css">
   <script src= {{ asset("web/js/jquery-3.1.1.js") }}></script>
-  <script src="angular.min.js"></script>
+  @yield('head')
+
+
+
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
   <script>
@@ -17,7 +20,7 @@
           'csrfToken' => csrf_token(),
       ]) !!};
   </script>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
     <style>
     .unread{background-color:red;}</style>
 </head>
@@ -34,13 +37,9 @@
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#about">ABOUT</a></li>
-          <li><a href="#category">CATEGORIES</a></li>
-          <li><a href="#pricing">OUR TEAM</a></li>
-          <li><a href="#contact">CONTACT</a></li>
+          @yield('nav_menu')
           @if (Auth::guest())
 
-<<<<<<< HEAD
             <li><a href="login">Login</a></li>
             <li><a href="register">Register</a></li>
           @else
@@ -69,9 +68,6 @@
 
                <ul class="dropdown-menu " role="menu" id="shownotification">
                @foreach(auth()->user()->notifications as $note)
-
-
-
                    <li>
                        <a href="" class="{{$note->read_at == null?'unread':''}}">
                        {!! $note->data['data'] !!}
@@ -101,6 +97,7 @@
   	            <a href="#"><i class="fa fa-google-plus-square fa-3x social"></i></a>
   	            <a href="#"><i class="fa fa-envelope-square fa-3x social"></i></a>
        </div>
+       <p>Copyright 2012 - <a href="mailto:">Gam3na</a></p>
   </div>
   </footer>
 

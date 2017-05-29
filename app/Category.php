@@ -15,6 +15,6 @@ class Category extends Model
     }
     public function subscribed_users()
     {
-      return $this->belongsToMany('App\User');//->wherePivot('status', true);//->withTimestamps();
+      return $this->belongsToMany('App\User')->withTimestamps();//->wherePivot('status', true);//->withTimestamps();
     }
 }

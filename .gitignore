@@ -10,7 +10,7 @@ app/storage/
 public/storage
 public/upload
 public/hot
-public/web
+public/web/video
 storage/*.key
 .env.*.php
 .env.php

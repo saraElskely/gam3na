@@ -11,6 +11,7 @@ use App\Notifications\AddEvent;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 use StreamLab\StreamLabProvider\Facades\StreamLabFacades;
+use DB;
 
 class Events extends Controller
 {
@@ -170,18 +171,22 @@ class Events extends Controller
 
     public function user_attend($id){
       $event = Event::find($id);
+      // var_dump($event);
       $select = DB::table('event_user')->where('user_id','=',Auth::id())
                     ->where('event_id','=',$id)
                     ->first();
-                      dd('select');
+
+
       if(is_null($select) ){
-        $event->users_attend_event()->attach(Auth::id());
-        // dd($select);
+        // return ($event->);
+        $event->user_attend_by_event()->attach(Auth::id());
+
+        // var_dump($event->users_attend_event);
         return "'attend_status': 1";
       }else{
         $status= (! $select->status);
 
-        $event->users_attend_event()->updateExistingPivot(Auth::id(),['status'=>$status]);
+        $event->user_attend_by_event()->updateExistingPivot(Auth::id(),['status'=>$status]);
         return "'attend_status':$status" ;
       }
     }

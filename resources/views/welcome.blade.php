@@ -3,6 +3,13 @@
 @section('title')
 @endsection
 
+@section('nav_menu')
+  <li><a href="#about">ABOUT</a></li>
+  <li><a href="#category">CATEGORIES</a></li>
+  <li><a href="#pricing">OUR TEAM</a></li>
+  <li><a href="#contact">CONTACT</a></li>
+@endsection
+
 @section('content')
   <section>
   <div class="video-container">

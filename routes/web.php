@@ -22,7 +22,7 @@ Route::resource('/events','AdmineventsController');
 });
 
 Route::get('/','homeController@home');
-
+Route::get('/home','HomeController@index');
 
 
 Route::get('/home/{id}','homeController@show');

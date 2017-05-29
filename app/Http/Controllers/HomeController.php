@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $user_subscribe =  User::find(Auth::id())->subscribed_categories;
+        $user_attendance = User::find(Auth::id())->events_attend_by_user;
+        return view('home',['user_subscribed_categories'=> $user_subscribe,'events_attended_by_user'=>$user_attendance]);
     }
 }
