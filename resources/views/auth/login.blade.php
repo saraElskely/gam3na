@@ -54,6 +54,8 @@
                                     Login
                                 </button>
                                 <a href="{{ url('login/facebook') }}">Login with facebook</a>
+                                <a href="{{ url('login/google') }}">Login with google</a>
+                                <a href="{{ url('login/twitter') }}">Login with twitter</a>
 
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
                                     Forgot Your Password?

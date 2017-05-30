@@ -46,10 +46,10 @@ class LoginController extends Controller
      *
      * @return Response
      */
-    public function redirectToProvider()
+    public function redirectToProvider($service)
     {
 
-        return Socialite::driver('facebook')->redirect();
+        return Socialite::driver($service)->redirect();
     }
 
     /**
@@ -57,30 +57,28 @@ class LoginController extends Controller
      *
      * @return Response
      */
-    public function handleProviderCallback()
+    public function handleProviderCallback($service)
     {
-
-        $facebook_user = Socialite::driver('facebook')->user();
-
-        // return $facebook_user->name;
-        $authUser=$this->findOrCreateUser($facebook_user);
-        Auth::login($authUser,true);
-        return view('welcome');
-    }
-
-    private  function  findOrCreateUser($facebookUser){
-        $authUser=User::where('email','=',$facebookUser->email)->first();
-
-        if ($authUser){
-            return $authUser;
+        if ($service == 'twitter') {
+            $user = Socialite::driver($service)->user();
+        }else{
+            $user = Socialite::driver($service)->stateless()->user();
         }
-        return User::create([
-                'name'=>$facebookUser->name,
-                'email'=>$facebookUser->email,
-                'password'=>bcrypt('good'),
-                'user_photo'=>$facebookUser->avatar]);
-    }
+        $findUser = User::where('email',$user->getEmail())->first();
+        if ($findUser) {
+            Auth::login($findUser);
+        }else{
+            $newUser = new User;
+            $newUser->email = $user->getEmail();
+            $newUser->name = $user->getName();
+            $newUser->password = bcrypt('good');
+            $newUser->user_photo = $user->getAvatar();
+            $newUser->save();
+            Auth::login($newUser);
 
+        }
+        return redirect('home');
+    }
 
 
 }

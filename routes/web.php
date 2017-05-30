@@ -35,10 +35,6 @@ Route::prefix('profile')->group(function(){
 
 });
 
-
-
-
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
@@ -56,6 +52,6 @@ Route::get('/categories/{id}/subscribe','CategoriesController@user_subscribe')->
 Route::resource('/categories','CategoriesController',['except'=>['edit','update','destroy']]);
 Route::get('MarkAllSeen','Events@AllSeen');
 
-//facebook socilaite routes
-Route::get('login/facebook', 'Auth\LoginController@redirectToProvider');
-Route::get('login/facebook/callback', 'Auth\LoginController@handleProviderCallback');
+//Social Media socialite routes
+Route::get('login/{service}', 'Auth\LoginController@redirectToProvider');
+Route::get('login/{service}/callback', 'Auth\LoginController@handleProviderCallback');
