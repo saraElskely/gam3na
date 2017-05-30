@@ -12,6 +12,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 use StreamLab\StreamLabProvider\Facades\StreamLabFacades;
 use DB;
+use Carbon\Carbon;
 
 class Events extends Controller
 {
@@ -85,7 +86,7 @@ class Events extends Controller
          $user = User::all();
         Notification::send($user ,new AddEvent($event));
         $data = 'we Have New Event '.$event->event_name.'<br>Added By'.auth()->user()->name;
-      StreamLabFacades::pushMessage('gam3na','AddEvent',$data);
+        StreamLabFacades::pushMessage('gam3na','AddEvent',$data);
 
       }
        return redirect('event');
@@ -114,7 +115,8 @@ class Events extends Controller
     public function edit($id)
     {
         $item = Event::find($id);
-        return view('event.edit', compact('item'));
+        $subcategories = Subcategory::all();
+        return view('event.edit', compact('item','subcategories'));
     }
 
     /**

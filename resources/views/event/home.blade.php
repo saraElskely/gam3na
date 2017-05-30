@@ -10,7 +10,7 @@
 			@foreach($events as $event)
   <li class="list-group-item">
     	<a href="{{'/event/'.$event->id}}">{{$event->event_description}}</a>
-    	<span class="pull-right">{{$event->created_at->diffForHumans()}}</span>
+    	{{-- <span class="pull-right">{{$event->created_at->diffForHumans()}}</span> --}}
     	</li>
     	@endforeach
 </ul>
