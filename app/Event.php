@@ -65,5 +65,10 @@ class Event extends Model
         return $this->belongsToMany('App\User')->withTimestamps();
     }
 
+    public function user_attend_event()
+    {
+        return $this->belongsToMany('App\User')->wherePivot('status', true);
+    }
+
 
 }

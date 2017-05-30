@@ -10,6 +10,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 use StreamLab\StreamLabProvider\Facades\StreamLabFacades;
 use DB;
+use Carbon\Carbon;
 class Events extends Controller
 {
     use  Notifiable;
@@ -70,6 +71,7 @@ class Events extends Controller
         $event->subcategory_id =$request->subcategory_id;
         $event->event_longitude =$request->event_longitude;
         $event->event_latitude =$request->event_latitude;
+
         if($event->save()){
             $user = User::all();
             Notification::send($user ,new AddEvent($event));
@@ -77,6 +79,7 @@ class Events extends Controller
             StreamLabFacades::pushMessage('gam3na','AddEvent',$data);
         }
         return redirect('event');
+
     }
     /**
      * Display the specified resource.
@@ -98,7 +101,8 @@ class Events extends Controller
     public function edit($id)
     {
         $item = Event::find($id);
-        return view('event.edit', compact('item'));
+        $subcategories = Subcategory::all();
+        return view('event.edit', compact('item','subcategories'));
     }
     /**
      * Update the specified resource in storage.
