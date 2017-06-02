@@ -33,6 +33,7 @@ class AdminController extends Controller
 
 
 
+
 // to create new admin
 // open terminal :
 // php artisan tinker
@@ -41,3 +42,7 @@ class AdminController extends Controller
 // $admin->email = "admin@gam3na.com"
 // $admin->password = Hash::make('password')
 // $admin->save()
+
+}
+
+

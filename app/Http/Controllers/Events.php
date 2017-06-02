@@ -37,7 +37,6 @@ class Events extends Controller
     public function create()
     {
         $subcategories = Subcategory::all();
-        // dd($subcategories);
         return view('event.create',['subcategories'=>$subcategories]);
     }
     /**
@@ -205,3 +204,4 @@ class Events extends Controller
 
       }
 }
+

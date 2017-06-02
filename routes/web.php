@@ -52,6 +52,9 @@ Route::post('/event/{event}/photos','photosController@store');
 
 Route::get('/event/{event}/attendance','Events@user_attend')->name('attended');
 
+
+Route::get('/subcategories/{id}/events','subcategoriesController@subcat')->name('subcategory_events');
+
 Route::get('/categories/{id}/subscribe','CategoriesController@user_subscribe')->name('subscribe');
 Route::resource('/categories','CategoriesController',['except'=>['edit','update','destroy']]);
 Route::get('MarkAllSeen','Events@AllSeen');
