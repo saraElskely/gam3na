@@ -253,16 +253,16 @@ h2 {
 	font-size: 24px;
 	letter-spacing:2px;
 	text-transform: uppercase;
-	font-weight: normal; 
-	margin: 0 0 24px; 
+	font-weight: normal;
+	margin: 0 0 24px;
 	line-height: 1;
 }
 
 
 h3 {
 	font-size: 30px;
-	font-weight: normal; 
-	margin: 0 0 24px; 
+	font-weight: normal;
+	margin: 0 0 24px;
 	line-height: 1;
 }
 
@@ -279,14 +279,14 @@ p {
 -------------------------------------------*/
 header { margin: 20px 40px 60px; }
 
-header div { 
-	margin-top: 40px; 
-	width: 60%; 
-	float: left; 
+header div {
+	margin-top: 40px;
+	width: 60%;
+	float: left;
 }
 
-header p { 
-	color: #272727; 
+header p {
+	color: #272727;
 	font-size: 18px;
 	margin: 0;
 	font-family: 'Josefin Sans', sans-serif;
@@ -338,19 +338,19 @@ footer {
 	background: #fff;
 }
 
-.col { 
+.col {
 	float: left;
 	width: 21%;
 	margin: 0 5% 40px 0;
 }
 
-.col:last-of-type { 
+.col:last-of-type {
 	margin-right: 0;
 }
 
 footer h2 { font-size: 18px; margin-bottom: 40px;}
 
-footer h3 { 
+footer h3 {
 	margin-bottom: 10px;
 	padding-bottom: 10px;
 	border-bottom: 1px dashed rgba(0,0,0,.3);
@@ -361,7 +361,7 @@ footer  ul {
 	margin-left: 20px;
 }
 
-footer  li { 
+footer  li {
 	color: rgba(0,0,0,.1); /* border color */
 }
 
@@ -406,7 +406,7 @@ footer p {
 .dark {background: #635d67;color: white;}
 #hero {
   position: relative;
-   background: url(../images/131445_660_3505808.jpg) no-repeat center center fixed; 
+
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
@@ -555,13 +555,13 @@ footer p {
     border: 0;
     /* height: 13px; */
     padding: 26px;
-    }    
+    }
 .fa:hover {
      -webkit-transform: scale(1.1);
      -moz-transform: scale(1.1);
      -o-transform: scale(1.1);
  }
-/* -------------------------------- 
+/* --------------------------------
 
 Primary style
 
@@ -587,9 +587,9 @@ a {
   text-decoration: none;
 }
 
-/* -------------------------------- 
+/* --------------------------------
 
-Main Components 
+Main Components
 
 -------------------------------- */
 .cd-horizontal-timeline {
@@ -1259,7 +1259,7 @@ body { margin: 0 padding: 0; font-family: Arial, Helvetica, sans-serif; }
 		table.info caption { background-color: rgb(90,85,90); font-weight: bold; color: rgb(255,255,255); padding-top: .7em; padding-bottom: .7em; letter-spacing: .085em;}
 		table.info th { text-align: left; }
 		table.info td { background-color: rgb(170,200,209);}
-		.date { display: inline-block; background-color: rgb(68,68,68); color: #fff; padding: 10px; 
+		.date { display: inline-block; background-color: rgb(68,68,68); color: #fff; padding: 10px;
 			border-radius: 50%; }
 		table.info a { color: rgb(3,95,123); text-decoration: underline; }
 		table.info a:hover { text-decoration: none; }
@@ -1284,7 +1284,7 @@ body { margin: 0 padding: 0; font-family: Arial, Helvetica, sans-serif; }
     0% {
       opacity: 0;
       transform: translateY(70%);
-    } 
+    }
     100% {
       opacity: 1;
       transform: translateY(0%);
@@ -1294,7 +1294,7 @@ body { margin: 0 padding: 0; font-family: Arial, Helvetica, sans-serif; }
     0% {
       opacity: 0;
       -webkit-transform: translateY(70%);
-    } 
+    }
     100% {
       opacity: 1;
       -webkit-transform: translateY(0%);
@@ -1314,17 +1314,17 @@ body { margin: 0 padding: 0; font-family: Arial, Helvetica, sans-serif; }
     .logo {
         font-size: 150px;
     }
-  } 
+  }
 .animate {
     -webkit-animation: animatezoom 0.6s;
     animation: animatezoom 0.6s
 }
 @-webkit-keyframes animatezoom {
-    from {-webkit-transform: scale(0)} 
+    from {-webkit-transform: scale(0)}
     to {-webkit-transform: scale(1)}
 }
-    
+
 @keyframes animatezoom {
-    from {transform: scale(0)} 
+    from {transform: scale(0)}
     to {transform: scale(1)}
 }

@@ -2,16 +2,44 @@
 // Acc
 $(document).on("click", ".naccs .menu div", function() {
 	var numberIndex = $(this).index();
+	var subcategory_id= $(this).attr('subcat');
 
 	if (!$(this).is("active")) {
-		$(".naccs .menu div").removeClass("active");
-		$(".naccs ul li").removeClass("active");
+		// $(".naccs .menu div").removeClass("active");
+		// $(".naccs ul li").removeClass("active");
+		//
+		// $(this).addClass("active");
+		// $(".naccs ul").find("li:eq(" + numberIndex + ")").addClass("active");
 
-		$(this).addClass("active");
-		$(".naccs ul").find("li:eq(" + numberIndex + ")").addClass("active");
+		$.ajax({url: "/subcategories/"+subcategory_id+"/events ", success: function(result){
+				console.log(result);
+				if (result){
+					$('.event-block').remove();
+					result.forEach(function(event){
+						$('.events').append('<div class="event-block">\
+														 <div class="event-date eCol">\
+															 <div class="eDate">26</div>\
+															 <div class="eMonth">JUN</div>\
+														 </div>\
+														 <div class="event-details eCol">\
+															 <div class="event-name">'+event.event_name+'</div>\
+															 <div class="event-location">'+event.event_description+'</div>\
+															 <div class="other-info">\
+															 </div>\
+														 </div>\
+														 <div class="event-action eCol">\
+																 !\
+														 </div>\
+													 </div>');
+					});
+
+
+				}
+			}
+		});
 
 		var listItemHeight = $(".naccs ul")
-			.find("li:eq(" + numberIndex + ")")
+			.find("li:eq(" + subcategory_id + ")")
 			.innerHeight();
 		$(".naccs ul").height(listItemHeight + "px");
 	}
@@ -29,7 +57,7 @@ jQuery(document).ready(function($){
 		timelines.each(function(){
 			var timeline = $(this),
 				timelineComponents = {};
-			//cache timeline components 
+			//cache timeline components
 			timelineComponents['timelineWrapper'] = timeline.find('.events-wrapper');
 			timelineComponents['eventsWrapper'] = timelineComponents['timelineWrapper'].children('.events');
 			timelineComponents['fillingLine'] = timelineComponents['eventsWrapper'].children('.filling-line');
@@ -91,8 +119,8 @@ jQuery(document).ready(function($){
 		//retrieve translateX value of timelineComponents['eventsWrapper']
 		var translateValue = getTranslateValue(timelineComponents['eventsWrapper']),
 			wrapperWidth = Number(timelineComponents['timelineWrapper'].css('width').replace('px', ''));
-		//translate the timeline to the left('next')/right('prev') 
-		(string == 'next') 
+		//translate the timeline to the left('next')/right('prev')
+		(string == 'next')
 			? translateTimeline(timelineComponents, translateValue - wrapperWidth + eventsMinDistance, wrapperWidth - timelineTotWidth)
 			: translateTimeline(timelineComponents, translateValue + wrapperWidth - eventsMinDistance);
 	}
@@ -105,7 +133,7 @@ jQuery(document).ready(function($){
 		if ( newContent.length > 0 ) { //if there's a next/prev event - show it
 			var selectedDate = timelineComponents['eventsWrapper'].find('.selected'),
 				newEvent = ( string == 'next' ) ? selectedDate.parent('li').next('li').children('a') : selectedDate.parent('li').prev('li').children('a');
-			
+
 			updateFilling(newEvent, timelineComponents['fillingLine'], timelineTotWidth);
 			updateVisibleContent(newEvent, timelineComponents['eventsContent']);
 			newEvent.addClass('selected');
@@ -149,7 +177,7 @@ jQuery(document).ready(function($){
 	}
 
 	function setDatePosition(timelineComponents, min) {
-		for (i = 0; i < timelineComponents['timelineDates'].length; i++) { 
+		for (i = 0; i < timelineComponents['timelineDates'].length; i++) {
 		    var distance = daydiff(timelineComponents['timelineDates'][0], timelineComponents['timelineDates'][i]),
 		    	distanceNorm = Math.round(distance/timelineComponents['eventsMinLapse']) + 2;
 		    timelineComponents['timelineEvents'].eq(i).css('left', distanceNorm*min+'px');
@@ -163,7 +191,7 @@ jQuery(document).ready(function($){
 			totalWidth = timeSpanNorm*width;
 		timelineComponents['eventsWrapper'].css('width', totalWidth+'px');
 		updateFilling(timelineComponents['timelineEvents'].eq(0), timelineComponents['fillingLine'], totalWidth);
-	
+
 		return totalWidth;
 	}
 
@@ -260,7 +288,7 @@ jQuery(document).ready(function($){
 	function minLapse(dates) {
 		//determine the minimum distance among events
 		var dateDistances = [];
-		for (i = 1; i < dates.length; i++) { 
+		for (i = 1; i < dates.length; i++) {
 		    var distance = daydiff(dates[i-1], dates[i]);
 		    dateDistances.push(distance);
 		}

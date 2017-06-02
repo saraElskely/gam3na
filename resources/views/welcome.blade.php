@@ -2,6 +2,11 @@
 
 @section('title')
 @endsection
+@section('head')
+  <link href={{ asset("web/css/main.css") }} rel="stylesheet" type="text/css">
+  <script src= {{ asset("web/js/jquery-3.1.1.js") }}></script>
+  <script src={{ asset("web/js/script.js")}}></script>
+@endsection
 
 @section('nav_menu')
   <li><a href="#about">ABOUT</a></li>
@@ -52,23 +57,29 @@
 
 @if(!empty($categories))
 
-  <div id="category" class="container text-center  ">
+  <div id="category" class="container text-center rw2">
     <h2 >CATEGORIES</h2>
     <h4>What we offer</h4>
     <br>
 
-    <div class="row  container slide ">
-      @foreach($categories as $category)
-        <div class="col-sm-4 slide panel  ">
-          <div class="">
-            <img class="img-responsive center-block" src= {{ asset("/upload/image/$category->category_photo") }} />
-            <h4>{{$category->category_name}}</h4>
-        </div>
+@foreach($categories as $category)
+    <div class="col-md-4">
+       <div class="column">
+         <!-- Post-->
+         <div class="post-module">
+           <!-- Thumbnail-->
+           <div class="thumbnail">
+             <img src= {{ asset("/upload/image/$category->category_photo") }} class="img-responsive" alt=""> </div>
+           <!-- Post Content-->
+           <div class="post-content">
+             <div class="category">{{$category->category_name}}</div>
+             <h1 class="title">{{$category->category_name}}</h1>
+           </div>
+         </div>
        </div>
-      @endforeach
-   </div>
-
-</div>
+     </div>
+@endforeach
+    </div>
 
 @endif
 
