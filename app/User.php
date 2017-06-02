@@ -5,9 +5,9 @@ use Eloquent;
 
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
+use App\Notifications\AddEvent;
 use App\Event;
 use App\Category;
-use App\Notifications\AddEvent;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Auth\Authenticatable as AuthenticableTrait;
 

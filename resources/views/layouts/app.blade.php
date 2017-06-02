@@ -20,7 +20,7 @@
           'csrfToken' => csrf_token(),
       ]) !!};
   </script>
-    {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
+
     <style>
     .unread{background-color:red;}</style>
 </head>

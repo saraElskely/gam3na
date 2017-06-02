@@ -179,10 +179,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         StreamLab\StreamLabProvider\StreamLabServiceProvider::class,
-
         Laravel\Socialite\SocialiteServiceProvider::class,
-
-
     ],
 
     /*
