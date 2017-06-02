@@ -10,10 +10,12 @@ use App\Event;
 use App\Category;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Auth\Authenticatable as AuthenticableTrait;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
-class User extends Eloquent implements Authenticatable
+class User extends Eloquent implements Authenticatable ,CanResetPasswordContract
 {
-    use AuthenticableTrait, HasApiTokens, Notifiable ;
+    use AuthenticableTrait, HasApiTokens, Notifiable ,CanResetPassword;
 
 
     /**
@@ -49,4 +51,6 @@ class User extends Eloquent implements Authenticatable
     {
       return $this->belongsToMany('App\Event')->wherePivot('status', true);
     }
+
+
 }

@@ -11,19 +11,23 @@
 |
 */
 Route::prefix('admin')->group(function(){
+
 Route::get('/login', 'Auth\AdminLoginControler@showLoginForm')->name('admin.login');
 Route::post('/login', 'Auth\AdminLoginControler@login')->name('admin.login.submit');
 Route::get('/', 'AdminController@index')->name('admin.dashboard');
+
 
 Route::resource('/users','AdminusersController');
 Route::resource('/categories','AdmincategoriesController');
 Route::resource('/subcategories','AdmincsubcategoriesController');
 Route::resource('/events','AdmineventsController');
+Route::get('/users/{id}/block', 'AdminusersController@block')->name('admin.block');	
+Route::get('/users/{id}/unblock', 'AdminusersController@unblock')->name('admin.unblock');	
 });
 
 Route::get('/','homeController@home');
 Route::get('/home','HomeController@index');
-
+Route::get('/event/calendar','Events@calendar')->name('user.calendar');
 
 Route::get('/home/{id}','homeController@show');
 
@@ -36,8 +40,8 @@ Route::prefix('profile')->group(function(){
 });
 
 Auth::routes();
-
 Route::get('/home', 'HomeController@index');
+Route::get('/event/{event}/checkevent','Events@Check_event');
 
 Route::resource('event','Events');
 Route::post('/event/{event}/comments','Commentscontroller@store');

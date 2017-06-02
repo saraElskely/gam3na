@@ -1,4 +1,4 @@
-@extends('layouts.adminapp')
+@extends('layouts.adminboard')
 
 @section('content')
 @if(session()->has('message'))
@@ -37,7 +37,56 @@
 
   <td>
     <a href="users/{{$user->id}}">Show</a>
-   <a href="users/{{$user->id}}/edit">Edit</a>
+    
+     
+ <!--   <a href="users/{{$user->id}}/edit">Edit</a> -->
+  @if($user->block == 1)
+  <div class="container">
+    <div class="content">
+  <button style="border:none;display:none" type="button" id="{{$user->id}}block" >block </button>
+  <button style="border:none;" type="button" id="{{$user->id}}unblock">unblock </button> 
+  </div>
+  </div>
+   @else
+         <div class="container">
+    <div class="content">
+  <button style="border:none;" type="button" id="{{$user->id}}block" >block </button>
+  <button style="border:none;display:none" type="button" id="{{$user->id}}unblock">unblock </button> 
+  </div>
+  </div>
+  @endif
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+     <script>
+              $(document).ready(function(){
+
+                  $("#{{$user->id}}block").click(function(){
+                    
+                      $.ajax({url: "{{ route('admin.block',$user->id) }}", success: function(result){
+                        
+                          $("#{{$user->id}}unblock").show();
+                          $("#{{$user->id}}block").hide();
+                        
+
+                      }
+                    });
+                  });
+
+                  $("#{{$user->id}}unblock").click(function(){
+                      $.ajax({url: "{{route('admin.unblock',$user->id)  }}", success: function(result){
+                        
+                          $("#{{$user->id}}block").show();
+                           $("#{{$user->id}}unblock").hide();
+
+                     
+
+                      }
+                    });
+                  });
+              });
+              </script>
+
+
    <form action='users/{{$user->id}}' method="POST">
    {{csrf_field()}}
    {{method_field('DELETE')}}
@@ -45,6 +94,7 @@
    <button type="submit">Delete</button>
    </form>
 
+ 
   </td>
   </tr>
 

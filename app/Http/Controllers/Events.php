@@ -75,7 +75,7 @@ class Events extends Controller
         if($event->save()){
             $user = User::all();
             Notification::send($user ,new AddEvent($event));
-            $data = 'we Have New Event '.$event->event_name.'<br>Added By'.auth()->user()->name;
+            $data = 'we Have New Event '.$event->event_name;
             StreamLabFacades::pushMessage('gam3na','AddEvent',$data);
         }
         return redirect('event');
@@ -173,5 +173,35 @@ class Events extends Controller
             $note->markAsRead();
         }
     }
+
+        public function Check_event($id){
+         $today = Carbon::today();
+         $event = Event::find($id);
+         $select = DB::table('events')->where('id','=',$id)
+                    ->where('event_date','<',$today)->get();
+                    
+                 if($select->isEmpty()){
+                    return view('event.before_event', compact('event'));
+                    
+                 }else{
+                     return view('event.after_event', compact('event'));
+
+                 }
+      }
+
+
+      public function calendar(){
+        $events = Event::all();
+        $user = User::find(Auth::id());
+        $user_attendance = $user->events_attend_by_user->sortByDesc('event_date');
+        // dd($user_attendance);
+
+        // $event =DB::table('event_user')
+        // ->where('user_id','=',$user)
+        // ->where('status','=',true);
+       
+        // dd($event);
+        return view('event.calendar', compact('user_attendance'));
+
+      }
 }
-// AIzaSyD_0JrPnBAl85q8GhoExBWLry7hat2u8p4

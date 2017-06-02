@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use App\User;
+use DB;
 
 class LoginController extends Controller
 {
@@ -28,7 +29,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    // protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -44,8 +45,21 @@ class LoginController extends Controller
     /**
      * Redirect the user to the Facbook authentication page.
      *
-     * @return Response
+     * @return Response    
      */
+
+    protected function redirectTo()
+    {
+       $select=DB::table('users')->where('id','=',Auth::id())
+            ->where('block','=',0)->get();
+            
+        if(($select)->isEmpty()){
+             return '/';
+        }else{
+            return '/home';
+
+        }
+    }
     public function redirectToProvider($service)
     {
 

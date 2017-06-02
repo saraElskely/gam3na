@@ -12,6 +12,9 @@
   <li role="presentation"><a href="#">Category <span class="badge">42</span></a></li>
   <li role="presentation"><a href="#">Notification <span class="badge">3</span></a></li>
   <li role="presentation"><a href="#">Profile</a></li>
+  <li role="presentation"><a href="{{route('user.calendar')}}">  Calender</a></li>
+
+  
 @endsection
 
 
@@ -37,9 +40,10 @@
 
             <li>
               <time datetime="2014-07-20">
-                <span class="day">4</span>
-                <span class="month">Jul</span>
-                <span class="year">2014</span>
+                <span class="day">{{date('d',strtotime($event->event_date))}}</span>
+                <span class="month">{{date('M',strtotime($event->event_date))}}</span>
+                <span class="year">{{date('Y',strtotime($event->event_date))}}</span>
+
                 <span class="time">ALL DAY</span>
               </time>
               <img alt="Independence Day" src={{ asset("/upload/image/$event->event_photo") }} />

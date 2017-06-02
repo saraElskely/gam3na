@@ -1,5 +1,5 @@
 
-@extends('admin.users.create')
+@extends('layouts.adminboard')
 
 
 @section('editid',$user->id)

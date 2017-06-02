@@ -48,10 +48,11 @@ class NotifyUsers extends Command
      */
     public function handle()
     {
+        $next_tomorrow = Carbon::tomorrow()->addDay();
+        // dd($tomorrow);
         $tomorrow = Carbon::tomorrow();
-        $today = Carbon::today();
-        $select_event = DB::table('events')->where('event_date','<',$tomorrow)
-        ->where('event_date','>',$today)
+        $select_event = DB::table('events')->where('event_date','<',$next_tomorrow)
+        ->where('event_date','>',$tomorrow)
         ->get();
 
         if(! $select_event->isEmpty()){
@@ -59,11 +60,12 @@ class NotifyUsers extends Command
           foreach ($select_event as $event ) {
 
             $event = Event::find($event->id);
+            // dd($event);
             $users =$event->user_attend_event ;
             $user = User::all();
-            Notification::send($user ,new AddEvent($event));
-            dd($users);
-            $data = 'You Have New Event '.$event->event_name.'<br>Added By'.auth()->user()->name;
+          
+            Notification::send($users ,new AddEvent($event));
+            $data = 'You Have New Event '.$event->event_name;
             StreamLabFacades::pushMessage('gam3na','AddEvent',$data);
 
           }

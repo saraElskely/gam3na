@@ -25,7 +25,6 @@ class Addevent extends Notification
     public function toArray($notifiable)
     {
         return [
-        'data' =>'we Have New Event '.$this->event->event_name.'<br>Added By'.auth()->user()->name
-        ];
+        'data' =>'we Have  Event today '.$this->event->event_name];
     }
 }

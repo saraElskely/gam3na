@@ -26,9 +26,12 @@ class AdminController extends Controller
         return view('admin');
     }
 
-
-
+    
 }
+
+
+
+
 
 // to create new admin
 // open terminal :

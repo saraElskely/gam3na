@@ -1,4 +1,4 @@
-@extends('layouts.adminapp')
+@extends('layouts.adminboard')
 
 @section('content')
 @if(session()->has('message'))
