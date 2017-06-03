@@ -9,6 +9,44 @@
 	</p>
 	<p>{{$event->event_description}}</p>
 </div>
+<div class="rating left">
+	 <div class="stars right">
+		 <a class="star rated">1</a>
+		 <a class="star rated">2</a>
+		 <a class="star rated">3</a>
+		 <a class="star">4</a>
+		 <a class="star">5</a>
+	</div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script>
+		jQuery(document).ready(function($) {
+		  $('.rating .star').hover(function() {
+		    $(this).addClass('to_rate');
+		    $(this).parent().find('.star:lt(' + $(this).index() + ')').addClass('to_rate');
+		    $(this).parent().find('.star:gt(' + $(this).index() + ')').addClass('no_to_rate');
+		  }).mouseout(function() {
+		    $(this).parent().find('.star').removeClass('to_rate');
+		    $(this).parent().find('.star:gt(' + $(this).index() + ')').removeClass('no_to_rate');
+		  }).click(function() {
+		    $(this).removeClass('to_rate').addClass('rated');
+		    $(this).parent().find('.star:lt(' + $(this).index() + ')').removeClass('to_rate').addClass('rated');
+		    $(this).parent().find('.star:gt(' + $(this).index() + ')').removeClass('no_to_rate').removeClass('rated');
+		    /*Save your rate*/
+		    var r = $(this).index()+1;
+		    $.ajax({
+		      url: "/event/{{ $event->id }}/rating",
+		      type: "get",
+		      data: {rate:r},
+		      success: function(result){
+						console.log(result);
+		      }
+		  });
+		});
+	});
+</script>
+
 
 
 <img src={{asset("/upload/image/$event->event_photo")}} width="42" height="42" >
@@ -22,19 +60,9 @@
               <img src=  {{ asset("upload/image/$userEvent_photo->user_event_photo") }} height="42" width="42">
 
 			</li>
-			<li>
-				<div class="ratings">
-					<input type="radio" name="star" id="rating" value="1"/>
-					<input type="radio" name="star" id="rating" value="2"/>
-					<input type="radio" name="star" id="rating" value="3"/>
-					<input type="radio" name="star" id="rating" value="4"/>
-					<input type="radio" name="star" id="rating" value="5"/>
-				</div>
-			</li>
+
 		@endforeach
-		<script>
-		
-		</script>
+
 	</ul>
 </div>
 @endif
@@ -55,12 +83,14 @@
 		<div class="container">
 			<div class="reviews">
 				<ul class="list-group">
+				@if(!empty( $event->reviews))
 					@foreach($event->reviews as $review)
 						<li class="list-group">
 							{{ $review->review_content }}
 						</li>
 
 					@endforeach
+				@endif
 				</ul>
 
 

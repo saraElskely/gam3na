@@ -21,8 +21,8 @@ Route::resource('/users','AdminusersController');
 Route::resource('/categories','AdmincategoriesController');
 Route::resource('/subcategories','AdmincsubcategoriesController');
 Route::resource('/events','AdmineventsController');
-Route::get('/users/{id}/block', 'AdminusersController@block')->name('admin.block');	
-Route::get('/users/{id}/unblock', 'AdminusersController@unblock')->name('admin.unblock');	
+Route::get('/users/{id}/block', 'AdminusersController@block')->name('admin.block');
+Route::get('/users/{id}/unblock', 'AdminusersController@unblock')->name('admin.unblock');
 });
 
 Route::get('/','homeController@home');
@@ -51,7 +51,7 @@ Route::post('/event/{event}/photos','photosController@store');
 
 
 Route::get('/event/{event}/attendance','Events@user_attend')->name('attended');
-
+Route::get('/event/{event}/rating','Events@make_rate')->name('make_rate');
 
 Route::get('/subcategories/{id}/events','subcategoriesController@subcat')->name('subcategory_events');
 
