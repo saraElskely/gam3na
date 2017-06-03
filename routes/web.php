@@ -51,7 +51,7 @@ Route::post('/event/{event}/photos','photosController@store');
 
 
 Route::get('/event/{event}/attendance','Events@user_attend')->name('attended');
-
+Route::get('/event/{event}/rating','Events@make_rate')->name('make_rate');
 
 Route::get('/subcategories/{id}/events','subcategoriesController@subcat')->name('subcategory_events');
 

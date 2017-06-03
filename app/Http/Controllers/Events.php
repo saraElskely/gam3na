@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use StreamLab\StreamLabProvider\Facades\StreamLabFacades;
 use DB;
 use Carbon\Carbon;
+use willvincent\Rateable\Rating;
 class Events extends Controller
 {
     use  Notifiable;
@@ -204,5 +205,23 @@ class Events extends Controller
         return view('event.calendar', compact('user_attendance'));
 
       }
+
+
+      public function make_rate($id,Request $request)
+      {
+          $rate = $request->rate ;
+          $event = \App\Event::where('id', '=',$id)->first();
+          $rating = new Rating;
+          $rating->rating = $rate;
+          $rating->user_id = Auth::id();
+
+
+          $event->ratings()->save($rating);
+          // $rating->rateable_id = $event->id;
+          // $rating->rateable_type = 'Event';
+          // $rating->save();
+          return $event->ratings;
+      }
+
 }
 
