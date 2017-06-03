@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "f504736de3e613c5476b8aad5a2c2e60",
+    "content-hash": "214caa08133269949fdc4609a9418c92",
     "packages": [
         {
             "name": "5dmatweb/streamlab",
@@ -693,16 +693,16 @@
         },
         {
             "name": "laravel/passport",
-            "version": "v2.0.8",
+            "version": "v2.0.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/passport.git",
-                "reference": "d2e34481d4594dc09807e9c5de0d6a8bc4c125b5"
+                "reference": "cd908e73505f7d3aad101d3177280db952ffc190"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/passport/zipball/d2e34481d4594dc09807e9c5de0d6a8bc4c125b5",
-                "reference": "d2e34481d4594dc09807e9c5de0d6a8bc4c125b5",
+                "url": "https://api.github.com/repos/laravel/passport/zipball/cd908e73505f7d3aad101d3177280db952ffc190",
+                "reference": "cd908e73505f7d3aad101d3177280db952ffc190",
                 "shasum": ""
             },
             "require": {
@@ -753,7 +753,7 @@
                 "oauth",
                 "passport"
             ],
-            "time": "2017-06-02T14:49:59+00:00"
+            "time": "2017-06-02T21:51:18+00:00"
         },
         {
             "name": "laravel/socialite",
@@ -4362,58 +4362,6 @@
                 "validate"
             ],
             "time": "2016-11-23T20:04:58+00:00"
-        },
-        {
-            "name": "willvincent/laravel-rateable",
-            "version": "1.0.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/willvincent/laravel-rateable.git",
-                "reference": "72e8ad2d7c565b3f226dac093f385ec3d3308df4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/willvincent/laravel-rateable/zipball/72e8ad2d7c565b3f226dac093f385ec3d3308df4",
-                "reference": "72e8ad2d7c565b3f226dac093f385ec3d3308df4",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/database": "~5.0",
-                "illuminate/support": "~5.0",
-                "php": ">=5.4"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "src/commands"
-                ],
-                "psr-4": {
-                    "willvincent\\Rateable\\": "src/Rateable"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Will Vincent",
-                    "email": "tcindie@gmail.com"
-                }
-            ],
-            "description": "Allows multiple models to be rated with a fivestar like system.",
-            "keywords": [
-                "Rating",
-                "fivestar",
-                "laravel",
-                "laravel 5",
-                "rateable",
-                "vote"
-            ],
-            "time": "2016-10-27T15:28:22+00:00"
         }
     ],
     "aliases": [],
