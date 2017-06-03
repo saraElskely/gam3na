@@ -7,6 +7,7 @@ use App\Notifications\AddEvent;
 use App\User;
 //use Notifiable;
 
+
 class Event extends Model
 {
     /**

@@ -28,6 +28,7 @@ class Events extends Controller
         $events = Event::all();
         $user_attend =  User::find(Auth::id())->events_attend_by_user;
         return view('event.home', ['events'=>$events,'user_attend'=>$user_attend]);
+
     }
     /**
      * Show the form for creating a new resource.
