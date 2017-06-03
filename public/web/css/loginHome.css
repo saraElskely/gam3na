@@ -12,7 +12,7 @@
 }
 body {
       font-family:myFirstFont;
-   
+
   }
 .fonti{
     font-family: myThirdFont;
@@ -27,7 +27,7 @@ body {
 
 .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover
 .well {
-   
+
     background-color: #1c9287;}
 
 small {
@@ -150,7 +150,7 @@ h1 {
   font-size: 30px;
   line-height: 1.8;
   text-transform: uppercase;
- 
+
 }
 #sec02{
     height: inherit;
@@ -234,17 +234,17 @@ footer:after,
 
 
 body {
-	
+
 line-height: -0.5;
-	
+
 background: rgb(247,251,252);
-	
+
 background: -moz-linear-gradient(top,  rgba(247,251,252,1) 0%, rgba(217,237,242,1) 40%, rgba(173,217,228,1) 100%);
-	
+
 background: -o-linear-gradient(top,  rgba(247,251,252,1) 0%,rgba(217,237,242,1) 40%,rgba(173,217,228,1) 100%);
-	
+
 background: -ms-linear-gradient(top,  rgba(247,251,252,1) 0%,rgba(217,237,242,1) 40%,rgba(173,217,228,1) 100%);
-	
+
 background: linear-gradient(top,  rgba(247,251,252,1) 0%,rgba(217,237,242,1) 40%,rgba(173,217,228,1) 100%);
 }
 
@@ -295,8 +295,8 @@ h2 {
 
 h3 {
 	font-size: 30px;
-	font-weight: normal; 
-	margin: 0 0 24px; 
+	font-weight: normal;
+	margin: 0 0 24px;
 	line-height: 1;
 }
 
@@ -312,17 +312,17 @@ p {
 -------------------------------------------*/
 header { margin: 20px 40px 60px; }
 
-header div { 
-	margin-top: 40px; 
-	width: 60%; 
-	float: left; 
+header div {
+	margin-top: 40px;
+	width: 60%;
+	float: left;
 }
 
-header p { 
-	color: #272727; 
+header p {
+	color: #272727;
 	font-size: 18px;
 	margin: 0;
-	
+
 }
 
 nav {
@@ -377,13 +377,13 @@ footer {
 	margin: 0 5% 40px 0;
 }
 
-.col:last-of-type { 
+.col:last-of-type {
 	margin-right: 0;
 }
 
 footer h2 { font-size: 18px; margin-bottom: 40px;}
 
-footer h3 { 
+footer h3 {
 	margin-bottom: 10px;
 	padding-bottom: 10px;
 	border-bottom: 1px dashed rgba(0,0,0,.3);
@@ -394,7 +394,7 @@ footer  ul {
 	margin-left: 20px;
 }
 
-footer  li { 
+footer  li {
 	color: rgba(0,0,0,.1); /* border color */
 }
 
@@ -533,16 +533,16 @@ footer p {
 	display: block;
 	width: 160px;
 	float: left;
-	
+
 	border-left: 1px solid #888;
-	
+
 	box-shadow: 0 0 25px 10px rgba(0, 0, 0, 0.5);
 	-webkit-box-shadow: 0 0 25px 10px rgba(0, 0, 0, 0.5);
 	-moz-box-shadow: 0 0 25px 10px rgba(0, 0, 0, 0.5);
 	transition: all 0.5s;
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
-	
+
 }
 .accordian ul:hover li {width: 40px;}
 .accordian ul li:hover {width: 640px;}
@@ -604,15 +604,15 @@ h1.header {
   border: none;
 }
 .bton{
-    
+
 margin-left: 41%;
-    
+
 color: white;
-    
+
 padding: 12%;
-    
+
 font-size: 16pt;
-    
+
 width: 17%;
 }
 .timeline .event:before,
@@ -628,7 +628,7 @@ width: 17%;
   content: attr(data-date);
   text-align: right;
   /*  font-weight: 100;*/
-  
+
   font-size: 16px;
   min-width: 120px;
 }
@@ -777,8 +777,8 @@ a.portfolio-link {
     bottom: 50px;
     right: 100px;
 }
-  
-    
+
+
     .event-list {
 		list-style: none;
 		margin: 0px;
@@ -862,13 +862,13 @@ a.portfolio-link {
 		width: 100%;
 		color: rgb(30, 30, 30);
 		text-decoration: none;
-	} 
-    .event-list > li > .social > ul > li {    
+	}
+    .event-list > li > .social > ul > li {
         padding: 0px;
     }
     .event-list > li > .social > ul > li > a {
         padding: 3px 0px;
-	} 
+	}
 	.event-list > li > .info > ul > li:hover,
 	.event-list > li > .social > ul > li:hover {
 		color: rgb(30, 30, 30);
@@ -933,8 +933,8 @@ a.portfolio-link {
 			height: 120px;
 			text-align: left;
 			padding-right: 40px;
-		}	
-		.event-list > li > .info > .title, 
+		}
+		.event-list > li > .info > .title,
 		.event-list > li > .info > .desc {
 			padding: 0px 10px;
 		}
@@ -953,7 +953,7 @@ a.portfolio-link {
         .event-list > li > .social > ul {
             border-left: 1px solid rgb(230, 230, 230);
         }
-		.event-list > li > .social > ul > li {			
+		.event-list > li > .social > ul > li {
 			display: block;
             padding: 0px;
 		}
@@ -970,7 +970,7 @@ a.portfolio-link {
     border: 0;
     /* height: 13px; */
     /* padding: 3px; */
-    } 
+    }
 .button-container {
   position: relative;
   top: 50%;
@@ -983,7 +983,7 @@ a.portfolio-link {
   position: relative;
   text-align: center;
   padding: 0px;
-    font-size: 14px; 
+    font-size: 14px;
   }
 
 .btn {
@@ -997,7 +997,7 @@ a.portfolio-link {
   /* text-transform: uppercase; */
   /* letter-spacing: 2px; */
   /* color: white; */
-  
+
   text-align: center;
   padding: 0px;
   }
@@ -1051,7 +1051,7 @@ a.portfolio-link {
     transform: translateX(-280px);
     transition: transform 400ms ease-in;
   }
-  
+
   &:hover {
     &:after {
       transform: translateX(-200px);
@@ -1173,12 +1173,12 @@ button{
     {
         transform: scaleY(1) scaleX(1);
     }
-    
+
     33%
     {
         transform: scaleY(1.1) scaleX(0.9);
     }
-    
+
     66%
     {
         transform: scaleY(0.9) scaleX(1.1);
@@ -1196,7 +1196,7 @@ button{
     0% {
       opacity: 0;
       transform: translateY(70%);
-    } 
+    }
     100% {
       opacity: 1;
       transform: translateY(0%);
@@ -1206,7 +1206,7 @@ button{
     0% {
       opacity: 0;
       -webkit-transform: translateY(70%);
-    } 
+    }
     100% {
       opacity: 1;
       -webkit-transform: translateY(0%);
@@ -1242,11 +1242,11 @@ button{
     animation: animatezoom 0.6s
 }
 @-webkit-keyframes animatezoom {
-    from {-webkit-transform: scale(0)} 
+    from {-webkit-transform: scale(0)}
     to {-webkit-transform: scale(1)}
 }
-    
+
 @keyframes animatezoom {
-    from {transform: scale(0)} 
+    from {transform: scale(0)}
     to {transform: scale(1)}
 }

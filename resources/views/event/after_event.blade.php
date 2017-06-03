@@ -5,7 +5,7 @@
 <div class="col-lg-offset-4 col-lg-4"><h1>{{$event->event_name}}</h1>
 	<p> {{ $event->user->name }}
 		{{$event->event_date}}
-		
+
 	</p>
 	<p>{{$event->event_description}}</p>
 </div>
@@ -18,11 +18,23 @@
 	<ul class="list-group">
 		@foreach($event->photos as $userEvent_photo)
 			<li class="list-group">
-				{{ $event->user->name }}, 
-              <img src=  {{ asset("upload/image/$userEvent_photo->user_event_photo") }} height="42" width="42"> 
+				{{ $event->user->name }},
+              <img src=  {{ asset("upload/image/$userEvent_photo->user_event_photo") }} height="42" width="42">
 
 			</li>
+			<li>
+				<div class="ratings">
+					<input type="radio" name="star" id="rating" value="1"/>
+					<input type="radio" name="star" id="rating" value="2"/>
+					<input type="radio" name="star" id="rating" value="3"/>
+					<input type="radio" name="star" id="rating" value="4"/>
+					<input type="radio" name="star" id="rating" value="5"/>
+				</div>
+			</li>
 		@endforeach
+		<script>
+		
+		</script>
 	</ul>
 </div>
 @endif
@@ -66,7 +78,7 @@
 							</div>
 						</form>
 
-						
+
 						@include('event.partials.errors')
 
 					</div>
