@@ -180,6 +180,7 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         StreamLab\StreamLabProvider\StreamLabServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
+        
     ],
 
     /*
