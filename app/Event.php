@@ -5,10 +5,12 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
 use App\Notifications\AddEvent;
 use App\User;
+use willvincent\Rateable\Rateable;
 //use Notifiable;
 
 class Event extends Model
 {
+        use Rateable;
     /**
      * The attributes that are mass assignable.
      *

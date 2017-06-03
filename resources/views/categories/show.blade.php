@@ -56,8 +56,8 @@
                  @foreach ($first_subcategory->events() as $event)
                  <div class="event-block">
                      <div class="event-date eCol">
-                       <div class="eDate">26</div>
-                       <div class="eMonth">JUN</div>
+                       <div class="eDate">{{date('d',strtotime($event->event_date))}}</div>
+                       <div class="eMonth">{{date('M',strtotime($event->event_date))}}</div>
                      </div>
                      <div class="event-details eCol">
                        <div class="event-name">

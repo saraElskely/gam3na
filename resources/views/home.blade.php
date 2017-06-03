@@ -14,7 +14,7 @@
   <li role="presentation"><a href="#">Profile</a></li>
   <li role="presentation"><a href="{{route('user.calendar')}}">  Calender</a></li>
 
-  
+
 @endsection
 
 
@@ -33,7 +33,7 @@
         <br><br>
       <div class="container">
       <div class="row">
-              <h1 class="text-center">Your activity</h1>
+              <h1 class="text-center fonti">Your activity</h1>
         <div class="[  ]">
           <ul class="event-list">
             @foreach ($events_attended_by_user as $event)
