@@ -11,7 +11,9 @@ use Illuminate\Support\Facades\Auth;
 use StreamLab\StreamLabProvider\Facades\StreamLabFacades;
 use DB;
 use Carbon\Carbon;
-// use willvincent\Rateable\Rating;
+
+use willvincent\Rateable\Rating;
+
 class Events extends Controller
 {
     use  Notifiable;

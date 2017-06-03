@@ -43,6 +43,6 @@ class AdminController extends Controller
 // $admin->password = Hash::make('password')
 // $admin->save()
 
-}
+
 
 

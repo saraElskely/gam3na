@@ -181,6 +181,7 @@ return [
         StreamLab\StreamLabProvider\StreamLabServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         willvincent\Rateable\RateableServiceProvider::class,
+
     ],
 
     /*

@@ -8,7 +8,9 @@
 
 	</p>
 	<p>{{$event->event_description}}</p>
+	{{$event->ratings}}
 </div>
+
 <div class="rating left">
 	 <div class="stars right">
 		 <a class="star rated">1</a>
@@ -16,10 +18,13 @@
 		 <a class="star rated">3</a>
 		 <a class="star">4</a>
 		 <a class="star">5</a>
+
 	</div>
 </div>
 
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
 <script>
 		jQuery(document).ready(function($) {
 		  $('.rating .star').hover(function() {
