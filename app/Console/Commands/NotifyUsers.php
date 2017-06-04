@@ -10,7 +10,7 @@ use App\User;
 
 
 use Notification;
-use App\Notifications\AddEvent;
+use App\Notifications\tomEvent;
 use Illuminate\Notifications\Notifiable;
 use StreamLab\StreamLabProvider\Facades\StreamLabFacades;
 
@@ -64,9 +64,9 @@ class NotifyUsers extends Command
             $users =$event->user_attend_event ;
             $user = User::all();
           
-            Notification::send($users ,new AddEvent($event));
-            $data = 'You Have New Event '.$event->event_name;
-            StreamLabFacades::pushMessage('gam3na','AddEvent',$data);
+            Notification::send($users ,new\App\Notifications\ tomEvent($event));
+            
+            // StreamLabFacades::pushMessage('gam3na','AddEvent',$data);
 
           }
             // dd( $select_event);

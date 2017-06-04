@@ -26,11 +26,14 @@ class Events extends Controller
     {
         $this->middleware('auth');
     }
+
     public function index()
     {
         $events = Event::all();
+        $user = User::find(Auth::id());
         $user_attend =  User::find(Auth::id())->events_attend_by_user;
-        return view('event.home', ['events'=>$events,'user_attend'=>$user_attend]);
+        return view('event.home', ['events'=>$events,'user_attend'=>$user_attend,'user'=>$user]);
+
     }
     /**
      * Show the form for creating a new resource.
@@ -104,7 +107,15 @@ class Events extends Controller
     {
         $item = Event::find($id);
         $subcategories = Subcategory::all();
-        return view('event.edit', compact('item','subcategories'));
+        if($item->user->id ==Auth::id()){
+            return view('event.edit', compact('item','subcategories'));
+
+        }
+        else
+        {
+            return back();
+        }
+
     }
     /**
      * Update the specified resource in storage.
@@ -153,16 +164,14 @@ class Events extends Controller
         session()->flash('message','Deleted successfully');
         return redirect('/event');
     }
+
     public function user_attend($id){
         $event = Event::find($id);
-        // var_dump($event);
         $select = DB::table('event_user')->where('user_id','=',Auth::id())
             ->where('event_id','=',$id)
             ->first();
         if(is_null($select) ){
-            // return ($event->);
             $event->user_attend_by_event()->attach(Auth::id());
-            // var_dump($event->users_attend_event);
             return "'attend_status': 1";
         }else{
             $status= (! $select->status);
@@ -188,8 +197,15 @@ class Events extends Controller
                  }else{
                      return view('event.after_event', compact('event'));
 
-                 }
-      }
+
+               if($select->isEmpty()){
+                  return view('event.before_event', compact('event'));
+
+               }else{
+                   return view('event.after_event', compact('event'));
+
+               }
+    }
 
 
       public function calendar(){
@@ -203,6 +219,7 @@ class Events extends Controller
         // ->where('status','=',true);
 
         // dd($event);
+
         return view('event.calendar', compact('user_attendance'));
 
       }
@@ -215,15 +232,8 @@ class Events extends Controller
           $rating->rating = $rate;
           $rating->user_id = Auth::id();
 
-
-          return $event->comments();
-
           $event->ratings()->save($rating);
-          // $rating->rateable_id = $event->id;
-          // $rating->rateable_type = 'Event';
-          // $rating->save();
           return $event->ratings;
-
-
       }
+
 }

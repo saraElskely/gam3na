@@ -50,15 +50,15 @@
 		        <br>
 				  <input type="datetime-local"class="form-control" name="event_date">
 				  <br>
-				  <input type="text" class="form-control" placeholder="Event will take place in" name="event_address">
-
+				
 
 				<div id="googleMap" style="width:100%;height:400px;">
 
 				</div>
-				<input id="1" name="event_latitude" class="lat" type="hidden" value="@yield('event_latitude')">
+				<input id="lat" name="event_latitude" class="lat" type="hidden" value="@yield('event_latitude')">
 
-				<input id="2" name="event_longitude" class="lon" type="hidden" value="@yield('event_longitude')">
+				<input id="lng" name="event_longitude" class="lon" type="hidden" value="@yield('event_longitude')">
+				 <input id="address" name="event_address" class="adress" type="hidden" value="@yield('event_address')">
 
 
 
@@ -80,46 +80,70 @@
 					    zoom:5,
 					};
 					var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
-					var longt = document.getElementById('2').value;
-					var latt = document.getElementById('1').value;
+
+					var geocoder = new google.maps.Geocoder;
+					 var address = document.getElementById('address').value;
+					var longt = document.getElementById('lng').value;
+					var latt = document.getElementById('lat').value;
+					
+					latt=parseFloat(latt);
+					longt=parseFloat(longt);
 
 					if(latt && longt){
-
-						var u = {'lat': latt, 'lng': longt};
+						console.log(latt, longt)
+						var u = {lat: parseFloat(latt), lng: parseFloat(longt)};
 						var marker = new google.maps.Marker({
 				          position: u,
-				          map: map
+				          map: map,
+				      
 				        });
-						alert(u.lng);
+						// alert(u.lng);
 					}else{
 						var marker = new google.maps.Marker({
 				          position: uluru,
-				          map: map
+				          map: map,
+				          
 				        });
 					}
 
+
 						google.maps.event.addListener(map, 'click', function(event) {
 							// alert(event.latLng);
-						    placeMarker(map, event.latLng ,marker);
+						    placeMarker(map, event.latLng ,marker,geocoder);
 
 						  });
 
 
 				}
-				function placeMarker(map, location ,marker) {
-					alert(location);
+				function placeMarker(map, location ,marker,geocoder) {
+					
+				
+   				  	
 					marker = marker.setPosition(location);
 					map.panTo(location);
 					$('.lat').val(location.lat());
 
    				   	$('.lon').val(location.lng());
-   				   	// alert(marker);
+   				  
 
-					// var infowindow = new google.maps.InfoWindow({
-					//     content: 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng()
-					// });
-					// infowindow.open(map,marker);
+   				   	        geocoder.geocode({'location': location}, function(results, status) {
+					          if (status === 'OK') {
+					            if (results[1]) {
+					              map.setZoom(11);
+					      			$('.adress').val(results[1].formatted_address);
+					              // infowindow.setContent(results[1].formatted_address);
+					              // infowindow.open(map, marker);
+					            } else {
+					              window.alert('No results found');
+					            }
+					          } else {
+					            window.alert('Geocoder failed due to: ' + status);
+					          }
+					        });
 
+   				   	
+
+   				 			 
 				}
 
 

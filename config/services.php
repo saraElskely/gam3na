@@ -53,4 +53,13 @@ return [
         'redirect' => 'http://127.0.0.1:8000/login/google/callback',
     ],
 
+
+
+    'nexmo' =>[
+       'key'=> env('NEXMO_KEY'),
+       'secret'=>env('NEXMO_SECRET'),
+       'sms_from'=>'01555555',
+    ],
+
+
 ];

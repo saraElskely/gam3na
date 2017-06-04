@@ -52,5 +52,9 @@ class User extends Eloquent implements Authenticatable ,CanResetPasswordContract
       return $this->belongsToMany('App\Event')->wherePivot('status', true);
     }
 
+    public function routeNotificationForNexmo(){
+
+        return $this->mobile;
+    }
 
 }
