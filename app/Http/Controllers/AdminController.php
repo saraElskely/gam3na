@@ -26,8 +26,8 @@ class AdminController extends Controller
         return view('admin');
     }
 
-    
 }
+
 
 
 
@@ -42,7 +42,6 @@ class AdminController extends Controller
 // $admin->email = "admin@gam3na.com"
 // $admin->password = Hash::make('password')
 // $admin->save()
-
 
 
 

@@ -8,6 +8,7 @@ use App\User;
 use willvincent\Rateable\Rateable;
 //use Notifiable;
 
+
 class Event extends Model
 {
         use Rateable;

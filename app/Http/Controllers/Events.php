@@ -24,11 +24,14 @@ class Events extends Controller
     {
         $this->middleware('auth');
     }
+  
     public function index()
     {
         $events = Event::all();
+        $user = User::find(Auth::id());
         $user_attend =  User::find(Auth::id())->events_attend_by_user;
-        return view('event.home', ['events'=>$events,'user_attend'=>$user_attend]);
+        return view('event.home', ['events'=>$events,'user_attend'=>$user_attend,'user'=>$user]);
+
     }
     /**
      * Show the form for creating a new resource.
@@ -102,7 +105,15 @@ class Events extends Controller
     {
         $item = Event::find($id);
         $subcategories = Subcategory::all();
-        return view('event.edit', compact('item','subcategories'));
+        if($item->user->id ==Auth::id()){
+            return view('event.edit', compact('item','subcategories'));
+
+        }
+        else
+        {
+            return back();
+        }
+
     }
     /**
      * Update the specified resource in storage.
@@ -151,16 +162,14 @@ class Events extends Controller
         session()->flash('message','Deleted successfully');
         return redirect('/event');
     }
+   
     public function user_attend($id){
         $event = Event::find($id);
-        // var_dump($event);
         $select = DB::table('event_user')->where('user_id','=',Auth::id())
             ->where('event_id','=',$id)
             ->first();
         if(is_null($select) ){
-            // return ($event->);
             $event->user_attend_by_event()->attach(Auth::id());
-            // var_dump($event->users_attend_event);
             return "'attend_status': 1";
         }else{
             $status= (! $select->status);
@@ -175,36 +184,28 @@ class Events extends Controller
     }
 
         public function Check_event($id){
-         $today = Carbon::today();
-         $event = Event::find($id);
-         $select = DB::table('events')->where('id','=',$id)
-                    ->where('event_date','<',$today)->get();
-                    
-                 if($select->isEmpty()){
-                    return view('event.before_event', compact('event'));
-                    
-                 }else{
-                     return view('event.after_event', compact('event'));
+       $today = Carbon::today();
+       $event = Event::find($id);
+       $select = DB::table('events')->where('id','=',$id)
+                  ->where('event_date','<',$today)->get();
 
-                 }
-      }
+               if($select->isEmpty()){
+                  return view('event.before_event', compact('event'));
+
+               }else{
+                   return view('event.after_event', compact('event'));
+
+               }
+    }
 
 
       public function calendar(){
         $events = Event::all();
         $user = User::find(Auth::id());
         $user_attendance = $user->events_attend_by_user->sortByDesc('event_date');
-        // dd($user_attendance);
-
-        // $event =DB::table('event_user')
-        // ->where('user_id','=',$user)
-        // ->where('status','=',true);
-       
-        // dd($event);
         return view('event.calendar', compact('user_attendance'));
 
       }
-
 
       public function make_rate($id,Request $request)
       {
@@ -214,11 +215,7 @@ class Events extends Controller
           $rating->rating = $rate;
           $rating->user_id = Auth::id();
           $event->ratings()->save($rating);
-          // $rating->rateable_id = $event->id;
-          // $rating->rateable_type = 'Event';
-          // $rating->save();
           return $event->ratings;
       }
 
 }
-
