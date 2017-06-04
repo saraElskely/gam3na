@@ -213,8 +213,6 @@ class Events extends Controller
           $rating = new Rating;
           $rating->rating = $rate;
           $rating->user_id = Auth::id();
-
-
           $event->ratings()->save($rating);
           // $rating->rateable_id = $event->id;
           // $rating->rateable_type = 'Event';

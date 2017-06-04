@@ -18,7 +18,7 @@ $(document).on("click", ".naccs .menu div", function() {
 					result.forEach(function(event){
 						$('.events').append('<div class="event-block">\
 														 <div class="event-date eCol">\
-															 <div class="eDate">26</div>\
+															 <div class="eDate">'+(new Date(event.event_date)).getDate()+'</div>\
 															 <div class="eMonth">JUN</div>\
 														 </div>\
 														 <div class="event-details eCol">\
