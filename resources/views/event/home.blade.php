@@ -39,7 +39,7 @@
 										<button style="border:none;" type="button" id="{{$event->id}}notAttended" class=" glyphicon glyphicon-plus"></button>
 									</div>
 								</div>
-					
+						@else
 						<div class="container">
 								<div class="content">
 										<button style="border:none;" type="button" id="{{$event->id}}attended" class=" glyphicon glyphicon-ok" ></button>

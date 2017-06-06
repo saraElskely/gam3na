@@ -31,7 +31,7 @@ class Events extends Controller
         $user = User::find(Auth::id());
         $user_attend =  User::find(Auth::id())->events_attend_by_user;
         return view('event.home', ['events'=>$events,'user_attend'=>$user_attend,'user'=>$user]);
-
+          
     }
     /**
      * Show the form for creating a new resource.
@@ -184,16 +184,18 @@ class Events extends Controller
     }
 
         public function Check_event($id){
+       $commentuser = User::find(Auth::id());     
        $today = Carbon::today();
        $event = Event::find($id);
+       $user_attend =  User::find(Auth::id())->events_attend_by_user;
        $select = DB::table('events')->where('id','=',$id)
                   ->where('event_date','<',$today)->get();
 
                if($select->isEmpty()){
-                  return view('event.before_event', compact('event'));
+                  return view('event.before_event', compact('event','commentuser'));
 
                }else{
-                   return view('event.after_event', compact('event'));
+                   return view('event.after_event', compact('event','commentuser'));
 
                }
     }

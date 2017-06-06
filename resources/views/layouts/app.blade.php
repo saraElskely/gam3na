@@ -8,11 +8,10 @@
   <link rel="stylesheet" href={{ asset("web/bootstrap-3.3.7-dist/css/bootstrap.min.css") }} >
   <link rel="stylesheet" href={{ asset("web/font-awesome-4.7.0/css/font-awesome.min.css") }} >
   <link href={{ asset("web/css/main.css") }} rel="stylesheet" type="text/css">
+ 
   <script src= {{ asset("web/js/jquery-3.1.1.js") }}></script>
   @yield('head')
-
-
-
+  
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
   <script>

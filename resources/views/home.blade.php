@@ -26,40 +26,32 @@
           <span></span>
       </div>
     </section>
-           <section>
-        <br><br>
-      <div class="container">
-      <div class="row">
-              <h1 class="text-center fonti">Suggested event</h1>
-        <div class="[  ]">
-          <ul class="event-list">
-             @foreach ($events  as $event)
-                  <li>
-              <time datetime="2014-07-20">
-                <span class="day">{{date('d',strtotime($event->event_date))}}</span>
-                <span class="month">{{date('M',strtotime($event->event_date))}}</span>
-                <span class="year">{{date('Y',strtotime($event->event_date))}}</span>
+           
+            
 
-                <span class="time">ALL DAY</span>
-              </time>
-              <img alt="Independence Day" src={{ asset("/upload/image/$event->event_photo") }} />
-              <div class="info">
-                <h2 class="title">{{$event->event_name}}</h2>
-                <p class="desc">{{$event->event_description}}</p>
-                              <ul class="ulii">
-                  <li style="width:33%;">Going <span class="glyphicon glyphicon-ok"></span></li>
-
-                </ul>
-              </div>
-            </li>
-            @endforeach
-          </ul>
+    <section id="activity" class="slide1">
+    <h1 class="text-center fonti" style="padding-bottom:4%">Recomended</h1>
+    <div class="container">
+     @foreach ($events  as $event)
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="well well-sm">
+                <div class="row">
+                    <div class="col-sm-6 col-md-4">
+                        <img src={{ asset ("/upload/image/$event->event_photo") }} class="img-rounded img-responsive" />
+                    </div>
+                    <div class="col-sm-6 col-md-8 par">
+                          {{$event->event_description}}
+  
+                    </div>
+                    <button type="button" class="btn  bton"><span class="glyphicon glyphicon-plus" ></span></button>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-
+        </div>
+         @endforeach
+        </div>
+</section>
     <section>
         <br><br>
       <div class="container">
