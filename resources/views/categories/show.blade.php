@@ -26,7 +26,7 @@
   </header>
 <div class="sections " id="wrap">
   <section style="background: url({{ asset("/upload/image/$category->category_photo") }}) no-repeat center center fixed; background-size: cover;" id="hero" id="main">
-    <h1><span>Category</span><br>Ramadan</h1>
+    <h1><span>Category</span><br>{{$category->category_name}}</h1>
   </section><!-- END hero -->
 
   <section class="row" id="sec02">

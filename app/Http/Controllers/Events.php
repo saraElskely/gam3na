@@ -11,7 +11,9 @@ use Illuminate\Support\Facades\Auth;
 use StreamLab\StreamLabProvider\Facades\StreamLabFacades;
 use DB;
 use Carbon\Carbon;
+
 use willvincent\Rateable\Rating;
+
 class Events extends Controller
 {
     use  Notifiable;
@@ -24,7 +26,7 @@ class Events extends Controller
     {
         $this->middleware('auth');
     }
-  
+
     public function index()
     {
         $events = Event::all();
@@ -162,7 +164,7 @@ class Events extends Controller
         session()->flash('message','Deleted successfully');
         return redirect('/event');
     }
-   
+
     public function user_attend($id){
         $event = Event::find($id);
         $select = DB::table('event_user')->where('user_id','=',Auth::id())
@@ -184,6 +186,7 @@ class Events extends Controller
     }
 
         public function Check_event($id){
+
        $commentuser = User::find(Auth::id());     
        $today = Carbon::today();
        $event = Event::find($id);
@@ -191,6 +194,10 @@ class Events extends Controller
        $select = DB::table('events')->where('id','=',$id)
                   ->where('event_date','<',$today)->get();
 
+         $today = Carbon::today();
+         $event = Event::find($id);
+         $select = DB::table('events')->where('id','=',$id)
+                    ->where('event_date','<',$today)->get();
                if($select->isEmpty()){
                   return view('event.before_event', compact('event','commentuser'));
 
@@ -205,6 +212,14 @@ class Events extends Controller
         $events = Event::all();
         $user = User::find(Auth::id());
         $user_attendance = $user->events_attend_by_user->sortByDesc('event_date');
+        // dd($user_attendance);
+
+        // $event =DB::table('event_user')
+        // ->where('user_id','=',$user)
+        // ->where('status','=',true);
+
+        // dd($event);
+
         return view('event.calendar', compact('user_attendance'));
 
       }
@@ -216,6 +231,7 @@ class Events extends Controller
           $rating = new Rating;
           $rating->rating = $rate;
           $rating->user_id = Auth::id();
+
           $event->ratings()->save($rating);
           return $event->ratings;
       }

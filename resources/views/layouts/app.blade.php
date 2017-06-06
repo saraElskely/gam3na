@@ -21,7 +21,8 @@
   </script>
 
     <style>
-    .unread{background-color:red;}</style>
+    .unread{background-color:red;}
+    </style>
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
   <nav class="navbar navbar-default navbar-fixed-top">
@@ -39,8 +40,173 @@
           @yield('nav_menu')
           @if (Auth::guest())
 
-            <li><a href="login">Login</a></li>
-            <li><a href="register">Register</a></li>
+            <li>
+              <button type="button" class="" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">LOG IN</button>
+
+                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                   <div class="modal-dialog" role="document">
+                     <div class="modal-content">
+                       <div class="modal-header">
+                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                         <h4 class="modal-title" id="exampleModalLabel">log in</h4>
+                       </div>
+                       <div class="modal-body">
+                         <form action="login" method="POST">
+                           {{ csrf_field() }}
+                           <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                               <label for="email" class="control-label">E-Mail Address</label>
+                               <div class="">
+                                   <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
+
+                                   @if ($errors->has('email'))
+                                       <span class="help-block">
+                                           <strong>{{ $errors->first('email') }}</strong>
+                                       </span>
+                                   @endif
+                               </div>
+                           </div>
+
+                           <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                               <label for="password" class="control-label">Password</label>
+
+                               <div class="">
+                                   <input id="password" type="password" class="form-control" name="password" required>
+
+                                   @if ($errors->has('password'))
+                                       <span class="help-block">
+                                           <strong>{{ $errors->first('password') }}</strong>
+                                       </span>
+                                   @endif
+                               </div>
+                           </div>
+
+                           <div class="form-group">
+                               <div class=" col-md-offset-4">
+                                   <div class="checkbox">
+                                       <label>
+                                           <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
+                                       </label>
+                                   </div>
+                               </div>
+                           </div>
+                           <a class="btn btn-link" href="{{ route('password.request') }}">
+                               Forgot Your Password?
+                           </a>
+
+                           <div class="modal-footer">
+                             <div class="form-group">
+                                 <div class=" col-md-offset-4">
+                                     <a href="{{ url('login/facebook') }}">Login with facebook</a>
+                                     <a href="{{ url('login/google') }}">Login with google</a>
+                                     <a href="{{ url('login/twitter') }}">Login with twitter</a>
+                                 </div>
+                             </div>
+                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                             <button type="submit" class="btn ">
+                                 Login
+                             </button>
+                           </div>
+                         </form>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+            </li>
+            <li>
+              <button type="button" class="" data-toggle="modal" data-target="#exampleModal1" data-whatever="@mdo">SIGN UP</button>
+
+                  <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          <h4 class="modal-title" id="exampleModalLabel">sign Up</h4>
+                        </div>
+                        <div class="modal-body">
+                          <form class="form-horizontal" role="form" method="POST" action="register">
+                              {{ csrf_field() }}
+
+                              <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                                  <label for="name" class="control-label">Name</label>
+
+                                  <div class="">
+                                      <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+
+                                      @if ($errors->has('name'))
+                                          <span class="help-block">
+                                              <strong>{{ $errors->first('name') }}</strong>
+                                          </span>
+                                      @endif
+                                  </div>
+                              </div>
+
+                              <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                                  <label for="email" class="control-label">E-Mail Address</label>
+
+                                  <div class="">
+                                      <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+
+                                      @if ($errors->has('email'))
+                                          <span class="help-block">
+                                              <strong>{{ $errors->first('email') }}</strong>
+                                          </span>
+                                      @endif
+                                  </div>
+                              </div>
+
+                              <div class="form-group{{ $errors->has('job') ? ' has-error' : '' }}">
+                                  <label for="job" class="control-label">Job</label>
+
+                                  <div class="">
+                                      <input id="job" type="text" class="form-control" name="job" value="{{ old('job') }}" required >
+
+                                      @if ($errors->has('job'))
+                                          <span class="help-block">
+                                              <strong>{{ $errors->first('job') }}</strong>
+                                          </span>
+                                      @endif
+                                  </div>
+                              </div>
+                              <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                                  <label for="password" class="control-label">Password</label>
+
+                                  <div class="">
+                                      <input id="password" type="password" class="form-control" name="password" required>
+
+                                      @if ($errors->has('password'))
+                                          <span class="help-block">
+                                              <strong>{{ $errors->first('password') }}</strong>
+                                          </span>
+                                      @endif
+                                  </div>
+                              </div>
+
+                              <div class="form-group">
+                                  <label for="password-confirm" class="control-label">Confirm Password</label>
+
+                                  <div class="">
+                                      <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                  </div>
+                              </div>
+
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn">
+                                    Register
+                                </button>
+                              </div>
+
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            </li>
+
+
+
+
+
           @else
             <li>
                 <a href="{{ route('logout') }}"

@@ -21,8 +21,8 @@ Route::resource('/users','AdminusersController');
 Route::resource('/categories','AdmincategoriesController');
 Route::resource('/subcategories','AdmincsubcategoriesController');
 Route::resource('/events','AdmineventsController');
-Route::get('/users/{id}/block', 'AdminusersController@block')->name('admin.block');	
-Route::get('/users/{id}/unblock', 'AdminusersController@unblock')->name('admin.unblock');	
+Route::get('/users/{id}/block', 'AdminusersController@block')->name('admin.block');
+Route::get('/users/{id}/unblock', 'AdminusersController@unblock')->name('admin.unblock');
 });
 
 Route::get('/','homeController@home');

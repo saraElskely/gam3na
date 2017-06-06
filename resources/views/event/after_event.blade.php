@@ -10,20 +10,20 @@
 	<p>{{$event->event_description}}</p>
 	{{$event->ratings}}
 </div>
-	<div class="rating left">
+
+<div class="rating left">
 	 <div class="stars right">
 		 <a class="star rated">1</a>
 		 <a class="star rated">2</a>
 		 <a class="star rated">3</a>
 		 <a class="star">4</a>
 		 <a class="star">5</a>
-		</div>
-	</div>
 
+	</div>
+</div>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-
 
 <script>
 		jQuery(document).ready(function($) {
@@ -54,7 +54,6 @@
 
 
 
-
 <img src={{asset("/upload/image/$event->event_photo")}} width="42" height="42" >
 
 @if(!empty($event->photos))
@@ -66,19 +65,9 @@
               <img src=  {{ asset("upload/image/$userEvent_photo->user_event_photo") }} height="42" width="42">
 
 			</li>
-			<li>
-				<div class="ratings">
-					<input type="radio" name="star" id="rating" value="1"/>
-					<input type="radio" name="star" id="rating" value="2"/>
-					<input type="radio" name="star" id="rating" value="3"/>
-					<input type="radio" name="star" id="rating" value="4"/>
-					<input type="radio" name="star" id="rating" value="5"/>
-				</div>
-			</li>
+
 		@endforeach
-		<script>
-		
-		</script>
+
 	</ul>
 </div>
 @endif
@@ -99,12 +88,14 @@
 		<div class="container">
 			<div class="reviews">
 				<ul class="list-group">
+				@if(!empty( $event->reviews))
 					@foreach($event->reviews as $review)
 						<li class="list-group">
 							{{ $review->review_content }}
 						</li>
 
 					@endforeach
+				@endif
 				</ul>
 
 
