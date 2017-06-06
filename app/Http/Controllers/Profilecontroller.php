@@ -36,7 +36,6 @@ class Profilecontroller extends Controller
        $this->validate($request,[
         'email'=>'required',
        ]);
-      //  $data=$request->all();
      $fileName = 'null';
 
 
@@ -61,9 +60,5 @@ class Profilecontroller extends Controller
       $user->save();
       session()->flash('message','updated successfully');
       return redirect('/profile');
-      // return $request->all();
  }
 }
-
-
- //

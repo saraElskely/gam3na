@@ -4,7 +4,7 @@
 @if(session()->has('message'))
  <h1 class="alert alert-success"> {{session()->get('message')}}</h1>
   @endif
-<a href="users/create" class="btn btn-info">Add New</a>
+{{--<a href="users/create" class="btn btn-info">Add New</a>--}}
 
 <table class="table">
 <thead>
@@ -37,9 +37,7 @@
 
   <td>
     <a href="users/{{$user->id}}">Show</a>
-    
-     
- <!--   <a href="users/{{$user->id}}/edit">Edit</a> -->
+
   @if($user->block == 1)
   <div class="container">
     <div class="content">
@@ -86,15 +84,6 @@
               });
               </script>
 
-
-   <form action='users/{{$user->id}}' method="POST">
-   {{csrf_field()}}
-   {{method_field('DELETE')}}
-
-   <button type="submit">Delete</button>
-   </form>
-
- 
   </td>
   </tr>
 

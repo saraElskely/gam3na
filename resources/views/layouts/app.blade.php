@@ -12,17 +12,12 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   {{-- <script src={{ asset("web/js/event.js")}}></script> --}}
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
   @yield('head')
-
-
   <script>
       window.Laravel = {!! json_encode([
           'csrfToken' => csrf_token(),
       ]) !!};
   </script>
-
     <style>
     .unread{background-color:red;}
     </style>
@@ -126,14 +121,14 @@
                           <h4 class="modal-title" id="exampleModalLabel">sign Up</h4>
                         </div>
                         <div class="modal-body">
-                          <form class="form-horizontal" role="form" method="POST" action="register">
+                          <form class="form-horizontal" role="form" method="POST" action="register" enctype="multipart/form-data">
                               {{ csrf_field() }}
 
                               <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                   <label for="name" class="control-label">Name</label>
 
                                   <div class="">
-                                      <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+                                      <input id="name" type="text" placeholder="Jone" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
 
                                       @if ($errors->has('name'))
                                           <span class="help-block">
@@ -147,7 +142,7 @@
                                   <label for="email" class="control-label">E-Mail Address</label>
 
                                   <div class="">
-                                      <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                                      <input id="email" type="email" placeholder="jone@example.com" class="form-control" name="email" value="{{ old('email') }}" required>
 
                                       @if ($errors->has('email'))
                                           <span class="help-block">
@@ -156,16 +151,71 @@
                                       @endif
                                   </div>
                               </div>
+                              <div class="form-group{{ $errors->has('user_photo') ? ' has-error' : '' }}">
+                                                        <label for="user_photo" class="col-md-4 control-label">Photo</label>
+
+                                                     <div class="col-md-6">
+                                                            <input id="user_photo" type="file" class="form-control" name="user_photo" value="{{ old('user_photo') }}">
+
+                                                            @if ($errors->has('user_photo'))
+                                                                <span class="help-block">
+                                                                    <strong>{{ $errors->first('user_photo') }}</strong>
+                                                                </span>
+                                                            @endif
+                                                        </div>
+                                           
+                              <div class="form-group{{ $errors->has('date_of_birth') ? ' has-error' : '' }}">
+                                                        <label for="date_of_birth" class="col-md-4 control-label">Date of Birth</label>
+
+                                                     <div class="col-md-6">
+                                                            <input id="date_of_birth" type="date" class="form-control" name="date_of_birth" value="{{ old('date_of_birth') }}" required >
+
+                                                            @if ($errors->has('date_of_birth'))
+                                                                <span class="help-block">
+                                                                    <strong>{{ $errors->first('date_of_birth') }}</strong>
+                                                                </span>
+                                                            @endif
+                                                        </div>
+                                                    </div>                       
+                                                  </div>
+                                
+                                <div class="form-group{{ $errors->has('gender') ? ' has-error' : '' }}">
+                                    <label for="gender" class="control-label">Gender</label>
+
+                                    <div class="">
+                                      <input id="gender" type="text" class="form-control" name="gender" value="{{ old('gender') }}" required >
+
+                                       
+                                        @if ($errors->has('gender'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('gender') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
 
                               <div class="form-group{{ $errors->has('job') ? ' has-error' : '' }}">
                                   <label for="job" class="control-label">Job</label>
 
                                   <div class="">
-                                      <input id="job" type="text" class="form-control" name="job" value="{{ old('job') }}" required >
+                                      <input id="job" type="text" class="form-control" placeholder="student" name="job" value="{{ old('job') }}">
 
                                       @if ($errors->has('job'))
                                           <span class="help-block">
                                               <strong>{{ $errors->first('job') }}</strong>
+                                          </span>
+                                      @endif
+                                  </div>
+                              </div>
+                              <div class="form-group{{ $errors->has('mobile') ? ' has-error' : '' }}">
+                                  <label for="mobile" class="control-label">Mobile</label>
+
+                                  <div class="">
+                                      <input id="mobile" type="tel" placeholder="012-3456-7890" class="form-control" name="mobile" value="{{ old('mobile') }}">
+
+                                      @if ($errors->has('mobile'))
+                                          <span class="help-block">
+                                              <strong>{{ $errors->first('mobile') }}</strong>
                                           </span>
                                       @endif
                                   </div>
@@ -192,6 +242,66 @@
                                   </div>
                               </div>
 
+                              <div id="googleMap" style="width:100%;height:400px;">
+                              </div>
+                              <input id="lat" name="user_latitude" class="lat" type="hidden" value="@yield('user_latitude')">
+                              <input id="lng" name="user_longitude" class="lon" type="hidden" value="@yield('user_longitude')">
+                              <input id="address" name="user_address" class="adress" type="hidden" value="@yield('user_address')">
+                              <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_0JrPnBAl85q8GhoExBWLry7hat2u8p4&callback=myMap"
+                                      type="text/javascript"></script>
+                              <script>
+                                  function myMap() {
+                                      var uluru = {lat: 31.200092, lng: 29.918739};
+                                      var mapProp= {
+                                          center:new google.maps.LatLng(31.200092,29.918739),
+                                          zoom:5,
+                                      };
+                                      var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+                                      var geocoder = new google.maps.Geocoder;
+                                      var address = document.getElementById('address').value;
+                                      var longt = document.getElementById('lng').value;
+                                      var latt = document.getElementById('lat').value;
+                                      latt=parseFloat(latt);
+                                      longt=parseFloat(longt);
+                                      if(latt && longt){
+                                          console.log(latt, longt);
+                                          var u = {lat: parseFloat(latt), lng: parseFloat(longt)};
+                                          var marker = new google.maps.Marker({
+                                              position: u,
+                                              map: map,
+
+                                          });
+                                      }else{
+                                          var marker = new google.maps.Marker({
+                                              position: uluru,
+                                              map: map,
+
+                                          });
+                                      }
+                                      google.maps.event.addListener(map, 'click', function(event) {
+                                          // alert(event.latLng);
+                                          placeMarker(map, event.latLng ,marker,geocoder);
+                                      });
+                                  }
+                                  function placeMarker(map, location ,marker,geocoder) {
+                                      marker = marker.setPosition(location);
+                                      map.panTo(location);
+                                      $('.lat').val(location.lat());
+                                      $('.lon').val(location.lng());
+                                      geocoder.geocode({'location': location}, function(results, status) {
+                                          if (status === 'OK') {
+                                              if (results[1]) {
+                                                  map.setZoom(11);
+                                                  $('.adress').val(results[1].formatted_address);
+                                              } else {
+                                                  window.alert('No results found');
+                                              }
+                                          } else {
+                                              window.alert('Geocoder failed due to: ' + status);
+                                          }
+                                      });
+                                  }
+                              </script>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn">

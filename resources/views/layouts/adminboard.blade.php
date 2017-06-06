@@ -84,6 +84,7 @@
                 <div class="row">
                   <div class="col-sm-12">
                     <ul class="nav nav-pills nav-stacked">
+                      <li ><a href="/admin/admins">All Admins</a></li>
                       <li ><a href="/admin/users">Users</a></li>
                       <li> <a href="/admin/categories">Categories</a> </li>
                       <li><a href="/admin/subcategories">Subcategories</a></li>
@@ -111,6 +112,9 @@
 	 <script type="text/javascript" src={{ asset("adminboard/./js/bootstrap-datetimepicker.js")}}></script>
      <script type="text/javascript" src={{ asset("adminboard/./js/data.js")}}></script>  
      <script type="text/javascript" src={{ asset("adminboard/./js/dashboard.js")}}></script>  
+          </div>
+        </div>
 </body>
+
 	
 </html>

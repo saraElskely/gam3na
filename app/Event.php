@@ -18,15 +18,13 @@ class Event extends Model
      * @var array
      */
     protected $fillable = [
-        'event_name', 'event_description', 'event_date','event_address','event_photo',
+        'event_name', 'event_description', 'event_date','event_address','event_photo','event_latitude','event_longitude'
     ];
 
     public function comments()
     {
-    //  dd("here!");
         return $this->hasMany('App\Comment');
     }
-
 
     public function user()
     {
@@ -43,16 +41,11 @@ class Event extends Model
         return $this->attributes['event_description'] = ucfirst($value);
     }
 
-
-
-    // protected $hidden = ['user_id','subcategory_id'];
-
-
-
     public function reviews()
     {
         return $this->hasMany(Review::class);
     }
+
     public function photos()
     {
         return $this->hasMany(Photo::class);
@@ -72,6 +65,4 @@ class Event extends Model
     {
         return $this->belongsToMany('App\User')->wherePivot('status', true);
     }
-
-
 }
