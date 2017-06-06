@@ -8,12 +8,17 @@
   <link rel="stylesheet" href={{ asset("web/bootstrap-3.3.7-dist/css/bootstrap.min.css") }} >
   <link rel="stylesheet" href={{ asset("web/font-awesome-4.7.0/css/font-awesome.min.css") }} >
   <link href={{ asset("web/css/main.css") }} rel="stylesheet" type="text/css">
-  <script src= {{ asset("web/js/jquery-3.1.1.js") }}></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  {{-- <script src={{ asset("web/js/event.js")}}></script> --}}
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
   @yield('head')
 
 
 
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 
   <script>
       window.Laravel = {!! json_encode([
@@ -204,16 +209,12 @@
                   </div>
             </li>
 
-
-
-
-
           @else
             <li>
                 <a href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                              document.getElementById('logout-form').submit();">
-                    Logout
+                    LOGOUT
                 </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     {{ csrf_field() }}
@@ -263,14 +264,18 @@
   	            <a href="#"><i class="fa fa-google-plus-square fa-3x social"></i></a>
   	            <a href="#"><i class="fa fa-envelope-square fa-3x social"></i></a>
        </div>
-       <p>Copyright 2012 - <a href="mailto:">Gam3na</a></p>
+       <p>Copyright 2017 - <a href="mailto:">Gam3na</a></p>
   </div>
   </footer>
 
     <!-- Scripts -->
 
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+
+
+
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> --}}
     <script src="/StreamLab/StreamLab.js"></script>
     <script>
            var message, showdiv=$('#shownotification'),count=$('#count'),c;
@@ -305,5 +310,6 @@
 
     });
  </script>
+
 </body>
 </html>

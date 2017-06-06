@@ -50,7 +50,7 @@
 		        <br>
 				  <input type="datetime-local"class="form-control" name="event_date">
 				  <br>
-				
+
 
 				<div id="googleMap" style="width:100%;height:400px;">
 
@@ -85,7 +85,7 @@
 					 var address = document.getElementById('address').value;
 					var longt = document.getElementById('lng').value;
 					var latt = document.getElementById('lat').value;
-					
+
 					latt=parseFloat(latt);
 					longt=parseFloat(longt);
 
@@ -94,38 +94,25 @@
 						var u = {lat: parseFloat(latt), lng: parseFloat(longt)};
 						var marker = new google.maps.Marker({
 				          position: u,
-				          map: map,
-				      
+				          map: map,			      
 				        });
 						// alert(u.lng);
 					}else{
 						var marker = new google.maps.Marker({
 				          position: uluru,
 				          map: map,
-				          
 				        });
 					}
-
-
 						google.maps.event.addListener(map, 'click', function(event) {
 							// alert(event.latLng);
 						    placeMarker(map, event.latLng ,marker,geocoder);
-
 						  });
-
-
 				}
 				function placeMarker(map, location ,marker,geocoder) {
-					
-				
-   				  	
 					marker = marker.setPosition(location);
 					map.panTo(location);
 					$('.lat').val(location.lat());
-
    				   	$('.lon').val(location.lng());
-   				  
-
    				   	        geocoder.geocode({'location': location}, function(results, status) {
 					          if (status === 'OK') {
 					            if (results[1]) {
@@ -140,14 +127,7 @@
 					            window.alert('Geocoder failed due to: ' + status);
 					          }
 					        });
-
-   				   	
-
-   				 			 
 				}
-
-
-
 			</script>
 
 

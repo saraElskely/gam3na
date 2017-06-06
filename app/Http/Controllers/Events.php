@@ -165,7 +165,8 @@ class Events extends Controller
         return redirect('/event');
     }
 
-    public function user_attend($id){
+    public function user_attend($id)
+    {
         $event = Event::find($id);
         $select = DB::table('event_user')->where('user_id','=',Auth::id())
             ->where('event_id','=',$id)
@@ -179,36 +180,30 @@ class Events extends Controller
             return "'attend_status':$status" ;
         }
     }
-    public function AllSeen(){
+    public function AllSeen()
+    {
         foreach(auth()->user()->unreadNotifications as $note){
             $note->markAsRead();
         }
     }
 
-        public function Check_event($id){
+    public function Check_event($id)
+    {
          $today = Carbon::today();
          $event = Event::find($id);
          $select = DB::table('events')->where('id','=',$id)
-                    ->where('event_date','<',$today)->get();
+                ->where('event_date','<',$today)->get();
 
-                 if($select->isEmpty()){
-                    return view('event.before_event', compact('event'));
-
-                 }else{
-                     return view('event.after_event', compact('event'));
-
-
-               if($select->isEmpty()){
-                  return view('event.before_event', compact('event'));
-
-               }else{
-                   return view('event.after_event', compact('event'));
-
-               }
+         if($select->isEmpty()){
+            return view('event.before_event', compact('event'));
+         }else{
+             return view('event.after_event', compact('event'));
+         }
     }
 
 
-      public function calendar(){
+    public function calendar()
+    {
         $events = Event::all();
         $user = User::find(Auth::id());
         $user_attendance = $user->events_attend_by_user->sortByDesc('event_date');
@@ -228,11 +223,16 @@ class Events extends Controller
       {
           $rate = $request->rate ;
           $event = \App\Event::where('id', '=',$id)->first();
-          $rating = new Rating;
-          $rating->rating = $rate;
-          $rating->user_id = Auth::id();
-
-          $event->ratings()->save($rating);
+          $select = $event->ratings()->where('user_id','=',Auth::id())->first();
+          if(is_null($select) ){
+            $rating = new Rating;
+            $rating->rating = $rate;
+            $rating->user_id = Auth::id();
+            $event->ratings()->save($rating);
+          }
+          else {
+            $event->ratings()->where('user_id','=',Auth::id())->first()->update(array('rating' => $rate));
+          }
           return $event->ratings;
       }
 
