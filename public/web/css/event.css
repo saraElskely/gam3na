@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @font-face {
   font-family: myFirstFont;
   src:url("../font/Baloo_Bhaina/BalooBhaina-Regular.ttf");
@@ -95,6 +96,7 @@ color: #1c9287;
     border-color: transparent;
     color: #fff ;
 }
+
 
 
 
@@ -506,6 +508,7 @@ float: left;
   }
 .cmnt{
   /* background-color: aliceblue; */
+
 }
 
 .cmnt {}

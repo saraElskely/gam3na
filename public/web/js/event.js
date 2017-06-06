@@ -1,5 +1,4 @@
 
-
 $('#uploadPhoto').on('shown.bs.modal', function () {
   $('#uploadPhoto').focus()
 })
@@ -16,10 +15,12 @@ jQuery(document).ready(function($){
     $(this).toggleClass('transition');
   });
 
+
   $('ul.cards-split-delay').on('click', function(){
     $(this).toggleClass('transition');
   });
 });
+
 // jQuery(document).ready(function($) {
 //   $('.rating .star').hover(function() {
 //     $(this).addClass('to_rate');

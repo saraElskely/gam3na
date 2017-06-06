@@ -187,18 +187,21 @@ class Events extends Controller
         }
     }
 
-    public function Check_event($id)
-    {
-         $today = Carbon::today();
-         $event = Event::find($id);
-         $select = DB::table('events')->where('id','=',$id)
-                ->where('event_date','<',$today)->get();
 
-         if($select->isEmpty()){
-            return view('event.before_event', compact('event'));
-         }else{
-             return view('event.after_event', compact('event'));
-         }
+    public function Check_event($id){
+
+       $commentuser = User::find(Auth::id());
+       $today = Carbon::today();
+       $event = Event::find($id);
+       $select = DB::table('events')->where('id','=',$id)
+                  ->where('event_date','<',$today)->get();
+       if($select->isEmpty()){
+          return view('event.before_event', compact('event','commentuser'));
+
+       }else{
+           return view('event.after_event', compact('event','commentuser'));
+
+       }
     }
 
 

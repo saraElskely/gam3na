@@ -10,24 +10,17 @@ use Carbon\Carbon;
 use DB;
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+   
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function index()
     {   
-        $today = Carbon::today();   
+        $today = Carbon::today(); 
+           
         $user_subscribe =  User::find(Auth::id())->subscribed_categories;
         $user_attendance = User::find(Auth::id())->events_attend_by_user
         ->where('event_date','<',$today) ;
@@ -56,11 +49,6 @@ class HomeController extends Controller
     }
 
 
- //    public function suggested(){
- //     $user_subscribe =  User::find(Auth::id())->subscribed_categories;
- //     $select=DB::table('categories')->whereIn('id',$user_subscribe)
- //     ->get(array('category_id));
-                    
- // }
+
 
 }
