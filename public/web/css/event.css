@@ -222,7 +222,7 @@ margin-bottom: 0;}
 }
 .headDiv{
   height: 500px;
-  background: url(../images/iftar.jpg);
+  /*background: url(../images/iftar.jpg);*/
   background-size: cover;
 }
 .evName{
