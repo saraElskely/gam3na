@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@include('event.partials.nav')
+{{-- @include('event.partials.nav') --}}
 @section('content')
 	<br>
 	@include('event.partials.message')
@@ -16,9 +16,9 @@
 </ul>
 
 	<ul class="list-group col-lg-4">
-		
-		
-		
+
+
+
 			@foreach($events as $event)
 			  <li class="list-group-item">
 
@@ -85,9 +85,9 @@
 
 			  </li>
 
-    
+
     	@endforeach
-    	
+
 
 		</ul>
 		<div style="height:20%">
