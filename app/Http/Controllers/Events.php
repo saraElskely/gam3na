@@ -209,20 +209,21 @@ class Events extends Controller
 
 
       public function calendar(){
-        $events = Event::all();
-        $user = User::find(Auth::id());
-        $user_attendance = $user->events_attend_by_user->sortByDesc('event_date');
-        // dd($user_attendance);
-
-        // $event =DB::table('event_user')
-        // ->where('user_id','=',$user)
-        // ->where('status','=',true);
-
-        // dd($event);
-
-        return view('event.calendar', compact('user_attendance'));
+        
+        return view('event.calendar');
 
       }
+      public function calendarM($month=1){
+        $events = Event::all();
+        $user = User::find(Auth::id());
+        $user_attendance = $user->events_attend_by_user()
+        ->where('event_date','like','%-'.$month.'-%')
+        ->get();
+       
+        return $user_attendance ;
+
+      }
+
 
       public function make_rate($id,Request $request)
       {
