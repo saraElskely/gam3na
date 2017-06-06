@@ -187,55 +187,49 @@ class Events extends Controller
 
     public function AllSeen()
     {
-        foreach (auth()->user()->unreadNotifications as $note) {
+        foreach(auth()->user()->unreadNotifications as $note){
             $note->markAsRead();
         }
     }
 
-    public function Check_event($id)
-    {
-        $today = Carbon::today();
-        $event = Event::find($id);
-        $select = DB::table('events')->where('id', '=', $id)
-            ->where('event_date', '<', $today)->get();
-        if ($select->isEmpty()) {
-            return view('event.before_event', compact('event'));
-        } else {
-            return view('event.after_event', compact('event'));
+    public function Check_event($id){
+       $commentuser = User::find(Auth::id());
+       $today = Carbon::today();
+       $event = Event::find($id);
+       $select = DB::table('events')->where('id','=',$id)
+                  ->where('event_date','<',$today)->get();
+       if($select->isEmpty()){
+          return view('event.before_event', compact('event','commentuser'));
 
+       }else{
+           return view('event.after_event', compact('event','commentuser'));
 
-            if ($select->isEmpty()) {
-                return view('event.before_event', compact('event'));
-
-            } else {
-                return view('event.after_event', compact('event'));
-
-            }
-        }
+       }
     }
 
 
-        public
-        function calendar()
-        {
-            $events = Event::all();
-            $user = User::find(Auth::id());
-            $user_attendance = $user->events_attend_by_user->sortByDesc('event_date');
-            return view('event.calendar', compact('user_attendance'));
-
-        }
-
-        public
-        function make_rate($id, Request $request)
-        {
-            $rate = $request->rate;
-            $event = \App\Event::where('id', '=', $id)->first();
+    public function calendar()
+    {
+        $events = Event::all();
+        $user = User::find(Auth::id());
+        $user_attendance = $user->events_attend_by_user->sortByDesc('event_date');
+        return view('event.calendar', compact('user_attendance'));
+    }
+      public function make_rate($id,Request $request)
+      {
+          $rate = $request->rate ;
+          $event = \App\Event::where('id', '=',$id)->first();
+          $select = $event->ratings()->where('user_id','=',Auth::id())->first();
+          if(is_null($select) ){
             $rating = new Rating;
             $rating->rating = $rate;
             $rating->user_id = Auth::id();
             $event->ratings()->save($rating);
-            return $event->ratings;
-        }
 
-
+          }
+          else {
+            $event->ratings()->where('user_id','=',Auth::id())->first()->update(array('rating' => $rate));
+          }
+          return $event->ratings;
+      }
 }

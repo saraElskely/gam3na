@@ -43,7 +43,7 @@
 		        <br>
 				  <input type="datetime-local"class="form-control" name="event_date">
 				  <br>
-				
+
 
 				<div id="googleMap" style="width:100%;height:400px;">
 
@@ -77,7 +77,7 @@
 					 var address = document.getElementById('address').value;
 					var longt = document.getElementById('lng').value;
 					var latt = document.getElementById('lat').value;
-					
+
 					latt=parseFloat(latt);
 					longt=parseFloat(longt);
 
@@ -86,8 +86,7 @@
 						var u = {lat: parseFloat(latt), lng: parseFloat(longt)};
 						var marker = new google.maps.Marker({
 				          position: u,
-				          map: map,
-				      
+				          map: map,			      
 				        });
 					}else{
 						var marker = new google.maps.Marker({
@@ -98,7 +97,6 @@
 						google.maps.event.addListener(map, 'click', function(event) {
 							// alert(event.latLng);
 						    placeMarker(map, event.latLng ,marker,geocoder);
-
 						  });
 				}
 				function placeMarker(map, location ,marker,geocoder) {
@@ -119,6 +117,7 @@
 					          }
 					        });			 
 				}
+
 
 			</script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_0JrPnBAl85q8GhoExBWLry7hat2u8p4&callback=myMap"

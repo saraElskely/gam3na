@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@include('event.partials.nav')
+{{-- @include('event.partials.nav') --}}
 @section('content')
 	<br>
 	@include('event.partials.message')
@@ -16,9 +16,9 @@
 </ul>
 
 	<ul class="list-group col-lg-4">
-		
-		
-		
+
+
+
 			@foreach($events as $event)
 			  <li class="list-group-item">
 
@@ -39,7 +39,7 @@
 										<button style="border:none;" type="button" id="{{$event->id}}notAttended" class=" glyphicon glyphicon-plus"></button>
 									</div>
 								</div>
-					
+						@else
 						<div class="container">
 								<div class="content">
 										<button style="border:none;" type="button" id="{{$event->id}}attended" class=" glyphicon glyphicon-ok" ></button>
@@ -85,9 +85,9 @@
 
 			  </li>
 
-    
+
     	@endforeach
-    	
+
 
 		</ul>
 		<div style="height:20%">

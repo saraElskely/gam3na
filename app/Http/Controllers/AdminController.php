@@ -22,6 +22,7 @@ class AdminController extends Controller
     {
         return view('admin');
     }
+   
 
     public function listALlAdmins()
     {   $admins = Admin::all();
