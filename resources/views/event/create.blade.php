@@ -2,14 +2,7 @@
 @include('event.partials.nav')
 @section('content')
 	<br>
-
-
-
-
-
-<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_0JrPnBAl85q8GhoExBWLry7hat2u8p4&callback=myMap"></script>
- -->
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 	<a href="/event" class="btn btn-info">Back</a>
 	<div class="col-lg-4 col-lg-offset-4">
 		<h1>{{substr(Route::currentRouteName(),6)}} Item</h1>
@@ -69,7 +62,6 @@
 			</div>
 		  </fieldset>
 		</form>
-
 			<script>
 				// var marker ;
 				function myMap() {
@@ -97,64 +89,40 @@
 				          map: map,
 				      
 				        });
-						// alert(u.lng);
 					}else{
 						var marker = new google.maps.Marker({
 				          position: uluru,
 				          map: map,
-				          
 				        });
 					}
-
-
 						google.maps.event.addListener(map, 'click', function(event) {
 							// alert(event.latLng);
 						    placeMarker(map, event.latLng ,marker,geocoder);
 
 						  });
-
-
 				}
 				function placeMarker(map, location ,marker,geocoder) {
-					
-				
-   				  	
 					marker = marker.setPosition(location);
 					map.panTo(location);
 					$('.lat').val(location.lat());
-
    				   	$('.lon').val(location.lng());
-   				  
-
    				   	        geocoder.geocode({'location': location}, function(results, status) {
 					          if (status === 'OK') {
 					            if (results[1]) {
 					              map.setZoom(11);
 					      			$('.adress').val(results[1].formatted_address);
-					              // infowindow.setContent(results[1].formatted_address);
-					              // infowindow.open(map, marker);
 					            } else {
 					              window.alert('No results found');
 					            }
 					          } else {
 					            window.alert('Geocoder failed due to: ' + status);
 					          }
-					        });
-
-   				   	
-
-   				 			 
+					        });			 
 				}
 
-
-
 			</script>
-
-
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_0JrPnBAl85q8GhoExBWLry7hat2u8p4&callback=myMap"
   type="text/javascript"></script>
-
-
 
      	@include('event.partials.errors')
 </div>

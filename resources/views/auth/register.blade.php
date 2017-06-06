@@ -38,6 +38,7 @@
                             </div>
                         </div>
 
+
                         <div class="form-group{{ $errors->has('job') ? ' has-error' : '' }}">
                             <label for="job" class="col-md-4 control-label">Job</label>
 
@@ -72,6 +73,8 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
+
+
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">

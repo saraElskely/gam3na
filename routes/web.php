@@ -16,6 +16,10 @@ Route::get('/login', 'Auth\AdminLoginControler@showLoginForm')->name('admin.logi
 Route::post('/login', 'Auth\AdminLoginControler@login')->name('admin.login.submit');
 Route::get('/', 'AdminController@index')->name('admin.dashboard');
 
+Route::get('/admins/create','AdminController@create');
+Route::post('/admins','AdminController@store');
+Route::get('/admins','AdminController@listALlAdmins');
+Route::delete('/admins/{id}','AdminController@destroy');
 
 Route::resource('/users','AdminusersController');
 Route::resource('/categories','AdmincategoriesController');

@@ -55,12 +55,4 @@ class HomeController extends Controller
         return view('home',['user_subscribed_categories'=> $user_subscribe,'events_attended_by_user'=>$user_attendance,'events'=>$event]);
     }
 
-
- //    public function suggested(){
- //     $user_subscribe =  User::find(Auth::id())->subscribed_categories;
- //     $select=DB::table('categories')->whereIn('id',$user_subscribe)
- //     ->get(array('category_id));
-                    
- // }
-
 }

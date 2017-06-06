@@ -41,18 +41,18 @@ class AdmincsubcategoriesController extends Controller
            $subcategory= new Subcategory;
        $this->validate($request,[
         'category_id'=>'required',
+        'subcategory_name' =>'required|min:10',
+        'subcategory_description' => 'required|max:255',
+        'subcategory_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
        ]);
-      //  $data=$request->all();
-
-
-
+   
       $fileName = 'null';
       if ($request->hasFile('subcategory_photo')) {
           if($request->file('subcategory_photo')->isValid()) {
           $destinationPath = public_path('upload/image');
-         $extension =$request->file('subcategory_photo')->getClientOriginalExtension();
-         $fileName = uniqid().'.'.$extension;
-         $request->file('subcategory_photo')->move($destinationPath, $fileName);
+          $extension =$request->file('subcategory_photo')->getClientOriginalExtension();
+          $fileName = uniqid().'.'.$extension;
+          $request->file('subcategory_photo')->move($destinationPath, $fileName);
           }
       }
 
@@ -107,7 +107,6 @@ class AdmincsubcategoriesController extends Controller
        $this->validate($request,[
         'category_id'=>'required',
        ]);
-      //  $data=$request->all();
       $fileName = 'null';
       if ($request->hasFile('subcategory_photo')) {
           if($request->file('subcategory_photo')->isValid()) {
