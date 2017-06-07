@@ -22,7 +22,6 @@ class CategoriesController extends Controller
     {
         $categories = Category::all();
         $user_subscribe =  User::find(Auth::id())->subscribed_categories;
-        // $user_subscribe =  User::find(Auth::id());
         return view('categories.index',['categories'=>$categories,'user_subscribe'=>$user_subscribe]);
     }
 
@@ -70,9 +69,6 @@ class CategoriesController extends Controller
       $select = DB::table('category_user')->where('user_id','=',Auth::id())
                     ->where('category_id','=',$id)
                     ->first();
-
-      // dd( $s);
-      //  $category->subscribed_users()->where('user_id', '=', Auth::id())->get()
       if(is_null($select) ){
         $category->subscribed_users()->attach(Auth::id());
         return "'status': '1'";

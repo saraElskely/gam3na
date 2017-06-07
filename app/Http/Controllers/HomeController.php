@@ -47,8 +47,4 @@ class HomeController extends Controller
           ->get();      
         return view('home',['user_subscribed_categories'=> $user_subscribe,'events_attended_by_user'=>$user_attendance,'events'=>$event]);
     }
-
-
-
-
 }
