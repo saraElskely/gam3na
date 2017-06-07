@@ -15,7 +15,7 @@
 @endsection 
 
 @section('content')
-<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="false">
 	<div class="modal-dialog" role="document">
 	    <div class="modal-content">
 	      <div class="modal-body">
@@ -43,7 +43,7 @@
 	  </div>
 	</div>
 </div>
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="false">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -58,7 +58,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send Message</button>
+        <button type="submit" class="btn btn-primary">Send Message</button>
       </div>
       </form>
     </div>
@@ -121,18 +121,24 @@
                       <li><span class="glyphicon glyphicon-map-marker"></span>{{$event->event_address}}</li>
                  
                 </ul>
-                      <button onclick="$('.revealleft,.revealright').toggleClass('revealed');Launch()">Google Map</button> 
+                      <button onclick="$('.revealleft,.revealright').toggleClass('revealed');Launch()">Google Map<c x/button> 
                </div>   
             </div><!--col-md-8 col-sm-8 col-xs-12 close-->
      
          
              <div class="col-sm-9 "  >
                 
-                <h1 class="fonti"> Map</h1>
-                <p> Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor</p>
+                <h3 class="fonti"> Map</h3>
+                 <div id="googleMap" style="width:95%;height:300px;" > </div>
+                  <input id="lat" name="event_latitude" class="lat" type="hidden" value={{$event->event_latitude}}>
+          				<input id="lng" name="event_longitude" class="lon" type="hidden" value={{$event->event_longitude}}>
+          				<input id="address" name="event_address" class="adress" type="hidden" value={{$event->event_address}}>
+
+	              <!--profile-head close-->
+	           </div>
                
         <!--profile-head close-->
-     </div>
+     
             <div class="col-sm-9 revealright"  >
                 
                  <h2 class="fonti"> description</h2>
@@ -140,7 +146,7 @@
               
             </div>
            
-  </div><!--container close-->
+ <!--container close-->
 </section>
 
 
@@ -213,7 +219,41 @@
 									});
 								});
 						});
-						</script>
+					</script>
+	<script >
+				function myMap() {
+			      var uluru = {lat: 31.200092, lng: 29.918739};
+			      var address = document.getElementById('address').value;
+			      var longt = document.getElementById('lng').value;
+			      var latt = document.getElementById('lat').value;
+
+			      var mapProp= {
+			          center:new google.maps.LatLng(parseFloat(latt),parseFloat(longt)),
+			          zoom:5,
+			      };
+			      var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+			      var geocoder = new google.maps.Geocoder;
+
+			      if(latt && longt){
+			        console.log(latt, longt)
+			        var u = {lat: parseFloat(latt), lng: parseFloat(longt)};
+			        var marker = new google.maps.Marker({
+			              position: u,
+			              map: map,
+			            });
+			        // alert(u.lng);
+			      }else{
+			        var marker = new google.maps.Marker({
+			              position: uluru,
+			              map: map,
+			            });
+			      }
+
+			    }
+	</script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_0JrPnBAl85q8GhoExBWLry7hat2u8p4&callback=myMap"
+  type="text/javascript"></script>
 
 
 

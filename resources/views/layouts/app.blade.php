@@ -12,17 +12,12 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   {{-- <script src={{ asset("web/js/event.js")}}></script> --}}
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
   @yield('head')
-
-
   <script>
       window.Laravel = {!! json_encode([
           'csrfToken' => csrf_token(),
       ]) !!};
   </script>
-
     <style>
     .unread{background-color:red;}
     </style>
@@ -42,10 +37,8 @@
         <ul class="nav navbar-nav navbar-right">
           @yield('nav_menu')
           @if (Auth::guest())
-
             <li>
               <button type="button" class="" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">LOG IN</button>
-
                  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                    <div class="modal-dialog" role="document">
                      <div class="modal-content">
@@ -117,7 +110,6 @@
             </li>
             <li>
               <button type="button" class="" data-toggle="modal" data-target="#exampleModal1" data-whatever="@mdo">SIGN UP</button>
-
                   <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                     <div class="modal-dialog" role="document">
                       <div class="modal-content">
@@ -128,13 +120,10 @@
                         <div class="modal-body">
                           <form class="form-horizontal" role="form" method="POST" action="register">
                               {{ csrf_field() }}
-
                               <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                   <label for="name" class="control-label">Name</label>
-
                                   <div class="">
                                       <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
-
                                       @if ($errors->has('name'))
                                           <span class="help-block">
                                               <strong>{{ $errors->first('name') }}</strong>
@@ -142,13 +131,10 @@
                                       @endif
                                   </div>
                               </div>
-
                               <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                   <label for="email" class="control-label">E-Mail Address</label>
-
                                   <div class="">
                                       <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
-
                                       @if ($errors->has('email'))
                                           <span class="help-block">
                                               <strong>{{ $errors->first('email') }}</strong>
@@ -156,10 +142,8 @@
                                       @endif
                                   </div>
                               </div>
-
                               <div class="form-group{{ $errors->has('job') ? ' has-error' : '' }}">
                                   <label for="job" class="control-label">Job</label>
-
                                   <div class="">
                                       <input id="job" type="text" class="form-control" name="job" value="{{ old('job') }}" required >
 
@@ -172,7 +156,6 @@
                               </div>
                               <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                                   <label for="password" class="control-label">Password</label>
-
                                   <div class="">
                                       <input id="password" type="password" class="form-control" name="password" required>
 
@@ -183,22 +166,18 @@
                                       @endif
                                   </div>
                               </div>
-
                               <div class="form-group">
                                   <label for="password-confirm" class="control-label">Confirm Password</label>
-
                                   <div class="">
                                       <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                                   </div>
                               </div>
-
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn">
                                     Register
                                 </button>
                               </div>
-
                           </form>
                         </div>
                       </div>

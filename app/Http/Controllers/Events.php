@@ -216,7 +216,6 @@ class Events extends Controller
         $user_attendance = $user->events_attend_by_user()
         ->where('event_date','like','%-'.$month.'-%')
         ->get();
-       
         return $user_attendance ;
 
       }
