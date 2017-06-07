@@ -38,12 +38,13 @@ class AdminController extends Controller
     {
 
        $this->validate($request,[
-       'email' =>'required|unique|email',
+       'email' =>'required|unique:admins',
        'password' => 'required|min:6',
 
        ]);
        $admin = $request->all();
-      $fileName = 'null';
+       // $admin->password = bcrypt($request->password);
+       $fileName = 'null';
       if ($request->hasFile('photo')) {
           if($request->file('photo')->isValid()) {
              $destinationPath = public_path('upload/image');
