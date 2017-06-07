@@ -14,7 +14,7 @@ use Carbon\Carbon;
 use willvincent\Rateable\Rating;
 
 class Events extends Controller
-{               
+{
     use  Notifiable;
 
     public function __construct()
@@ -208,13 +208,21 @@ class Events extends Controller
     }
 
 
-    public function calendar()
-    {
+      public function calendar(){
+
+        return view('event.calendar');
+
+      }
+      public function calendarM($month=1){
         $events = Event::all();
         $user = User::find(Auth::id());
-        $user_attendance = $user->events_attend_by_user->sortByDesc('event_date');
-        return view('event.calendar', compact('user_attendance'));
-    }
+        $user_attendance = $user->events_attend_by_user()
+        ->where('event_date','like','%-'.$month.'-%')
+        ->get();
+        return $user_attendance ;
+
+      }
+
       public function make_rate($id,Request $request)
       {
           $rate = $request->rate ;

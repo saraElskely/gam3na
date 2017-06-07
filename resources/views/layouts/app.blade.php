@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ config('app.locale') }}">
 <head>
-  <title>Gma3na @yield('title')</title>
+  <title>Gam3na @yield('title')</title>
   <link rel="shortcut icon" href= {{ asset("web/images/small_logo.png") }} />
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -37,10 +37,8 @@
         <ul class="nav navbar-nav navbar-right">
           @yield('nav_menu')
           @if (Auth::guest())
-
             <li>
               <button type="button" class="" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">LOG IN</button>
-
                  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                    <div class="modal-dialog" role="document">
                      <div class="modal-content">
@@ -112,7 +110,6 @@
             </li>
             <li>
               <button type="button" class="" data-toggle="modal" data-target="#exampleModal1" data-whatever="@mdo">SIGN UP</button>
-
                   <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                     <div class="modal-dialog" role="document">
                       <div class="modal-content">
@@ -123,11 +120,10 @@
                         <div class="modal-body">
                           <form class="form-horizontal" role="form" method="POST" action="register" enctype="multipart/form-data">
                               {{ csrf_field() }}
-
                               <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                   <label for="name" class="control-label">Name</label>
-
                                   <div class="">
+
                                       <input id="name" type="text" placeholder="Jone" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
 
                                       @if ($errors->has('name'))
@@ -137,13 +133,10 @@
                                       @endif
                                   </div>
                               </div>
-
                               <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                   <label for="email" class="control-label">E-Mail Address</label>
-
                                   <div class="">
                                       <input id="email" type="email" placeholder="jone@example.com" class="form-control" name="email" value="{{ old('email') }}" required>
-
                                       @if ($errors->has('email'))
                                           <span class="help-block">
                                               <strong>{{ $errors->first('email') }}</strong>
@@ -151,6 +144,7 @@
                                       @endif
                                   </div>
                               </div>
+
                               <div class="form-group{{ $errors->has('user_photo') ? ' has-error' : '' }}">
                                                         <label for="user_photo" class="col-md-4 control-label">Photo</label>
 
@@ -163,7 +157,7 @@
                                                                 </span>
                                                             @endif
                                                         </div>
-                                           
+
                               <div class="form-group{{ $errors->has('date_of_birth') ? ' has-error' : '' }}">
                                                         <label for="date_of_birth" class="col-md-4 control-label">Date of Birth</label>
 
@@ -176,16 +170,16 @@
                                                                 </span>
                                                             @endif
                                                         </div>
-                                                    </div>                       
+                                                    </div>
                                                   </div>
-                                
+
                                 <div class="form-group{{ $errors->has('gender') ? ' has-error' : '' }}">
                                     <label for="gender" class="control-label">Gender</label>
 
                                     <div class="">
                                       <input id="gender" type="text" class="form-control" name="gender" value="{{ old('gender') }}" required >
 
-                                       
+
                                         @if ($errors->has('gender'))
                                             <span class="help-block">
                                                 <strong>{{ $errors->first('gender') }}</strong>
@@ -196,7 +190,6 @@
 
                               <div class="form-group{{ $errors->has('job') ? ' has-error' : '' }}">
                                   <label for="job" class="control-label">Job</label>
-
                                   <div class="">
                                       <input id="job" type="text" class="form-control" placeholder="student" name="job" value="{{ old('job') }}">
 
@@ -222,7 +215,6 @@
                               </div>
                               <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                                   <label for="password" class="control-label">Password</label>
-
                                   <div class="">
                                       <input id="password" type="password" class="form-control" name="password" required>
 
@@ -233,10 +225,8 @@
                                       @endif
                                   </div>
                               </div>
-
                               <div class="form-group">
                                   <label for="password-confirm" class="control-label">Confirm Password</label>
-
                                   <div class="">
                                       <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                                   </div>
@@ -302,13 +292,13 @@
                                       });
                                   }
                               </script>
+
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn">
                                     Register
                                 </button>
                               </div>
-
                           </form>
                         </div>
                       </div>

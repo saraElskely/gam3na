@@ -8,7 +8,7 @@
 @section('content')
 
 	<section>
-	    <div class="headDiv">
+	    <div class="headDiv" style="background-image: url({{ asset("/upload/image/$event->event_photo") }})">
 	        <h1 class="evName fonti">{{$event->event_name}}</h1>
 	        <div class="rigBtn">
 						{{-- {{dd($event->user_attend_event->where('id','=',Auth::id()))}} --}}

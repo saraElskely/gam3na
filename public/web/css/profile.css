@@ -466,3 +466,7 @@ color: #999;
     from {transform: scale(0)}
     to {transform: scale(1)}
 }
+.modal-body1 {
+    position: relative;
+    padding: 15px;
+    height: 473px;}
