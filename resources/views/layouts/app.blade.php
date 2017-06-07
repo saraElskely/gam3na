@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ config('app.locale') }}">
 <head>
-  <title>Gma3na @yield('title')</title>
+  <title>Gam3na @yield('title')</title>
   <link rel="shortcut icon" href= {{ asset("web/images/small_logo.png") }} />
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -163,7 +163,7 @@
                                                                 </span>
                                                             @endif
                                                         </div>
-                                           
+
                               <div class="form-group{{ $errors->has('date_of_birth') ? ' has-error' : '' }}">
                                                         <label for="date_of_birth" class="col-md-4 control-label">Date of Birth</label>
 
@@ -176,16 +176,16 @@
                                                                 </span>
                                                             @endif
                                                         </div>
-                                                    </div>                       
+                                                    </div>
                                                   </div>
-                                
+
                                 <div class="form-group{{ $errors->has('gender') ? ' has-error' : '' }}">
                                     <label for="gender" class="control-label">Gender</label>
 
                                     <div class="">
                                       <input id="gender" type="text" class="form-control" name="gender" value="{{ old('gender') }}" required >
 
-                                       
+
                                         @if ($errors->has('gender'))
                                             <span class="help-block">
                                                 <strong>{{ $errors->first('gender') }}</strong>
