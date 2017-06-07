@@ -32,6 +32,9 @@ Route::get('/users/{id}/unblock', 'AdminusersController@unblock')->name('admin.u
 Route::get('/','homeController@home');
 Route::get('/home','HomeController@index');
 Route::get('/event/calendar','Events@calendar')->name('user.calendar');
+Route::get('/event/calendar/{id?}','Events@calendarM');
+
+
 
 Route::get('/home/{id}','homeController@show');
 

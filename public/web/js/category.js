@@ -14,7 +14,7 @@ $(document).on("click", ".naccs .menu div", function() {
 		$.ajax({url: "/subcategories/"+subcategory_id+"/events ", success: function(result){
 				console.log(result);
 				if (result){
-					$('.event-block').remove();
+					$('.events').remove();
 					result.forEach(function(event){
 						$('.events').append('<div class="event-block">\
 														 <div class="event-date eCol">\
