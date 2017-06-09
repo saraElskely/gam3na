@@ -35,7 +35,7 @@
                          <div class="form-group">
                           <label class="col-md-3 control-label" for="textarea">Description</label>
                           <div class="col-md-9">
-                            <textarea class="form-control" placeholder="Say somthing about your event" id="textarea" name= "event_description" value="@yield('editBody')"></textarea>
+                            <input class="form-control" rows=5 placeholder="Say somthing about your event" id="textarea" name= "event_description" value="@yield('event_description')">
                           </div>
                         </div>
 

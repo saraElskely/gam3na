@@ -20,6 +20,7 @@
 <tbody>
 
   @foreach($subcategories as $subcategory)
+
   <tr>
   <td>{{$subcategory->id}}</td>
   <td>{{$subcategory->subcategory_name}}</td>
@@ -31,7 +32,8 @@
 
              
     <a href="subcategories/{{$subcategory->id}}">Show</a>
-   <a href="subcategories/{{$subcategory->id}}/edit">Edit</a>
+    <a href="subcategories/{{$subcategory->id}}/edit">Edit</a>
+  
    <form action='subcategories/{{$subcategory->id}}' method="POST">
    {{csrf_field()}}
    {{method_field('DELETE')}}

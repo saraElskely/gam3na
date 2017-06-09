@@ -14,20 +14,16 @@
 						{{-- {{dd($event->user_attend_event->where('id','=',Auth::id()))}} --}}
 						@if($event->user_attend_event->where('id',Auth::id())->isEmpty())
 	            <button type="button" class="btn btn-lg btni" >
-	                <span class="hvr-icon-down">going</span>
-	            </button>
+		           <i class="fa fa-plus-circle" class="top-btn"></i>
+		        </button>
 						@else
-	            <button type="button" class="button">
-					        <p class="btnText">READY?</p>
-					        <div class="btnTwo">
-					          <p class="btnText2">GO!</p>
-					        </div>
-	     				</button>
+	            <button type="button" class="btn btn-lg btni" >
+		           <i class="fa fa-check" class="top-btn"></i>
+		        </button>
 						@endif
-	             <button type="button" class="btn btn-lg btni" data-toggle="modal" data-target="#userGoing" data-whatever="@mdo">
-	                <span class="hvr-icon-wobble-horizontal">Who Is Going</span>
-	             </button>
+
 	        </div>
+
 	    </div>
 	</section>
 
@@ -184,13 +180,19 @@
   </div>
 </div>
 
+<script type="text/javascript">
+@if (count($errors) > 0)
+    $('#uploadPhoto').modal('show');
+@endif
+</script>
+
 
 <section id="activity" class="slide" >
     <div class="container sec03">
     <h1 class="text-center fonti">Images</h1>
             <div class="righti" >
               <button type="button" class="btn btn-lg btni" data-toggle="modal" data-target="#uploadPhoto" data-whatever="@mdo">
-                  <span class="hvr-icon-down">Up load image</span>
+                  <span class="hvr-icon-down">Upload image</span>
                </button>
             </div>
             <br><br>
@@ -288,6 +290,7 @@
       }
 
     }
+
 	</script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_0JrPnBAl85q8GhoExBWLry7hat2u8p4&callback=myMap"
   type="text/javascript"></script>
