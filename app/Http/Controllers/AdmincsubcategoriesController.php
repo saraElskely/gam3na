@@ -41,8 +41,8 @@ class AdmincsubcategoriesController extends Controller
            $subcategory= new Subcategory;
        $this->validate($request,[
         'category_id'=>'required',
-        'subcategory_name' =>'required|min:10',
-        'subcategory_description' => 'required|max:255',
+        'subcategory_name' =>'required',
+        'subcategory_description' =>'required|max:255',
         'subcategory_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
        ]);
    

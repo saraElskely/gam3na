@@ -177,8 +177,10 @@
                                     <label for="gender" class="control-label">Gender</label>
 
                                     <div class="">
-                                      <input id="gender" type="text" class="form-control" name="gender" value="{{ old('gender') }}" required >
-
+                                      <select name="gender">
+                                        <option value="female">female</option>
+                                        <option value="male">male</option>
+                                      </select>
 
                                         @if ($errors->has('gender'))
                                             <span class="help-block">
@@ -204,7 +206,7 @@
                                   <label for="mobile" class="control-label">Mobile</label>
 
                                   <div class="">
-                                      <input id="mobile" type="tel" placeholder="012-3456-7890" class="form-control" name="mobile" value="{{ old('mobile') }}">
+                                      <input id="mobile" type="tel" placeholder="2012-3456-7890" class="form-control" name="mobile" value="{{ old('mobile') }}">
 
                                       @if ($errors->has('mobile'))
                                           <span class="help-block">

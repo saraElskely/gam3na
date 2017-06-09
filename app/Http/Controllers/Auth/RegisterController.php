@@ -33,14 +33,18 @@ class RegisterController extends Controller
      */
     protected function validator (array $data)
     {
+        $dt=new Carbon();
+        $before = $dt->subYears(18)->format('Y-m-d');
         return Validator::make($data, [
-            'name' => 'required|max:255',
+            'name' => 'required|string|max:255|unique:users',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
             'job' => 'nullable|max:255',
             'gender' => 'required',
-            'date_of_birth' => 'required',
+            'date_of_birth' => 'required|date|before:'.$before,
             'user_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+	        'mobile' =>  'nullable|regex:/(201)[0-9]{9}/|size:12',
+		
         ]);
     }
 
