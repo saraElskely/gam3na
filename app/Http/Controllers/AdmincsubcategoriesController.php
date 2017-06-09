@@ -26,8 +26,8 @@ class AdmincsubcategoriesController extends Controller
      */
     public function create()
     {
-         return view ('admin.subcategories.create');
-        //
+        $categories = Category::all();
+        return view ('admin.subcategories.create',['categories' => $categories]);
     }
 
     /**
@@ -45,7 +45,7 @@ class AdmincsubcategoriesController extends Controller
         'subcategory_description' => 'required|max:255',
         'subcategory_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
        ]);
-   
+
       $fileName = 'null';
       if ($request->hasFile('subcategory_photo')) {
           if($request->file('subcategory_photo')->isValid()) {
@@ -88,9 +88,9 @@ class AdmincsubcategoriesController extends Controller
      */
     public function edit($id)
     {
-        //
+         $categories = Category::all();
          $subcategory = Subcategory::find($id);
-         return view ('admin.subcategories.edit',compact('subcategory'));
+         return view ('admin.subcategories.edit',compact('subcategory','categories'));
     }
 
     /**

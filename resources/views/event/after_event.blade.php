@@ -13,60 +13,69 @@
 	        <div class="rigBtn">
 						{{-- {{dd($event->user_attend_event->where('id','=',Auth::id()))}} --}}
 						@if($event->user_attend_event->where('id',Auth::id())->isEmpty())
-	            <button type="button" class="btn btn-lg btni" >
-	                <span class="hvr-icon-down">going</span>
-	            </button>
+              <button type="button" class="btn btn-lg btni" >
+                 <i class="fa fa-plus-circle" class="top-btn"></i>
+               </button>
 						@else
-	            <button type="button" class="button">
-					        <p class="btnText">READY?</p>
-					        <div class="btnTwo">
-					          <p class="btnText2">GO!</p>
-					        </div>
-	     				</button>
+              <button type="button" class="btn btn-lg btni" >
+                 <i class="fa fa-check" class="top-btn"></i>
+               </button>
 						@endif
-	             <button type="button" class="btn btn-lg btni" data-toggle="modal" data-target="#userGoing" data-whatever="@mdo">
-	                <span class="hvr-icon-wobble-horizontal">Who Is Going</span>
-	             </button>
-	        </div>
+          </div>
+            <div class="wrapper">
+                  <div class="contact-form-page">
+                  <div class="form-head">
+                      <div class="header-btn">
+                            <button type="button"  class="top-btn" href="#"><i class="fa fa-times" class="top-btn"></i></button>
+                      </div>
+                  </div>
+                  <h1 class="fonti">Who are going to Activity</h1>
+                  @if( ! $event->user_attend_event->isEmpty())
+        						@foreach ($event->user_attend_event as $user)
+                      <div class="module-comment-block ">
+                        <div class="module-comment-avatar1">
+                          <img src={{ asset("/upload/image/$user->user_photo") }} alt="My Name" class="myImg" width="50">
+                        </div>
+                        <div class="module-comment-text1">
+                          <div>
+                            <p class="pi"> <a href="{{'/profile/'.$user->id}}">{{$user->name}}</a> </p>
+                          </div>
+                        </div>
+                      </div>
+                    @endforeach
+                  @else
+                    <div class="module-comment-text1 ">
+        							<div>
+        								<p class="pi">no user attended {{$event->event_name}} event </p>
+        							</div>
+        						</div>
+        					@endif
+                </div>
+              <button class="buttom-btn" ><i class="fa fa-users"></i></button>
+            </div>
+
+            <div class="rating left">
+              <div class="stars right">
+                @php
+                  if ($event->averageRating) {
+                    $rate = $event->averageRating;
+                  }else{
+                    $rate = 0;
+                  }
+                @endphp
+
+                 @for ($i=0; $i < $rate ; $i++)
+                   <a class="star rated"></a>
+                 @endfor
+                 @for ($i=0; $i < 5-$rate; $i++)
+                   <a class="star"></a>
+                 @endfor
+             </div>
+          </div>
 	    </div>
 	</section>
 
-	<div class="modal fade" id="userGoing" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="false">
-	  <div class="modal-dialog" role="document">
-	    <div class="modal-content">
-	      <div class="modal-body">
-					@if( ! $event->user_attend_event->isEmpty())
-						@foreach ($event->user_attend_event as $user)
-							<div class="module-comment-block ">
-								<div class="module-comment-avatar1">
-									{{-- {{ asset("/upload/image/$user->user_photo") }} --}}
-									<img src={{ asset("/upload/image/$user->user_photo") }} alt="My Name" class="myImg" width="50">
-								</div>
-								<div class="module-comment-text1">
-									<div>
-										<p class="pi"><a href="{{'/profile/'.$user->id}}">{{$user->name}}</a><br>{{$user->email}} </p>
-									</div>
-
-								</div>
-							</div>
-						@endforeach
-					@else
-						<div class="module-comment-block ">
-							<div>
-								<p class="pi">no user attended {{$event->event_name}} event </p>
-							</div>
-						</div>
-					@endif
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	      </div>
-
-	    </div>
-	  </div>
-	</div>
-
-	<!-- Container (About Section) -->
+<!-- Container (About Section) -->
 	<section class="slide ">
 	    <div class="container sec01" >
 	        <div class="reveal">
@@ -100,15 +109,19 @@
 
 	                <h1 class="fonti"> description</h1>
 	                <p> {{$event->event_description}}</p>
-	               <div class="rating left">
-	                  <div class="stars right">
-	                    <a class="star rated"></a>
-	                    <a class="star rated"></a>
-	                    <a class="star rated"></a>
-	                    <a class="star"></a>
-	                    <a class="star"></a>
-	                 </div>
-	              </div>
+
+                    <div class="rating left">
+   	                  <div class="stars right">
+                         @for ($i=0; $i < $rate ; $i++)
+                           <a class="star rated" ></a>
+                         @endfor
+                         @for ($i=0; $i < 5-$rate; $i++)
+                           <a class="star"></a>
+                         @endfor
+   	                 </div>
+   	              </div>
+
+
 	            </div>
 
 	  </div><!--container close-->
@@ -123,7 +136,7 @@
 	      <div class="cmnt">
 	         <form method="post" action="/event/{{$event->id}}/reviews">
 						 {{csrf_field()}}
-	            <textarea name="review_content" placeeholder="Review our event" id="" cols="143" rows="3"></textarea>
+	            <textarea name="review_content" placeeholder="Review our event" id="" cols="120px" rows="3"></textarea>
 	            <div class="btoon">
 	                <button type="submit" class="btn " >
 	                           <span class="hvr-icon-wobble-horizontal">Send</span>
@@ -146,7 +159,7 @@
 							<div><em>{{date('D',strtotime($review->created_at))}}</em></div>
 
 							<div>
-								<p>{{ $review->review_content }}</p>
+								<pre>{{ $review->review_content }}</pre>
 							</div>
 								<div class="bottom-comment">
 										<div class="comment-date">{{date('d-M-Y',strtotime($review->created_at))}} @ {{date('H:i:s',strtotime($review->created_at))}}</div>
@@ -189,7 +202,7 @@
     <div class="container sec03">
     <h1 class="text-center fonti">Images</h1>
             <div class="righti" >
-              <button type="button" class="btn btn-lg btni" data-toggle="modal" data-target="#uploadPhoto" data-whatever="@mdo">
+              <button type="button" class="btn btn-lg btni1" data-toggle="modal" data-target="#uploadPhoto" data-whatever="@mdo">
                   <span class="hvr-icon-down">Up load image</span>
                </button>
             </div>

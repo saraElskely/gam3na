@@ -24,7 +24,11 @@
 </div>
 <div class="form-group">
 <label for="category_id">category_id</label>
-<input type="text" name="category_id" value="@yield('editcategory_id')">
+<select id="selectbasic" name="category_id" class="" value="@yield('editcategory_id')">
+  @foreach ($categories as $category)
+  <option value="{{$category->id}}">{{$category->category_name}}</option>
+  @endforeach
+</select>
 </div>
 
 <button type="submit" class="btn btn-primary">Submit</button>
