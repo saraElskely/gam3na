@@ -13,16 +13,23 @@ $(document).on("click", ".naccs .menu div", function() {
 
 		$.ajax({url: "/subcategories/"+subcategory_id+"/events ", success: function(result){
 				console.log(result);
+				var months = {
+		    '01' : 'Jan',
+		    '02' : 'Feb','03' : 'Mar','04' : 'Apr','05' : 'May','06' : 'Jun','07' : 'Jul','08' : 'Aug','09' : 'Sept','10' : 'Oct','11' : 'Nov','12' : 'Dec',
+		    }
+
 				if (result){
-					$('.events').remove();
+					$('.events').empty();
 					result.forEach(function(event){
+						var arr =event.event_date.split('-');
+            var day = arr[2].split(' ');
 						$('.events').append('<div class="event-block">\
 														 <div class="event-date eCol">\
-															 <div class="eDate"></div>\
-															 <div class="eMonth"></div>\
+															 <div class="eDate">'+day[0]+'</div>\
+															 <div class="eMonth">'+months[arr[1]]+'</div>\
 														 </div>\
 														 <div class="event-details eCol">\
-															 <div class="event-name">'+event.event_name+'</div>\
+															 <div class="event-name"><a href="/event/'+event.id+'/checkevent">'+event.event_name+'</a></div>\
 															 <div class="event-location">'+event.event_description+'</div>\
 															 <div class="other-info">\
 															 </div>\

@@ -70,21 +70,13 @@
 												$("#{{$event->id}}attended").show();
 												$("#{{$event->id}}notAttended").hide();
 											}
-
 										}
 									});
 								});
 						});
 						</script>
 
-
-
-
-
-
-
 			  </li>
-
 
     	@endforeach
 

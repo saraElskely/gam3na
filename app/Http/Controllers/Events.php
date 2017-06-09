@@ -12,6 +12,7 @@ use StreamLab\StreamLabProvider\Facades\StreamLabFacades;
 use DB;
 use Carbon\Carbon;
 use willvincent\Rateable\Rating;
+use App\Place;
 
 class Events extends Controller
 {
@@ -39,7 +40,8 @@ class Events extends Controller
     public function create()
     {
         $subcategories = Subcategory::all();
-        return view('event.create', ['subcategories' => $subcategories]);
+        $places = Place::all();
+        return view('event.create', ['subcategories' => $subcategories,'places' => $places]);
     }
 
     /**

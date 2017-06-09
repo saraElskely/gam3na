@@ -35,8 +35,12 @@
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
-          @yield('nav_menu')
+
           @if (Auth::guest())
+            <li><a href="#about">ABOUT</a></li>
+            <li><a href="#category">CATEGORIES</a></li>
+            <li><a href="#pricing">OUR TEAM</a></li>
+            <li><a href="#contact">CONTACT</a></li>
             <li>
               <button type="button" class="" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">LOG IN</button>
                  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
@@ -76,26 +80,21 @@
                                </div>
                            </div>
 
-                           <div class="form-group">
-                               <div class=" col-md-offset-4">
-                                   <div class="checkbox">
-                                       <label>
-                                           <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-                                       </label>
-                                   </div>
-                               </div>
-                           </div>
-                           <a class="btn btn-link" href="{{ route('password.request') }}">
-                               Forgot Your Password?
-                           </a>
+                           <div class="modal-footer1">
+                                          <div class="checkbox">
+                                                  <label>
+                                                      <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
+                                                      </label>
+                                            </div>
+                                            <a class="btn1 btn-link" href="{{ route('password.request') }}">
+                                            Forgot Your Password?
+                                            </a>
 
-                           <div class="modal-footer">
+
                              <div class="form-group">
-                                 <div class=" col-md-offset-4">
-                                     <a href="{{ url('login/facebook') }}">Login with facebook</a>
-                                     <a href="{{ url('login/google') }}">Login with google</a>
-                                     <a href="{{ url('login/twitter') }}">Login with twitter</a>
-                                 </div>
+                                     <a href="{{ url('login/facebook') }}" class="btn1">Login with facebook</a>
+                                     <a href="{{ url('login/google') }}" class="btn1">Login with google</a>
+                                     <a href="{{ url('login/twitter') }}" class="btn1">Login with twitter</a>
                              </div>
                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                              <button type="submit" class="btn ">
@@ -146,22 +145,20 @@
                               </div>
 
                               <div class="form-group{{ $errors->has('user_photo') ? ' has-error' : '' }}">
-                                                        <label for="user_photo" class="col-md-4 control-label">Photo</label>
-
-                                                     <div class="col-md-6">
-                                                            <input id="user_photo" type="file" class="form-control" name="user_photo" value="{{ old('user_photo') }}">
-
-                                                            @if ($errors->has('user_photo'))
+                                        <label for="user_photo" class="control-label">Photo</label><br>
+                                          <div class="">
+                                              <input id="user_photo" type="file" class="form-control" name="user_photo" value="{{ old('user_photo') }}">
+                                                    @if ($errors->has('user_photo'))
                                                                 <span class="help-block">
                                                                     <strong>{{ $errors->first('user_photo') }}</strong>
                                                                 </span>
                                                             @endif
                                                         </div>
-
+                              </div>
                               <div class="form-group{{ $errors->has('date_of_birth') ? ' has-error' : '' }}">
-                                                        <label for="date_of_birth" class="col-md-4 control-label">Date of Birth</label>
+                                          <label for="date_of_birth" class="control-label">Date of Birth</label>
 
-                                                     <div class="col-md-6">
+                                                     <div class="">
                                                             <input id="date_of_birth" type="date" class="form-control" name="date_of_birth" value="{{ old('date_of_birth') }}" required >
 
                                                             @if ($errors->has('date_of_birth'))
@@ -173,8 +170,8 @@
                                                     </div>
                                                   </div>
 
-                                <div class="form-group{{ $errors->has('gender') ? ' has-error' : '' }}">
-                                    <label for="gender" class="control-label">Gender</label>
+                                       <div class="form-group{{ $errors->has('gender') ? ' has-error' : '' }}">
+                                              <label for="gender" class="control-label">Gender</label>
 
                                     <div class="">
                                       <select name="gender">
@@ -309,26 +306,12 @@
             </li>
 
           @else
-            <li>
-                <a href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
-                             document.getElementById('logout-form').submit();">
-                    LOGOUT
-                </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    {{ csrf_field() }}
-                </form>
-            </li>
-            <li>
-              <a href="#"   role="button" aria-expanded="false">
-                  {{ Auth::user()->name }}
-              </a>
-            </li>
-
+            <li role="presentation"><a href="{{url('/categories')}}">CATEGORIES</a></li>
+            <li role="presentation"><a href="{{route('user.calendar')}}"> CALENDER </a></li>
             <li class="dropdown">
                <a href="#" class="dropdown-toggle notification" data-toggle="dropdown" role="button" aria-expanded="false">
                    Notification
-                    <span id="count">{{count(auth()->user()->unreadNotifications)}}</span>
+                    <span id="count" class="badge">{{count(auth()->user()->unreadNotifications)}}</span>
                     <span class="caret"></span>
                </a>
 
@@ -341,7 +324,33 @@
                        </a>
                    </li>
                @endforeach
+
                </ul>
+           </li>
+           <li class="dropdown">
+             @php
+               $photo = Auth::user()->user_photo;
+             @endphp
+             <a href="#"   class="dropdown-toggle notification" data-toggle="dropdown" role="button" aria-expanded="false">
+                 <img src= {{ asset("/upload/image/$photo") }} class="img-responsive" width="30px" height="30px">
+             </a>
+             <ul class="dropdown-menu " role="menu" >
+               <li>
+                 <a href="/profile" >
+                     {{ Auth::user()->name }}
+                 </a>
+               </li>
+               <li>
+                   <a href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                       LOGOUT
+                   </a>
+                   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                       {{ csrf_field() }}
+                   </form>
+               </li>
+             </ul>
            </li>
 
           @endif

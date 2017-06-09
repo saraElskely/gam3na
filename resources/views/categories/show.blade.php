@@ -61,7 +61,9 @@
                      </div>
                      <div class="event-details eCol">
                        <div class="event-name">
+                         <a href="/event/{{$event->id}}/checkevent">
                          {{$event->event_name}}
+                       </a>
                        </div>
                        <div class="event-location">
                         {{$event->event_description}}
