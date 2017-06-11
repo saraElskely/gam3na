@@ -35,15 +35,15 @@
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
-
+          <li>{{old('form_name')}}</li>
           @if (Auth::guest())
             <li><a href="#about">ABOUT</a></li>
             <li><a href="#category">CATEGORIES</a></li>
             <li><a href="#pricing">OUR TEAM</a></li>
             <li><a href="#contact">CONTACT</a></li>
             <li>
-              <button type="button" class="" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">LOG IN</button>
-                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+              <button type="button" class="lgn" data-toggle="modal" data-target="#login" data-whatever="@mdo">LOG IN</button>
+                 <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                    <div class="modal-dialog" role="document">
                      <div class="modal-content">
                        <div class="modal-header">
@@ -53,6 +53,7 @@
                        <div class="modal-body">
                          <form action="login" method="POST">
                            {{ csrf_field() }}
+                           <input type='hidden' name='form_name' value='login'> </input>
                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                <label for="email" class="control-label">E-Mail Address</label>
                                <div class="">
@@ -108,8 +109,8 @@
                  </div>
             </li>
             <li>
-              <button type="button" class="" data-toggle="modal" data-target="#exampleModal1" data-whatever="@mdo">SIGN UP</button>
-                  <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+              <button type="button" class="lgn" data-toggle="modal" data-target="#register" data-whatever="@mdo">SIGN UP</button>
+                  <div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                     <div class="modal-dialog" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
@@ -119,6 +120,7 @@
                         <div class="modal-body">
                           <form class="form-horizontal" role="form" method="POST" action="register" enctype="multipart/form-data">
                               {{ csrf_field() }}
+                              <input type='hidden' name='form_name' value='register'> </input>
                               <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                   <label for="name" class="control-label">Name<span style="color:red;font-family: monospace;">*</span></label>
                                   <div class="">
@@ -239,8 +241,7 @@
                               <input id="lat" name="user_latitude" class="lat" type="hidden" value="@yield('user_latitude')">
                               <input id="lng" name="user_longitude" class="lon" type="hidden" value="@yield('user_longitude')">
                               <input id="address" name="user_address" class="adress" type="hidden" value="@yield('user_address')">
-                              <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_0JrPnBAl85q8GhoExBWLry7hat2u8p4&callback=myMap"
-                                      type="text/javascript"></script>
+
                               <script>
                                   function myMap() {
                                       var uluru = {lat: 31.200092, lng: 29.918739};
@@ -273,6 +274,9 @@
                                       google.maps.event.addListener(map, 'click', function(event) {
                                           // alert(event.latLng);
                                           placeMarker(map, event.latLng ,marker,geocoder);
+                                      });
+                                      $('#register').on('shown.bs.modal',function(){
+                                        google.maps.event.trigger(map,'resize');
                                       });
                                   }
                                   function placeMarker(map, location ,marker,geocoder) {
@@ -313,9 +317,17 @@
             <li role="presentation"><a href="{{route('user.calendar')}}"> CALENDER </a></li>
             <li class="dropdown">
                <a href="#" class="dropdown-toggle notification" data-toggle="dropdown" role="button" aria-expanded="false">
-                   Notification
-                    <span id="count" class="badge">{{count(auth()->user()->unreadNotifications)}}</span>
-                    <span class="caret"></span>
+                   NOTIFICATION
+                   @php
+                     $count = count(auth()->user()->unreadNotifications);
+                   @endphp
+                   @if ($count != 0)
+                     <span id="count" class="badge">{{$count}}</span>
+                     <span class="caret"></span>
+                   @else
+                     <span class="caret"></span>
+                   @endif
+
                </a>
 
                <ul class="dropdown-menu " role="menu" id="shownotification">
@@ -330,28 +342,29 @@
 
                </ul>
            </li>
+           @php
+             $photo = Auth::user()->user_photo;
+           @endphp
            <li class="dropdown">
-             @php
-               $photo = Auth::user()->user_photo;
-             @endphp
-             <a href="#"   class="dropdown-toggle notification" data-toggle="dropdown" role="button" aria-expanded="false">
-                 <img src= {{ asset("/upload/image/$photo") }} class="img-responsive" width="30px" height="30px">
+             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                 <img src={{ asset("/upload/image/$photo") }} class="pp"/ >
+
              </a>
-             <ul class="dropdown-menu " role="menu" >
+             <ul class="dropdown-menu">
                <li>
                  <a href="/profile" >
                      {{ Auth::user()->name }}
                  </a>
                </li>
                <li>
-                   <a href="{{ route('logout') }}"
-                       onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">
-                       LOGOUT
-                   </a>
-                   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                       {{ csrf_field() }}
-                   </form>
+                 <a href="{{ route('logout') }}"
+                     onclick="event.preventDefault();
+                              document.getElementById('logout-form').submit();">
+                     LOGOUT
+                 </a>
+                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                     {{ csrf_field() }}
+                 </form>
                </li>
              </ul>
            </li>
@@ -374,7 +387,7 @@
   	            <a href="https://twitter.com/Gam3naNetwork"><i class="fa fa-twitter-square fa-3x social"></i></a>
   	            <a href="https://www.instagram.com/?hl=en"><i class="fa fa-instagram fa-3x social"></i></a>
        </div>
-       <p>Copyright 2017 - <a href="mailto:">Gam3na</a></p>
+       <p>Copyright 2017 - <a href="mailto:" class="hyperln">Gam3na</a></p>
   </div>
   </footer>
 
@@ -419,7 +432,16 @@
         });
 
     });
+    @if (count($errors) > 0 and  old('form_name') === 'register')
+        $('#register').modal('show');
+    @elseif (count($errors) > 0 and  ! old('form_name') )
+      $('#login').modal('show');
+    @endif
+
+
  </script>
+ <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_0JrPnBAl85q8GhoExBWLry7hat2u8p4&callback=myMap"
+                 type="text/javascript"></script>
 
 </body>
 </html>

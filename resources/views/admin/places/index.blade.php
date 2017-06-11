@@ -5,10 +5,11 @@
  <h1 class="alert alert-success"> {{session()->get('message')}}</h1>
   @endif
 
-<a href="places/create" class="btn btn-info">Add New</a>
-<table class="table">
+<a href="places/create" class="btn btn-default">Add New</a>
+<br> <br>
+<table class="rwd-table">
 <thead>
-<tr>
+<tr class="rwd-table">
   <th>ID</th>
   <th>Name</th>
   <th>Description</th>
@@ -34,12 +35,12 @@
 
   <td>
 
-    <a href="places/{{$place->id}}/edit">Edit</a>
-    <a href="places/{{$place->id}}">Show</a>
-   <form action='places/{{$place->id}}' method="POST">
+    <a href="places/{{$place->id}}/edit" class="glyphicon glyphicon-pencil"></a>
+    <a href="places/{{$place->id}}" class="glyphicon glyphicon-tag"></a>
+   <form action='places/{{$place->id}}' method="POST" >
    {{csrf_field()}}
    {{method_field('DELETE')}}
-   <button type="submit">Delete</button>
+   <button type="submit" class="glyphicon glyphicon-trash"></button>
    </form>
 
   </td>

@@ -1,58 +1,23 @@
+@font-face {
+  font-family: myFirstFont;
+  src:url("../font/Francois_One/FrancoisOne-Regular.ttf");
+}
+@font-face {
+  font-family: mySecondFont;
+  src:url(font/Fjalla_One/FjallaOne-Regular.ttf);
+}
+@font-face {
+  font-family: myThirdFont;
+  src:url("../font/Chicle/Chicle-Regular.ttf");
+}
 
-  @font-face {
-    font-family: myFirstFont;
-    src:url("../font/Baloo_Bhaina/BalooBhaina-Regular.ttf");
-}
-  @font-face {
-    font-family: mySecondFont;
-    src:url(font/Fjalla_One/FjallaOne-Regular.ttf);
-}
-  @font-face {
-    font-family: myThirdFont;
-    src:url("../font/Pacifico.ttf");
-}
+
 body {
-      font: 400 15px myFirstFont, sans-serif;
+      font: 400 23px myFirstFont, sans-serif;
       line-height: 1.8;
       color: #818181;
   }
-    /* Remove the navbar's default margin-bottom and rounded borders */ 
-.navbar {
-      margin-bottom: 0;
-      border-radius: 0;
-    }
-    
-    /* Add a gray background color and some padding to the footer */
-footer {
-      background-color: #f2f2f2;
-      padding: 25px;
-    }
-.logo {
-      color: #286bce;
-      width: 30%;
-      background-image: url
-  }
-.navbar {
-      padding: 9px;
-      margin-bottom: 0;
-      background-color: #1c9287;
-      z-index: 9999;
-      border: 0;
-      font-size: 12px;
-      line-height: 1.428571;
-      letter-spacing: 4px;
-      border-radius: 0;
-  }
-  .navbar li a, .navbar .navbar-brand {
-      color: #fff;
-  }
-.navbar-default .navbar-nav>li>a {
-    color: white;
-}
-  .navbar-nav li a:hover, .navbar-nav li.active a {
-      color: #286bce;
-      background-color: #fff;
-  }
+
   .navbar-default .navbar-toggle {
       border-color: transparent;
       color: #fff ;
@@ -64,10 +29,7 @@ footer {
 }
 
 .skill_carousel{
-  /* padding: 1%; */
   width: 97%;
-  /* top: 2px; */
-  /* position:relative; */
   margin:auto;
   text-align:center;
 }
@@ -88,10 +50,7 @@ footer {
   font-size: 18px;
   background-color:  black;
 }
-.tabs li:hover{
 
-  
-}
 .jumbotron{
   background-color: rgb(26, 123, 114);
   height: 250px;
@@ -109,14 +68,7 @@ footer {
   border: 1px solid #1c9287;
   border-radius: 10px;
 }
-.ftr{
-    background-color: #1c9287;
-    margin: 19px 0px 0px 0px;
-    color: wheat;
-    border: 0;
-    /* line-height: 25px; */
-    /* padding: 1px; */
-    }    
+
 .fa:hover {
      -webkit-transform: scale(1.1);
      -moz-transform: scale(1.1);
@@ -174,7 +126,7 @@ footer {
 }
 .event-details1{
   padding: 1%;
-  /* font-size:12px; */
+
   float:left;
 }
 .event-name1{
@@ -188,13 +140,33 @@ footer {
   text-align:center;
   background-color:#e7e7e7;
 }
-
-.navbar-nav li a{
-    color: white!important;
-    font-size: 18px;
-    letter-spacing: 0px;
+.well{
+    background-color: #1c9287;
+    color: white;
+    width: 490px; */
 }
-.navbar-nav li a:hover{
-    background-color: white!important;
-   color: #1c9287!important;
+input[type=text], input[type=password] {
+    width: 500px;}
+.form-control {
+        display: block;
+        width: 500px;
+        font-size: 24px;
+            height: 50px;
+    }
+
+.btn{
+  font-size: 24px;
+}
+
+.btn-info {
+    color: #fff;
+    background-color: #1c9287;
+    border-color: #1c9287;
+    vertical-align: middle;
+}
+.grpbtn{
+  position: absolute;
+  /* bottom: 94px; */
+  right: 179px;
+  margin-top: -73px;
 }

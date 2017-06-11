@@ -27,10 +27,12 @@
               <div class="well well-sm">
                   <div class="row">
                       <div class="col-sm-6 col-md-4">
+                        <a href="/event/{{$event->id}}/checkevent" >
                           <img src={{ asset ("/upload/image/$event->event_photo") }} class="img-rounded img-responsive" />
+                        </a>
                       </div>
                       <div class="col-sm-6 col-md-8 par">
-                            {{$event->event_description}}
+                            {{$event->event_name}}
                       </div>
                       <button type="button"  id="attendedEvent{{$event->id}}" class="btn  bton"><span class="glyphicon glyphicon-plus" ></span></button>
                   </div>
@@ -53,7 +55,7 @@
                         <img alt="Independence Day" src={{ asset("/upload/image/$event->event_photo") }} />\
                         <div class="info">\
                           <h2 class="title">{{$event->event_name}}</h2>\
-                          <p class="desc">{{$event->event_description}}</p>\
+                          <p class="desc">{{$event->event_address}}</p>\
                           <button class="btn  bton" id="{{$event->id}}"><span class="glyphicon glyphicon-ok"></span></button>\
                         </div>\
                       </li>');
@@ -78,15 +80,12 @@
 @endif
 
 
-
-
-
+@if(! $events_attended_by_user->isEmpty())
   <section class="slide">
         <br><br>
-    <div class="container1 slide">
+    <div class="container ">
       <div class="row">
         <h1 class="text-center fonti">Your activity</h1>
-        <div class="[  ]">
           <ul class="event-list attend">
             @foreach ($events_attended_by_user as $event)
 
@@ -102,7 +101,7 @@
 
               <div class="info">
                 <h2 class="title">{{$event->event_name}}</h2>
-                <p class="desc">{{$event->event_description}}</p>
+                <p class="desc"><span class="glyphicon glyphicon-map-marker"></span> {{$event->event_address}}</p>
                 <button class="btn  bton" id="{{$event->id}}"><span class="glyphicon glyphicon-ok"></span></button>
               </div>
             </li>
@@ -121,27 +120,39 @@
               </script>
             @endforeach
           </ul>
-        </div>
       </div>
     </div>
   </section>
-
-  <div class="accordian">
-
-    <ul>
+@endif
+<br>
+  @if(!empty($user_subscribed_categories))
+  <section class="slide1">
+    <div id="category" class="container text-center rw2">
+      <h1 class="fonti" >YOUR CATEGORIES</h1>
+      {{-- <br> --}}
       @foreach ($user_subscribed_categories as $category)
-      <li>
-        <div class="image_title">
-          <a href="#">{{$category->category_name}}</a>
-        </div>
-        <a href="{{ route('categories.show', $category->id) }}">
-          <img src= {{ asset("/upload/image/$category->category_photo") }} />
-        </a>
-      </li>
+        <div class="col-md-4">
+           <div class="column">
+             <!-- Post-->
+             <div class="post-module">
+               <!-- Thumbnail-->
+               <div class="thumbnail">
+                 <img src= {{ asset("/upload/image/$category->category_photo") }} class="img-responsive" alt=""> </div>
+               <!-- Post Content-->
+               <div class="post-content">
+                 <div class="category"><a href="{{ route('categories.show', $category->id) }}">{{$category->category_name}}</a></div>
+                 <h1 class="title">{{$category->category_name}}</h1>
+               </div>
+             </div>
+           </div>
+         </div>
       @endforeach
-    </ul>
   </div>
+</section>
+  <br>
+  <br>
+@endif
+
+
 </div>
-
-
 @endsection

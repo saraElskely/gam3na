@@ -1,8 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.adminapp')
 
 @section('content')
 <div class="container">
-    <div class="row">
+  <div class="row"> <img src={{asset("/web/images/logo1.png")}} style=" margin-left: 42%;margin-top: 37px;"/></div>
+    <div class="row" style="font-size:34px">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">ADMIN Login</div>
@@ -14,7 +15,7 @@
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
+                                <input id="email" type="email"  style="font-size:24px" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
@@ -28,7 +29,7 @@
                             <label for="password" class="col-md-4 control-label">Password</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
+                                <input id="password" type="password"   style="font-size:24px" class="form-control" name="password" required>
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">

@@ -4,8 +4,8 @@
 
   @if(!empty($categories))
 
-    <div id="category" class="container text-center  ">
-      <h3> CATEGORIES </h3>
+    <div id="category" class="container text-center cat ">
+      <h1 style="color:gray"> CATEGORIES </h1>
       <h4>What we offer</h4>
       <br>
 
@@ -88,7 +88,7 @@
   @endif
 
 
-  
+
 
 
 @endsection

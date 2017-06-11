@@ -1,9 +1,10 @@
 @extends('layouts.adminboard')
 @section('content')
-<a href="admins/create" class="btn btn-success">Add New</a>
-<table class="table">
+<a href="admins/create" class="btn btn-default">Add New</a>
+<br><br>
+<table class="rwd-table">
 <thead>
-<tr>
+<tr >
   <th>ID</th>
   <th>Name</th>
   <th>Email</th>
@@ -24,7 +25,7 @@
            {{csrf_field()}}
            {{method_field('DELETE')}}
 
-           <button type="submit">Delete</button>
+           <button type="submit" class="glyphicon glyphicon-trash"></button>
            </form></td>
     </td>
     </tr>
@@ -35,4 +36,4 @@
     @endforeach
   </tbody>
   </table>
-  @endsection 
+  @endsection

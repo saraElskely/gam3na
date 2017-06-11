@@ -71,8 +71,7 @@
        </div>
      </div>
 @endforeach
-    </div>
-
+</div>
 @endif
 
   <div id="pricing" class="container-fluid ">
