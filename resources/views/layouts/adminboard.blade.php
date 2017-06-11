@@ -4,6 +4,7 @@
 		<title>Gam3na Dashboard</title>
 		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
 		 <link rel="shortcut icon" href={{ asset("images/small%20logo.png")}} />
+		 <link href={{ asset("web/css/admin.css") }} rel="stylesheet" type="text/css">
 		<script type="text/javascript" src={{ asset("adminboard/./js/jquery-1.12.4.min.js")}}></script>
 		<script type="text/javascript" src={{ asset("adminboard/./fusioncharts/fusioncharts.js")}}></script>
 		<script type="text/javascript" src={{ asset("adminboard/./fusioncharts/themes/fusioncharts.theme.zune.js?cacheBust=56")}}></script>
@@ -17,7 +18,7 @@
 
 </head>
 <body>
-		<nav class="navbar nv ">
+		<nav class="navbar nv " >
   <div class="container-fluid navbar-right ">
 
      <ul class="nav nav-pills" role="tablist">
@@ -45,7 +46,7 @@
               <img src="imgs/ajax-loader.gif">
             </center>
         </div>
-        <nav class="navbar navbar-default visible-xs">
+        <nav class="navbar navbar-default visible-xs" >
           <div class="container-fluid">
             <div class="navbar-header">
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -70,7 +71,8 @@
 
         <div class="container-fluid">
           <div class="row content">
-            <div class="col-sm-3 col-md-3 col-lg-2  sidenav hidden-xs clearfix" id="nav" style="height: 100%">
+            <div class="col-sm-3 col-md-3 col-lg-2  sidenav hidden-xs clearfix" id="nav" style="height:850px;width: 211px;
+}">
 
               <div data-spy="affix" data-offset-top="0" class="sidenav-container">
                 <div class="row">

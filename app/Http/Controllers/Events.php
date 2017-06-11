@@ -114,8 +114,9 @@ class Events extends Controller
     {
         $item = Event::find($id);
         $subcategories = Subcategory::all();
+        $places = Place::all();
         if ($item->user->id == Auth::id()) {
-            return view('event.edit', compact('item', 'subcategories'));
+            return view('event.edit', compact('item', 'subcategories','places'));
         } else {
             return back();
         }

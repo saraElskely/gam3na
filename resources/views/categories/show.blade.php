@@ -29,7 +29,11 @@
     <h1><span>Category</span><br>{{$category->category_name}}</h1>
   </section><!-- END hero -->
 
+
+  <div class="container">
+
   <section class="row" id="sec02">
+    <div class="col-xs-3">
     <div class="content">
       <div class="naccs">
         <div class="grid">
@@ -45,9 +49,13 @@
            @endforeach
          </div>
         </div>
+</div>
+</div>
+</div>
+</div>
 
     @endif
-
+<div class="col-xs-9">
         <div class="gc gc--2-of-3">
          <ul class="nacc">
 
@@ -68,13 +76,7 @@
                        <div class="event-location">
                         {{$event->event_description}}
                        </div>
-                       <div class="other-info">
 
-                       </div>
-                     </div>
-                     <div class="event-action eCol">
-                         !
-                     </div>
                    </div>
                    @endforeach
                  </div>
@@ -82,6 +84,10 @@
          </ul>
        </div>
 
+</div>
+</div>
+</div>
+      </div>
       </div>
     </div>
   </div>

@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 // 
+||||||| merged common ancestors
+$(document).ready(function() {});
+=======
+
+>>>>>>> 500ac7c143d7563bb3aee6d7e86484cfb9d09e69
 
 function activeTab(id_name) {
 
@@ -41,6 +47,7 @@ function activeTab(id_name) {
     });
 }
 
+<<<<<<< HEAD
 $jQuery(document).ready(function($){
 var inputAddphoto = '<div class="upload-photo">Upload File</div>',
     inputphoto = $('#id_photo');
@@ -63,3 +70,50 @@ inputphoto.on('change', function(){
 });
 
 });
+||||||| merged common ancestors
+$(document).ready(
+var inputAddphoto = '<div class="upload-photo">Upload File</div>',
+    inputphoto = $('#id_photo');
+
+inputphoto.before(inputAddphoto);
+
+$('.upload-photo').on('click', function() {
+    $(this).siblings('#id_photo').trigger('click');
+});
+
+inputphoto.on('change', function(){
+    var input = $(this),
+        reader = new FileReader();
+
+    reader.onload = function (e) {
+        input.siblings('.upload-photo').css('background-image', 'url(' + e.target.result + ')');
+    };
+
+    reader.readAsDataURL(this.files[0]);
+});
+
+}
+=======
+// $(document).ready(
+// var inputAddphoto = '<div class="upload-photo">Upload File</div>',
+//     inputphoto = $('#id_photo');
+//
+// inputphoto.before(inputAddphoto);
+//
+// $('.upload-photo').on('click', function() {
+//     $(this).siblings('#id_photo').trigger('click');
+// });
+//
+// inputphoto.on('change', function(){
+//     var input = $(this),
+//         reader = new FileReader();
+//
+//     reader.onload = function (e) {
+//         input.siblings('.upload-photo').css('background-image', 'url(' + e.target.result + ')');
+//     };
+//
+//     reader.readAsDataURL(this.files[0]);
+// });
+//
+// }
+>>>>>>> 500ac7c143d7563bb3aee6d7e86484cfb9d09e69
