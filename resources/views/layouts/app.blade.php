@@ -31,7 +31,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#myPage"><img src= {{ asset("web/images/logo.png") }} class="logo"/></a>
+        <a class="navbar-brand" href="/home"><img src= {{ asset("web/images/logo.png") }} class="logo"/></a>
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
@@ -92,9 +92,9 @@
 
 
                              <div class="form-group">
-                                     <a href="{{ url('login/facebook') }}" class="btn1">Login with facebook</a>
-                                     <a href="{{ url('login/google') }}" class="btn1">Login with google</a>
-                                     <a href="{{ url('login/twitter') }}" class="btn1">Login with twitter</a>
+                                     <a href="{{ url('login/facebook') }}" class="btn1"><i class="fa fa-facebook-square fa-3x social " style="color:#1a0dab"></i></a>
+                                     <a href="{{ url('login/google') }}" class="btn1"><i class="fa fa-google-plus-square fa-3x social" style="color:#d9534f"></i></a>
+                                     <a href="{{ url('login/twitter') }}" class="btn1"><i class="fa fa-twitter-square fa-3x social" style="color:#5bc0de"></i></a>
                              </div>
                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                              <button type="submit" class="btn ">
@@ -120,10 +120,10 @@
                           <form class="form-horizontal" role="form" method="POST" action="register" enctype="multipart/form-data">
                               {{ csrf_field() }}
                               <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                  <label for="name" class="control-label">Name</label>
+                                  <label for="name" class="control-label">Name<span style="color:red;font-family: monospace;">*</span></label>
                                   <div class="">
-
                                       <input id="name" type="text" placeholder="Jone" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+                                      <small  class="form-text text-muted">couldn't start with (numbers,hyphens,_,-,.)</small>
 
                                       @if ($errors->has('name'))
                                           <span class="help-block">
@@ -133,7 +133,7 @@
                                   </div>
                               </div>
                               <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                  <label for="email" class="control-label">E-Mail Address</label>
+                                  <label for="email" class="control-label">E-Mail Address<span style="color:red;font-family: monospace;">*</span></label>
                                   <div class="">
                                       <input id="email" type="email" placeholder="jone@example.com" class="form-control" name="email" value="{{ old('email') }}" required>
                                       @if ($errors->has('email'))
@@ -156,7 +156,7 @@
                                                         </div>
                               </div>
                               <div class="form-group{{ $errors->has('date_of_birth') ? ' has-error' : '' }}">
-                                          <label for="date_of_birth" class="control-label">Date of Birth</label>
+                                          <label for="date_of_birth" class="control-label">Date of Birth<span style="color:red;font-family: monospace;">*</span></label>
 
                                                      <div class="">
                                                             <input id="date_of_birth" type="date" class="form-control" name="date_of_birth" value="{{ old('date_of_birth') }}" required >
@@ -203,7 +203,8 @@
                                   <label for="mobile" class="control-label">Mobile</label>
 
                                   <div class="">
-                                      <input id="mobile" type="tel" placeholder="2012-3456-7890" class="form-control" name="mobile" value="{{ old('mobile') }}">
+                                      <input id="mobile" type="tel" placeholder="201234567890" class="form-control" name="mobile" value="{{ old('mobile') }}">
+                                      <small  class="form-text text-muted">should start with 2</small>
 
                                       @if ($errors->has('mobile'))
                                           <span class="help-block">
@@ -213,9 +214,10 @@
                                   </div>
                               </div>
                               <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                  <label for="password" class="control-label">Password</label>
+                                  <label for="password" class="control-label">Password<span style="color:red;font-family: monospace;">*</span></label>
                                   <div class="">
                                       <input id="password" type="password" class="form-control" name="password" required>
+                                      <small class="form-text text-muted">at least 6 characters-one upper/lower case/one number  </small>
 
                                       @if ($errors->has('password'))
                                           <span class="help-block">
@@ -225,12 +227,13 @@
                                   </div>
                               </div>
                               <div class="form-group">
-                                  <label for="password-confirm" class="control-label">Confirm Password</label>
+                                  <label for="password-confirm" class="control-label">Confirm Password<span style="color:red;font-family: monospace;">*</span></label>
                                   <div class="">
                                       <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                                   </div>
                               </div>
-
+                             <label for="user_address" class="control-label">Address</label>
+                 
                               <div id="googleMap" style="width:100%;height:400px;">
                               </div>
                               <input id="lat" name="user_latitude" class="lat" type="hidden" value="@yield('user_latitude')">
@@ -367,10 +370,9 @@
           <div class="text-center center-block">
               <p class="txt-railway">follow us</p>
               <br />
-                  <a href="#"><i class="fa fa-facebook-square fa-3x social"></i></a>
-  	            <a href="#"><i class="fa fa-twitter-square fa-3x social"></i></a>
-  	            <a href="#"><i class="fa fa-google-plus-square fa-3x social"></i></a>
-  	            <a href="#"><i class="fa fa-envelope-square fa-3x social"></i></a>
+                  <a href="https://www.facebook.com/%D8%B4%D8%AE%D8%A7%D8%A8%D9%8A%D8%B7-%EA%95%A5-1417133151901989/"><i class="fa fa-facebook-square fa-3x social"></i></a>
+  	            <a href="https://twitter.com/Gam3naNetwork"><i class="fa fa-twitter-square fa-3x social"></i></a>
+  	            <a href="https://www.instagram.com/?hl=en"><i class="fa fa-instagram fa-3x social"></i></a>
        </div>
        <p>Copyright 2017 - <a href="mailto:">Gam3na</a></p>
   </div>

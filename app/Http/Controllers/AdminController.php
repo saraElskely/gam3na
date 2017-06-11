@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Admin;
-
+use App\User;
+use App\Event;
+use App\Place;
+use Carbon\Carbon;
 class AdminController extends Controller
 {
 
@@ -20,7 +23,12 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin');
+        $today = Carbon::today();
+        $count_user = User::count();
+        $upcoming_event = Event::where('event_date','>',$today)->count();
+        $count_event = Event::count();
+        $count_place = Place::count();
+        return view('admin',['user_count'=>$count_user,'event_count'=>$count_event ,'place_count'=>$count_place,'upcoming'=>$upcoming_event]);
     }
    
 

@@ -26,16 +26,17 @@
 					  	<div class="col-md-6 form-line">
                         <!-- Text input-->
 	                        <div class="form-group">
-	                          <label class="col-md-3 control-label" for="event_name">Name</label>
+	                          <label class="col-md-3 control-label" for="event_name">Name<span style="color:red;font-family: monospace;">*</span></label>
 	                          <div class="col-md-9">
 	                          <input  type="text" name="event_name" id="event_name" placeholder="Event Name" class="form-control input-md" value="@yield('editTitle')" >
 	                          </div>
                            </div>
 
                          <div class="form-group">
-                          <label class="col-md-3 control-label" for="textarea">Description</label>
+                          <label class="col-md-3 control-label" for="textarea">Description<span style="color:red;font-family: monospace;">*</span></label>
                           <div class="col-md-9">
                             <textarea class="form-control" placeholder="Say somthing about your event" id="textarea" name= "event_description" value="@yield('editBody')"></textarea>
+                      		<small class="form-text text-muted">at least 50 characters</small>
                           </div>
                         </div>
 
@@ -47,7 +48,7 @@
                         </div>
 
                         <div class="form-group">
-                          <label class="col-md-3 control-label" for="selectbasic">Categories</label>
+                          <label class="col-md-3 control-label" for="selectbasic">Categories<span style="color:red;font-family: monospace;">*</span></label>
                           <div class="col-md-9">
                             <select id="selectbasic" name="subcategory_id" class="form-control" value="@yield('editsubcategory')">
                             		@foreach ($subcategories as $subcategory)
@@ -56,11 +57,16 @@
                             </select>
                           </div>
                         </div>
-			        	 <div class="col-md-6">
-                        <p><input type="file" id="id_photo" "file" name="event_photo"  value="@yield('editevent_photo')" /></p>
-
+                        <div class="form-group">
+                                 <label class="col-md-3 control-label" for="event_photo" class="control-label">Event Photo</label>
+			        	         <div class="col-md-9">
+                                   <p><input type="file" id="id_photo" "file" name="event_photo"  value="@yield('editevent_photo')" /></p>
 								</div>
-            <div id="googleMap" style="width:100%;height:400px;"></div>
+						</div>
+
+				<div class="form-group">
+					<label class="col-md-3 control-label" for="event_address" class="control-label">Location</label>
+                    <div id="googleMap" style="width:100%;height:400px;"></div>
 						<input id="lat" name="event_latitude" class="lat" type="hidden" value="@yield('event_latitude')">
 						<input id="lng" name="event_longitude" class="lon" type="hidden" value="@yield('event_longitude')">
 						<input id="address" name="event_address" class="adress" type="hidden" value="@yield('event_address')">
@@ -78,6 +84,7 @@
 		    </section>
 		</fieldset>
 		</form>
+		</div>
 		@if ($places)
 			<div>
 

@@ -48,7 +48,7 @@
                       <div class="col-md-12 col-lg-6">
 
                         <h5>Users</h5>
-                        <h3>104,037</h3>
+                        <h3>{{$user_count}}</h3>
 
                       </div>
                       <div class="col-md-12 col-lg-6">
@@ -63,8 +63,8 @@
                     <div class="row">
                       <div class="col-md-12 col-lg-6">
 
-                        <h5>Page Views</h5>
-                        <h3>424,892</h3>
+                        <h5>All Events</h5>
+                        <h3>{{$event_count}}</h3>
                       </div>
 
                       <div class="col-md-12 col-lg-6">
@@ -79,8 +79,8 @@
                     <div class="row">
                       <div class="col-md-12 col-lg-6">
 
-                        <h5>Avg. Session Duration</h5>
-                        <h3>00:03:20</h3>
+                        <h5>Places</h5>
+                        <h3>{{$place_count}}</h3>
                       </div>
 
                       <div class="col-md-12 col-lg-6">
@@ -96,8 +96,8 @@
                     <div class="row">
                       <div class="col-md-12 col-lg-6">
 
-                        <h5>Bounce Rate</h5>
-                        <h3>51.46%</h3>
+                        <h5>Upcoming Events</h5>
+                        <h3>{{$upcoming}}</h3>
                       </div>
 
                       <div class="col-md-12 col-lg-6">

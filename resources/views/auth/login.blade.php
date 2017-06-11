@@ -53,7 +53,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     Login
                                 </button>
-                                <a href="{{ url('login/facebook') }}">Login with facebook</a>
+                                <a href="{{ url('login/facebook') }}"><img src={{ asset("/web/images/fblogin.png") }}></a>
                                 <a href="{{ url('login/google') }}">Login with google</a>
                                 <a href="{{ url('login/twitter') }}">Login with twitter</a>
 

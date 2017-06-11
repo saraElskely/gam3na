@@ -3,7 +3,7 @@
 @section('title')
 @endsection
 @section('head')
-  <script src={{ asset("web/js/script.js")}}></script>
+  <script src={{ asset("web/js/script.js")}} > </script>
 @endsection
 
 @section('content')
@@ -22,9 +22,10 @@
               <div class="input-group">
 
                 <div class="input-group-btn">
-                  <button type="button" class="btn btn-danger">Creat an Activity</button>
-                  <button type="button" class="btn ">Find a partner</button>
+                  <button type="button" id='activity'  class="btn btn-danger">Create an Activity</button>
+                  <button type="button" id='partner' class="btn ">Find a partner</button>
                 </div>
+
               </div>
             </form>
           </div>
@@ -155,5 +156,36 @@
         </div>
       </div>
     </div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+              <script>
+              alert('saraaaaaaaaa');
+              $(document).ready(function(){
+
+              $('#activity').on('click',function() {   
+                var b='{{Auth::guest()}}';
+                if(b == 1){
+                  alert(b);
+                }else{
+                  window.location.href = '{{url("/event/create")}}';
+                }
+                
+              });
+              $('#partner').on('click',function() {   
+                var b='{{Auth::guest()}}';
+                if(b == 1){
+                  alert(b);
+                }else{
+                  window.location.href = '{{url("/event/calendar")}}';
+                }
+                
+              });
+    
+              });
+              </script>
+
+
+
 
 @endsection

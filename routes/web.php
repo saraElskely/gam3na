@@ -71,3 +71,6 @@ Route::get('MarkAllSeen','Events@AllSeen');
 //Social Media socialite routes
 Route::get('login/{service}', 'Auth\LoginController@redirectToProvider');
 Route::get('login/{service}/callback', 'Auth\LoginController@handleProviderCallback');
+// Route::get('/error',function(){
+//    abort(404);
+// });

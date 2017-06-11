@@ -6,6 +6,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Carbon\Carbon;
 
 class RegisterController extends Controller
 {
@@ -34,11 +35,11 @@ class RegisterController extends Controller
     protected function validator (array $data)
     {
         $dt=new Carbon();
-        $before = $dt->subYears(18)->format('Y-m-d');
+        $before = $dt->subYears(18)->format('m-d-Y');
         return Validator::make($data, [
-            'name' => 'required|string|max:255|unique:users',
+            'name' => 'required|string|regex:/^[A-Za-z_-][A-Za-z0-9_-]*$/|max:255|unique:users',
             'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
+            'password' => 'required|min:6|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/|confirmed',
             'job' => 'nullable|max:255',
             'gender' => 'required',
             'date_of_birth' => 'required|date|before:'.$before,
@@ -47,7 +48,6 @@ class RegisterController extends Controller
 		
         ]);
     }
-
 
     /**
      * Create a new user instance after a valid registration.
@@ -58,9 +58,15 @@ class RegisterController extends Controller
 
     protected function create (array $data)
     {
-        $user_photo = $data['user_photo'];
-        $data['user_photo'] = time() . '.' . $user_photo->getClientOriginalExtension();
-        $user_photo->move(public_path('upload/image'), $data['user_photo']);
+
+        if (isset($data['user_photo'])) {
+            $user_photo = $data['user_photo'];
+            $data['user_photo'] = time() . '.' . $user_photo->getClientOriginalExtension();
+            $user_photo->move(public_path('upload/image'), $data['user_photo']);
+        }
+        else{
+            $data['user_photo']='null';
+        }
         return User::create([
             'name' => $data['name'],
             'job' => $data['job'],

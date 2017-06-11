@@ -37,7 +37,7 @@ $(document).ready(function() {
       "chart": {
         "paletteColors": "1c9287",
         "showvalues": "0",
-        "divlinealpha": "30",
+        "divlinealpha": "4",
         "numdivlines": "3",
         "showlabels": "0",
         "showYAxisValues": "0",
