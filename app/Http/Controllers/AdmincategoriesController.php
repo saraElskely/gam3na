@@ -41,7 +41,7 @@ class AdmincategoriesController extends Controller
     {
       $category= new Category;
       $this->validate($request,[
-          'category_name' =>'required|min:10',
+          'category_name' =>'required',
           'category_description' => 'required|max:255',
           'category_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
       ]);

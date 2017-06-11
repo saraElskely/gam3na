@@ -12,7 +12,7 @@ class photosController extends Controller
     public function store(Event $event, Request $request )
     {
         $this->validate(request(),[
-            'user_event_photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'user_event_photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $data = $request->all();

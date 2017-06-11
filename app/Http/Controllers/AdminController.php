@@ -10,7 +10,7 @@ class AdminController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:admin');
+      $this->middleware('auth:admin');
     }
 
     /**
@@ -31,19 +31,24 @@ class AdminController extends Controller
 
     public function create()
     {
+      
+        $admins= Admin::all();
+
         return view ('admin.admins.create');
     }
 
     public function store(Request $request)
     {
+       $admins = new Admin;
 
        $this->validate($request,[
-       'email' =>'required|unique|email',
+       'email' =>'required|unique:admins',
        'password' => 'required|min:6',
+       'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
 
        ]);
-       $admin = $request->all();
-      $fileName = 'null';
+       
+       $fileName = 'null';
       if ($request->hasFile('photo')) {
           if($request->file('photo')->isValid()) {
              $destinationPath = public_path('upload/image');
@@ -53,8 +58,11 @@ class AdminController extends Controller
              $admin['photo'] = $fileName;
           }
       }
-    
-      Admin::create($admin);
+       Admin::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'photo' =>$admin['photo'],
+            'password' => bcrypt($request->password)]);
       return redirect('admin/admins');
 
     }
