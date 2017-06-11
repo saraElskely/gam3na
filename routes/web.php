@@ -27,19 +27,22 @@ Route::resource('/subcategories','AdmincsubcategoriesController');
 Route::resource('/events','AdmineventsController');
 Route::get('/users/{id}/block', 'AdminusersController@block')->name('admin.block');
 Route::get('/users/{id}/unblock', 'AdminusersController@unblock')->name('admin.unblock');
+
+Route::resource('/places','adminPlacesController');
 });
 
-Route::get('/','homeController@home');
+Route::get('/','homeController@home')->name('welcome');
 Route::get('/home','HomeController@index');
 Route::get('/event/calendar','Events@calendar')->name('user.calendar');
 Route::get('/event/calendar/{id?}','Events@calendarM');
 
 
-
+Route::get('/contact','homeController@getcontact');
+Route::post('/contact','homeController@postcontact');
 Route::get('/home/{id}','homeController@show');
 
 Route::prefix('profile')->group(function(){
-	Route::get('/{id}','Profilecontroller@show');
+	Route::get('/{id}','ssProfilecontroller@show');
 	Route::get('/edit','Profilecontroller@editprofile')->name('profile.editprofile');
 	Route::put('/update','Profilecontroller@updateprofile')->name('profile.updateprofile');
 	Route::get('/','Profilecontroller@profile');

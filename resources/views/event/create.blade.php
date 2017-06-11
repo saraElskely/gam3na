@@ -78,6 +78,21 @@
 		    </section>
 		</fieldset>
 		</form>
+		@if ($places)
+			<div>
+
+				@foreach ($places as $place)
+					{{$place->place_name}}
+					{{$place->place_description}}
+					{{$place->place_address}}
+					{{$place->place_details_address}}
+					<img src= {{ asset("/upload/image/$place->place_photo") }} class="img-responsive" width="30px" height="30px">
+
+
+				@endforeach
+			</div>
+		@endif
+
 
 
 			<script>
@@ -140,7 +155,5 @@
 			</script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_0JrPnBAl85q8GhoExBWLry7hat2u8p4&callback=myMap"
   type="text/javascript"></script>
-
-     	@include('event.partials.errors')
 
 @endsection

@@ -8,18 +8,18 @@
 		<script type="text/javascript" src={{ asset("adminboard/./fusioncharts/fusioncharts.js")}}></script>
 		<script type="text/javascript" src={{ asset("adminboard/./fusioncharts/themes/fusioncharts.theme.zune.js?cacheBust=56")}}></script>
 		<script type="text/javascript" src={{ asset("adminboard/./fusioncharts/fusioncharts.jqueryplugin.js")}}></script>
-		<link rel="stylesheet" type="text/css" href={{ asset("adminboard/./css/bootstrap.min.css")}}> 
-		<link rel="stylesheet" type="text/css" href={{ asset("adminboard/./css/bootstrap-theme.min.css")}}>  
+		<link rel="stylesheet" type="text/css" href={{ asset("adminboard/./css/bootstrap.min.css")}}>
+		<link rel="stylesheet" type="text/css" href={{ asset("adminboard/./css/bootstrap-theme.min.css")}}>
 		<link rel="stylesheet" type="text/css" href={{ asset("adminboard/./css/bootstrap-datetimepicker.css")}}>
 		<link rel="stylesheet" type="text/css" href={{ asset("adminboard/./css/main.css")}}>
 
 
-	
+
 </head>
 <body>
 		<nav class="navbar nv ">
   <div class="container-fluid navbar-right ">
-      
+
      <ul class="nav nav-pills" role="tablist">
           <li role="presentation">
          <a href="{{ route('logout') }}"
@@ -54,13 +54,13 @@
                 <span class="icon-bar"></span>
               </button>
                <button type="button" class="navbar-toggle user-info" data-toggle="collapse" data-target="#useInfo">
-                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>   
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
               </button>
             </div>
              <div class="collapse navbar-collapse" id="useInfo">
               <ul class="nav navbar-nav">
                 <li class="text-center">
-                    
+
                 </li>
               </ul>
             </div>
@@ -71,25 +71,27 @@
         <div class="container-fluid">
           <div class="row content">
             <div class="col-sm-3 col-md-3 col-lg-2  sidenav hidden-xs clearfix" id="nav" style="height: 100%">
-             
+
               <div data-spy="affix" data-offset-top="0" class="sidenav-container">
                 <div class="row">
                   <div class="col-sm-12">
                     <p></p>
                   </div>
                 </div>
-               
+
                 <div class="row">
                 </div>
                 <div class="row">
                   <div class="col-sm-12">
                     <ul class="nav nav-pills nav-stacked">
+											<li><a href="/admin">home</a></li>
                       <li ><a href="/admin/admins">All Admins</a></li>
                       <li ><a href="/admin/users">Users</a></li>
                       <li> <a href="/admin/categories">Categories</a> </li>
                       <li><a href="/admin/subcategories">Subcategories</a></li>
                       <li><a href="/admin/events">Events</a></li>
-                      <li><a href="/admin">home</a></li>
+											<li><a href="/admin/places">Places</a></li>
+
                     </ul>
                   </div>
                 </div>
@@ -105,16 +107,16 @@
              @yield('content')
 </div>
 	 <footer class="footer">
-	         
-	 </footer> 
+
+	 </footer>
 	 <script type="text/javascript" src={{ asset("adminboard/./js/bootstrap.min.js")}}></script>
 	 <script type="text/javascript" src={{ asset("adminboard/./js/moment-with-locales.js")}}></script>
 	 <script type="text/javascript" src={{ asset("adminboard/./js/bootstrap-datetimepicker.js")}}></script>
-     <script type="text/javascript" src={{ asset("adminboard/./js/data.js")}}></script>  
-     <script type="text/javascript" src={{ asset("adminboard/./js/dashboard.js")}}></script>  
+     <script type="text/javascript" src={{ asset("adminboard/./js/data.js")}}></script>
+     <script type="text/javascript" src={{ asset("adminboard/./js/dashboard.js")}}></script>
           </div>
         </div>
 </body>
 
-	
+
 </html>

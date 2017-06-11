@@ -1,23 +1,22 @@
-$(document).ready(function() {});
+// 
 
 function activeTab(id_name) {
 
   var x;
   x = document.getElementsByClassName("tab");
-  
+
    for (i = 0; i < x.length; i++) {
         x[i].style.backgroundColor= "#17171e";
     }
-    
+
   document.getElementById('tab'+id_name).style.backgroundColor = "#1c9287";
 
   $.ajax({url: "/event/calendar/"+id_name , success: function(result){
     var months = {
     '01' : 'Jan',
     '02' : 'Feb','03' : 'Mar','04' : 'Apr','05' : 'May','06' : 'Jun','07' : 'Jul','08' : 'Aug','09' : 'Sept','10' : 'Oct','11' : 'Nov','12' : 'Dec',
-    
-}
-        
+    }
+
         if (result){
           $('.events').empty();
           result.forEach(function(event){
@@ -30,7 +29,7 @@ function activeTab(id_name) {
                                       <div class="eMonth">'+ months[arr[1]]+'</div>\
                                     </div>\
                                     <div class="event-details1 eCol">\
-                                      <div class="event-name1">'+event.event_name+'</div>\
+                                      <div class="event-name1"><a href="/event/'+event.id+'/checkevent">'+event.event_name+'</a></div>\
                                       <div class="other-info1 ">'+event.event_description+'</div>\
                                       <br>\
                                       <div  class="glyphicon glyphicon-map-marker" "event-location1">'+event.event_address+'</div>\
@@ -40,11 +39,9 @@ function activeTab(id_name) {
         }
       }
     });
-
-
 }
 
-$(document).ready(
+$jQuery(document).ready(function($){
 var inputAddphoto = '<div class="upload-photo">Upload File</div>',
     inputphoto = $('#id_photo');
 
@@ -65,11 +62,4 @@ inputphoto.on('change', function(){
     reader.readAsDataURL(this.files[0]);
 });
 
-}
-
-
-
-
-
-
-
+});

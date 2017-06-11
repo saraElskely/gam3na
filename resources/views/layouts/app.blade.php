@@ -35,8 +35,13 @@
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
-          @yield('nav_menu')
+
+
           @if (Auth::guest())
+            <li><a href="#about">ABOUT</a></li>
+            <li><a href="#category">CATEGORIES</a></li>
+            <li><a href="#pricing">OUR TEAM</a></li>
+            <li><a href="#contact">CONTACT</a></li>
             <li>
               <button type="button" class="" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">LOG IN</button>
                  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
@@ -49,6 +54,7 @@
                        <div class="modal-body">
                          <form action="login" method="POST">
                            {{ csrf_field() }}
+                           <input type="hidden" name="form_name" value="login">
                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                <label for="email" class="control-label">E-Mail Address</label>
                                <div class="">
@@ -66,7 +72,7 @@
                                <label for="password" class="control-label">Password</label>
 
                                <div class="">
-                                   <input id="password" type="password" class="form-control" name="password" required>
+                                   <input id="password" type="password" class="form-control" name="password" >
 
                                    @if ($errors->has('password'))
                                        <span class="help-block">
@@ -76,26 +82,21 @@
                                </div>
                            </div>
 
-                           <div class="form-group">
-                               <div class=" col-md-offset-4">
-                                   <div class="checkbox">
-                                       <label>
-                                           <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-                                       </label>
-                                   </div>
-                               </div>
-                           </div>
-                           <a class="btn btn-link" href="{{ route('password.request') }}">
-                               Forgot Your Password?
-                           </a>
+                           <div class="modal-footer1">
+                                          <div class="checkbox">
+                                                  <label>
+                                                      <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
+                                                      </label>
+                                            </div>
+                                            <a class="btn1 btn-link" href="{{ route('password.request') }}">
+                                            Forgot Your Password?
+                                            </a>
 
-                           <div class="modal-footer">
+
                              <div class="form-group">
-                                 <div class=" col-md-offset-4">
-                                     <a href="{{ url('login/facebook') }}">Login with facebook</a>
-                                     <a href="{{ url('login/google') }}">Login with google</a>
-                                     <a href="{{ url('login/twitter') }}">Login with twitter</a>
-                                 </div>
+                                     <a href="{{ url('login/facebook') }}" class="btn1">Login with facebook</a>
+                                     <a href="{{ url('login/google') }}" class="btn1">Login with google</a>
+                                     <a href="{{ url('login/twitter') }}" class="btn1">Login with twitter</a>
                              </div>
                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                              <button type="submit" class="btn ">
@@ -109,8 +110,9 @@
                  </div>
             </li>
             <li>
+
               <button type="button" class="" data-toggle="modal" data-target="#exampleModal1" data-whatever="@mdo">SIGN UP</button>
-                  <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                       <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                     <div class="modal-dialog" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
@@ -119,6 +121,7 @@
                         </div>
                         <div class="modal-body">
                           <form class="form-horizontal" role="form" method="POST" action="register" enctype="multipart/form-data">
+                           <input type="hidden" name="form_name" value="register">
                               {{ csrf_field() }}
                               <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                   <label for="name" class="control-label">Name</label>
@@ -146,22 +149,20 @@
                               </div>
 
                               <div class="form-group{{ $errors->has('user_photo') ? ' has-error' : '' }}">
-                                                        <label for="user_photo" class="col-md-4 control-label">Photo</label>
-
-                                                     <div class="col-md-6">
-                                                            <input id="user_photo" type="file" class="form-control" name="user_photo" value="{{ old('user_photo') }}">
-
-                                                            @if ($errors->has('user_photo'))
+                                        <label for="user_photo" class="control-label">Photo</label><br>
+                                          <div class="">
+                                              <input id="user_photo" type="file" class="form-control" name="user_photo" value="{{ old('user_photo') }}">
+                                                    @if ($errors->has('user_photo'))
                                                                 <span class="help-block">
                                                                     <strong>{{ $errors->first('user_photo') }}</strong>
                                                                 </span>
                                                             @endif
                                                         </div>
-
+                              </div>
                               <div class="form-group{{ $errors->has('date_of_birth') ? ' has-error' : '' }}">
-                                                        <label for="date_of_birth" class="col-md-4 control-label">Date of Birth</label>
+                                          <label for="date_of_birth" class="control-label">Date of Birth</label>
 
-                                                     <div class="col-md-6">
+                                                     <div class="">
                                                             <input id="date_of_birth" type="date" class="form-control" name="date_of_birth" value="{{ old('date_of_birth') }}" required >
 
                                                             @if ($errors->has('date_of_birth'))
@@ -173,12 +174,14 @@
                                                     </div>
                                                   </div>
 
-                                <div class="form-group{{ $errors->has('gender') ? ' has-error' : '' }}">
-                                    <label for="gender" class="control-label">Gender</label>
+                                       <div class="form-group{{ $errors->has('gender') ? ' has-error' : '' }}">
+                                              <label for="gender" class="control-label">Gender</label>
 
                                     <div class="">
-                                      <input id="gender" type="text" class="form-control" name="gender" value="{{ old('gender') }}" required >
-
+                                      <select name="gender">
+                                        <option value="female">female</option>
+                                        <option value="male">male</option>
+                                      </select>
 
                                         @if ($errors->has('gender'))
                                             <span class="help-block">
@@ -204,7 +207,7 @@
                                   <label for="mobile" class="control-label">Mobile</label>
 
                                   <div class="">
-                                      <input id="mobile" type="tel" placeholder="012-3456-7890" class="form-control" name="mobile" value="{{ old('mobile') }}">
+                                      <input id="mobile" type="tel" placeholder="2012-3456-7890" class="form-control" name="mobile" value="{{ old('mobile') }}">
 
                                       @if ($errors->has('mobile'))
                                           <span class="help-block">
@@ -237,9 +240,9 @@
                               <input id="lat" name="user_latitude" class="lat" type="hidden" value="@yield('user_latitude')">
                               <input id="lng" name="user_longitude" class="lon" type="hidden" value="@yield('user_longitude')">
                               <input id="address" name="user_address" class="adress" type="hidden" value="@yield('user_address')">
-                              <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_0JrPnBAl85q8GhoExBWLry7hat2u8p4&callback=myMap"
+                               <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_0JrPnBAl85q8GhoExBWLry7hat2u8p4&callback=myMap"
                                       type="text/javascript"></script>
-                              <script>
+                                 <script>
                                   function myMap() {
                                       var uluru = {lat: 31.200092, lng: 29.918739};
                                       var mapProp= {
@@ -291,8 +294,8 @@
                                           }
                                       });
                                   }
-                              </script>
-
+                              </script>      
+                        
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn">
@@ -307,26 +310,12 @@
             </li>
 
           @else
-            <li>
-                <a href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
-                             document.getElementById('logout-form').submit();">
-                    LOGOUT
-                </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    {{ csrf_field() }}
-                </form>
-            </li>
-            <li>
-              <a href="#"   role="button" aria-expanded="false">
-                  {{ Auth::user()->name }}
-              </a>
-            </li>
-
+            <li role="presentation"><a href="{{url('/categories')}}">CATEGORIES</a></li>
+            <li role="presentation"><a href="{{route('user.calendar')}}"> CALENDER </a></li>
             <li class="dropdown">
                <a href="#" class="dropdown-toggle notification" data-toggle="dropdown" role="button" aria-expanded="false">
                    Notification
-                    <span id="count">{{count(auth()->user()->unreadNotifications)}}</span>
+                    <span id="count" class="badge">{{count(auth()->user()->unreadNotifications)}}</span>
                     <span class="caret"></span>
                </a>
 
@@ -339,7 +328,33 @@
                        </a>
                    </li>
                @endforeach
+
                </ul>
+           </li>
+           <li class="dropdown">
+             @php
+               $photo = Auth::user()->user_photo;
+             @endphp
+             <a href="#"   class="dropdown-toggle notification" data-toggle="dropdown" role="button" aria-expanded="false">
+                 <img src= {{ asset("/upload/image/$photo") }} class="img-responsive" width="30px" height="30px">
+             </a>
+             <ul class="dropdown-menu " role="menu" >
+               <li>
+                 <a href="/profile" >
+                     {{ Auth::user()->name }}
+                 </a>
+               </li>
+               <li>
+                   <a href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                       LOGOUT
+                   </a>
+                   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                       {{ csrf_field() }}
+                   </form>
+               </li>
+             </ul>
            </li>
 
           @endif
@@ -406,10 +421,7 @@
         });
 
     });
-    
-    
-
-
+      
  </script>
 
 </body>

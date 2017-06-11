@@ -6,13 +6,6 @@
   <script src={{ asset("web/js/script.js")}}></script>
 @endsection
 
-@section('nav_menu')
-  <li><a href="#about">ABOUT</a></li>
-  <li><a href="#category">CATEGORIES</a></li>
-  <li><a href="#pricing">OUR TEAM</a></li>
-  <li><a href="#contact">CONTACT</a></li>
-@endsection
-
 @section('content')
   <section>
   <div class="video-container">
@@ -45,7 +38,7 @@
       <div class="container">
         <div class="row text-center  ">
 
-          <h2>About </h2><br>
+          <h2 class="fonti">About </h2><br>
           <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h4><br>
           <br><button class="btn btn-default btn-lg">Get in Touch</button>
         </div>
@@ -56,7 +49,7 @@
 @if(!empty($categories))
 
   <div id="category" class="container text-center rw2">
-    <h2 >CATEGORIES</h2>
+    <h2 class="fonti" >CATEGORIES</h2>
     <h4>What we offer</h4>
     <br>
 
@@ -83,7 +76,7 @@
 
   <div id="pricing" class="container-fluid ">
     <div class="text-center">
-      <h2 >Our Team</h2>
+      <h2 class="fonti" >Our Team</h2>
     </div>
     <div class="container ">
     <div class="col-sm-3 col-xs-12 ">
@@ -136,7 +129,7 @@
 
     <!-- Container (Contact Section) -->
     <div id="contact" class="container-fluid bg-grey">
-      <h2 class="text-center">CONTACT</h2>
+      <h2 class="text-center fonti">CONTACT</h2>
       <div class="container">
         <div class="col-sm-5 ">
           <p>Contact us and we'll get back to you within 24 hours.</p>
@@ -147,18 +140,38 @@
         <div class="col-sm-7 slideanim">
           <div class="row">
             <div class="col-sm-6 form-group">
+            <form action="{{url('/contact')}}" method="POST">
+                {{csrf_field()}}
               <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+                @if ($errors->has('name'))
+                   <span class="help-block">
+                       <strong>{{ $errors->first('name') }}</strong>
+                   </span>
+               @endif
             </div>
             <div class="col-sm-6 form-group">
               <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+              @if ($errors->has('email'))
+                  {{redirect("/#contact")}}
+                   <span class="help-block">
+                       <strong>{{ $errors->first('email') }}</strong>
+                   </span>
+               @endif
             </div>
+
           </div>
           <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea><br>
+            @if ($errors->has('comments'))
+                   <span class="help-block">
+                       <strong>{{ $errors->first('comments') }}</strong>
+                   </span>
+               @endif
           <div class="row">
             <div class="col-sm-12 form-group">
-              <button class="btn pull-right" type="submit">Send</button>
+              <button class="btn pull-right " value= "send Message"type="submit" >Send</button>
             </div>
           </div>
+          </form>
         </div>
       </div>
     </div>

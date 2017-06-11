@@ -38,30 +38,35 @@
     	<div class="tab_content">
             <div id="tab1_content">
                 <div class="events">
+                @if($events)
+                @foreach($events as $event)
+                    <div class="event-block1">
+                        <div class="event-date1 eCol">
+                          <div class="eDate">{{date('d',strtotime($event->event_date))}}</div>
+                          <div class="eMonth">{{date('M',strtotime($event->event_date))}}</div>
+                        </div>
+                        <div class="event-details1 eCol">
+                          <div class="event-name1"><a href="/event/{{$event->id}}/checkevent">
+                          {{$event->event_name}}</a></div>
+                          <br>
+                          <div  class="glyphicon glyphicon-map-marker" "event-location1">
+                          {{$event->event_address}}</div>
+                        </div>
+                    </div>
+                @endforeach 
+                @endif
                 <div></div>
                 </div>
-               </div>
-             </div>  
+            </div>
+        </div>  
 
           </div>
           </div>   
 
 		
-	{{-- 	<ul class="event-list">
-		@foreach($user_attendance as $event)
-				<br>
-			 <li>
-			<img alt="Independence Day" src={{ asset("/upload/image/$event->event_photo") }} />
-            <div class="info">
-            <p class="date">{{$event->event_date}}</p>
-            <h2 class="title">{{$event->event_name}}</h2>
-             <p class="desc">{{$event->event_description}}</p>
-           
-        </ul>
-        </div>
-        	<br>
 		
-		@endforeach --}}
+		
+		
 
 
 @endsection

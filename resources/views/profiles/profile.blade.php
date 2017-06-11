@@ -31,6 +31,7 @@
                         <button type="button" class="btn btn-lg btni" data-toggle="modal" data-target="#editProfile">
                          Edit Profile
                         </button>
+                        
                         <div class="modal fade" id="editProfile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" data-backdrop="false">
                           <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -211,10 +212,6 @@
                             </div>
                           </div>
                         </div>
-
-
-
-
                       </li>
                   </ul>
 
@@ -226,7 +223,6 @@
   <section id="activity">
       <h1 class="text-center fonti"> Activity </h1>
       <div class="container">
-
       <div class="row">
         @foreach ($user_attendance as $event)
           <div class="col-xs-12 col-sm-6 col-md-6">
