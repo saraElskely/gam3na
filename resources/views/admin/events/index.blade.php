@@ -6,9 +6,9 @@
   @endif
 
 
-<table class="table">
+<table  class="rwd-table">
 <thead>
-<tr>
+<tr class="rwd-table">
   <th>ID</th>
   <th>Name</th>
   <th>Description</th>
@@ -23,18 +23,18 @@
   <tr>
   <td>{{$event->id}}</td>
   <td>{{$event->event_name}}</td>
-  <td>{{$event->event_description}}</td>
+  <td ><div class="des">{{$event->event_description}}</div></td>
   <td>{{$event->event_date}}</td>
   <td><img src={{asset("/upload/image/$event->event_photo")}} width="42" height="42" ></td>
- 
+
   <td>{{$event->event_address}}</td>
-   
+
 
 
 
   <td>
 
-             
+
     <a href="events/{{$event->id}}">Show</a>
    <form action='events/{{$event->id}}' method="POST">
    {{csrf_field()}}

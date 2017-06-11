@@ -138,83 +138,23 @@
                                         </div>
                                     </div>
 
-
                                     <div id="googleMap" style="width:100%;height:400px;">
                                     </div>
                                     <input id="lat" name="user_latitude" class="lat" type="hidden" value="@yield('user_latitude')">
                                     <input id="lng" name="user_longitude" class="lon" type="hidden" value="@yield('user_longitude')">
                                     <input id="address" name="user_address" class="adress" type="hidden" value="@yield('user_address')">
-                                    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_0JrPnBAl85q8GhoExBWLry7hat2u8p4&callback=myMap"
-                                            type="text/javascript"></script>
-                                    <script>
-                                        function myMap() {
-                                            var uluru = {lat: 31.200092, lng: 29.918739};
-                                            var mapProp= {
-                                                center:new google.maps.LatLng(31.200092,29.918739),
-                                                zoom:5,
-                                            };
-                                            var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
-                                            var geocoder = new google.maps.Geocoder;
-                                            var address = document.getElementById('address').value;
-                                            var longt = document.getElementById('lng').value;
-                                            var latt = document.getElementById('lat').value;
-                                            latt=parseFloat(latt);
-                                            longt=parseFloat(longt);
-                                            if(latt && longt){
-                                                console.log(latt, longt);
-                                                var u = {lat: parseFloat(latt), lng: parseFloat(longt)};
-                                                var marker = new google.maps.Marker({
-                                                    position: u,
-                                                    map: map,
 
-                                                });
-                                            }else{
-                                                var marker = new google.maps.Marker({
-                                                    position: uluru,
-                                                    map: map,
-
-                                                });
-                                            }
-                                            google.maps.event.addListener(map, 'click', function(event) {
-                                                // alert(event.latLng);
-                                                placeMarker(map, event.latLng ,marker,geocoder);
-                                            });
-                                        }
-                                        function placeMarker(map, location ,marker,geocoder) {
-                                            marker = marker.setPosition(location);
-                                            map.panTo(location);
-                                            $('.lat').val(location.lat());
-                                            $('.lon').val(location.lng());
-                                            geocoder.geocode({'location': location}, function(results, status) {
-                                                if (status === 'OK') {
-                                                    if (results[1]) {
-                                                        map.setZoom(11);
-                                                        $('.adress').val(results[1].formatted_address);
-                                                    } else {
-                                                        window.alert('No results found');
-                                                    }
-                                                } else {
-                                                    window.alert('Geocoder failed due to: ' + status);
-                                                }
-                                            });
-                                        }
-                                    </script>
                                     <div class="modal-footer">
                                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                       <button type="submit" class="btn">
                                           Register
                                       </button>
                                     </div>
-
                                 </form>
                               </div>
                             </div>
                           </div>
                         </div>
-
-
-
-
                       </li>
                   </ul>
 
@@ -247,19 +187,7 @@
       @endforeach
       </div>
     </div>
-        <!-- <button type="button" class="btn  bton">load more</button>-->
-        <div class="text-center">
-                <ul class="pagination">
-                  <li class='disabled'> <a href="#">«</a> </li>
-                  <li class='active'> <a href="#">1</a> </li>
-                  <li> <a href="#">2</a> </li>
-                  <li> <a href="#">3</a> </li>
-                  <li> <a href="#">4</a> </li>
-                  <li> <a href="#">5</a> </li>
-                  <li> <a href="#">»</a> </li>
-                </ul>
-        </div>
-      </section>
+  </section>
 
 
     <section id="category">
@@ -287,9 +215,66 @@
               </div>
             </div>
           @endforeach
+
           </div>
+          <br><br>
     </section>
 
-
+    <script>
+        function myMap() {
+            var uluru = {lat: 31.200092, lng: 29.918739};
+            var mapProp= {
+                center:new google.maps.LatLng(31.200092,29.918739),
+                zoom:5,
+            };
+            var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+            var geocoder = new google.maps.Geocoder;
+            var address = document.getElementById('address').value;
+            var longt = document.getElementById('lng').value;
+            var latt = document.getElementById('lat').value;
+            latt=parseFloat(latt);
+            longt=parseFloat(longt);
+            if(latt && longt){
+                console.log(latt, longt);
+                var u = {lat: parseFloat(latt), lng: parseFloat(longt)};
+                var marker = new google.maps.Marker({
+                    position: u,
+                    map: map,
+                });
+            }else{
+                var marker = new google.maps.Marker({
+                    position: uluru,
+                    map: map,
+                });
+            }
+            google.maps.event.addListener(map, 'click', function(event) {
+                // alert(event.latLng);
+                placeMarker(map, event.latLng ,marker,geocoder);
+            });
+            $('#editProfile').on('shown.bs.modal',function(){
+              google.maps.event.trigger(map,'resize');
+            });
+        }
+        function placeMarker(map, location ,marker,geocoder) {
+            marker = marker.setPosition(location);
+            map.panTo(location);
+            $('.lat').val(location.lat());
+            $('.lon').val(location.lng());
+            geocoder.geocode({'location': location}, function(results, status) {
+                if (status === 'OK') {
+                    if (results[1]) {
+                        map.setZoom(11);
+                        $('.adress').val(results[1].formatted_address);
+                    } else {
+                        window.alert('No results found');
+                    }
+                } else {
+                    window.alert('Geocoder failed due to: ' + status);
+                }
+            });
+        }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_0JrPnBAl85q8GhoExBWLry7hat2u8p4&callback=myMap"
+            type="text/javascript"></script>
 
 @endsection

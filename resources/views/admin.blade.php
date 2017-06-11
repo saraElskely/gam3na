@@ -1,9 +1,9 @@
 @extends('layouts.adminboard')
 
-@section('content')              
+@section('content')
               <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" id="dashboard">
-                    
+
                   <span class="small text-uppercase ">Dashboards</span>
                   <h1>Audience Overview</h1>
 
@@ -146,8 +146,8 @@
                 </div>
               </div>
 
-              
+
             </div>
           </div>
-        
+
 @endsection
