@@ -14,27 +14,30 @@
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="false">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel"> Report</h4>
-      </div>
-      <div class="modal-body">
-						<form method="post" action="/event/{{$event->id}}/reports">
-									{{csrf_field()}}
-								<textarea name="report_content" cols="62" rows="3" placeeholder="Report this event"class="form-controller"></textarea>
+		<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		<h4 class="modal-title" id="myModalLabel"> Report</h4>
+		</div>
 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Send Message</button>
-      </div>
-      </form>
-    </div>
-  </div>
+		<form method="post" action="/event/{{$event->id}}/reports">
+		<div class="modal-body">
+					{{csrf_field()}}
+				<textarea name="report_content" cols="44" rows="3" placeeholder="Report this event" class="form-controller"></textarea>
+		</div>
+		  <div class="modal-footer">
+		    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		    <button type="submit" class="btn btn-primary">Send Message</button>
+		  </div>
+			</form>
+
+		</div>
+	</div>
 </div>
 
-<section>
+
+	<section>
 		<div class="headDiv" style="background-image: url({{ asset("/upload/image/$event->event_photo") }})">
+
 		    <h1 class="evName fonti">{{$event->event_name}}</h1>
 		    <div class="rigBtn">
 			    @if($event->user_attend_event->where('id', Auth::id())->isEmpty())

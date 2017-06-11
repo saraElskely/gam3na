@@ -39,7 +39,7 @@
 			                         <div class="form-group">
 			                          <label class="col-md-4 control-label" for="textarea">Description</label>
 			                          <div class="col-md-8">
-			                            <textarea class="form-control" placeholder="Say somthing about your event" id="textarea" name= "event_description" value="@yield('editBody')"></textarea>
+			                            <textarea class="form-control" placeholder="Say somthing about your event" id="textarea" name= "event_description" value="@yield('editBody')">@yield('editBody')</textarea>
 			                          </div>
 			                        </div>
 
@@ -175,7 +175,5 @@
 			</script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_0JrPnBAl85q8GhoExBWLry7hat2u8p4&callback=myMap"
   type="text/javascript"></script>
-
-     	@include('event.partials.errors')
 
 @endsection

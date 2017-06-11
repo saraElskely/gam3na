@@ -212,16 +212,15 @@ class Events extends Controller
 
 
       public function calendar(){
-
-        return view('event.calendar');
+        $today = Carbon::today();
+        $events = Event::orderBy('event_date','asc')->where('event_date','>',$today)->get();
+        return view('event.calendar',['events'=>$events]);
 
       }
-      public function calendarM($month=1){
-        $events = Event::all();
+      public function calendarM($month=01){
         $user = User::find(Auth::id());
-        $user_attendance = $user->events_attend_by_user()
-        ->where('event_date','like','%-'.$month.'-%')
-        ->get();
+        $attendance = $user->events_attend_by_user();
+        $user_attendance = Event::where('event_date','like','%-'.$month.'-%')->get();
         return $user_attendance ;
 
       }

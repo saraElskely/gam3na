@@ -1299,13 +1299,11 @@ ul{
            <li class="card card-1"><img src={{asset("/upload/image/$photo->user_event_photo")}} class="img-shadow-1"/>
            </li>
          @endfor
-
          </ul>
        </li>
      @endfor
     </ul>
   @endif
-
 </div>*/
 .contact-form-page{
                height: 50px;

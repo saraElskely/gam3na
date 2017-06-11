@@ -72,7 +72,6 @@ class AdminController extends Controller
             'photo' =>$admin['photo'],
             'password' => bcrypt($request->password)]);
       return redirect('admin/admins');
-
     }
     public function destroy($id)
     {

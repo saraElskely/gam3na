@@ -140,18 +140,38 @@
         <div class="col-sm-7 slideanim">
           <div class="row">
             <div class="col-sm-6 form-group">
+            <form action="{{url('/contact')}}" method="POST">
+                {{csrf_field()}}
               <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+                @if ($errors->has('name'))
+                   <span class="help-block">
+                       <strong>{{ $errors->first('name') }}</strong>
+                   </span>
+               @endif
             </div>
             <div class="col-sm-6 form-group">
               <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+              @if ($errors->has('email'))
+                  {{redirect("/#contact")}}
+                   <span class="help-block">
+                       <strong>{{ $errors->first('email') }}</strong>
+                   </span>
+               @endif
             </div>
+
           </div>
           <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea><br>
+            @if ($errors->has('comments'))
+                   <span class="help-block">
+                       <strong>{{ $errors->first('comments') }}</strong>
+                   </span>
+               @endif
           <div class="row">
             <div class="col-sm-12 form-group">
-              <button class="btn pull-right" type="submit">Send</button>
+              <button class="btn pull-right " value= "send Message"type="submit" >Send</button>
             </div>
           </div>
+          </form>
         </div>
       </div>
     </div>

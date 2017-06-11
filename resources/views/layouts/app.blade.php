@@ -35,7 +35,7 @@
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
-          <li>{{old('form_name')}}</li>
+
           @if (Auth::guest())
             <li><a href="#about">ABOUT</a></li>
             <li><a href="#category">CATEGORIES</a></li>
@@ -53,7 +53,10 @@
                        <div class="modal-body">
                          <form action="login" method="POST">
                            {{ csrf_field() }}
-                           <input type='hidden' name='form_name' value='login'> </input>
+
+                           <input type="hidden" name="form_name" value="login">
+
+
                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                <label for="email" class="control-label">E-Mail Address</label>
                                <div class="">
@@ -71,7 +74,7 @@
                                <label for="password" class="control-label">Password</label>
 
                                <div class="">
-                                   <input id="password" type="password" class="form-control" name="password" required>
+                                   <input id="password" type="password" class="form-control" name="password" >
 
                                    @if ($errors->has('password'))
                                        <span class="help-block">
@@ -109,8 +112,10 @@
                  </div>
             </li>
             <li>
+
               <button type="button" class="lgn" data-toggle="modal" data-target="#register" data-whatever="@mdo">SIGN UP</button>
                   <div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+
                     <div class="modal-dialog" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
@@ -119,6 +124,7 @@
                         </div>
                         <div class="modal-body">
                           <form class="form-horizontal" role="form" method="POST" action="register" enctype="multipart/form-data">
+                           <input type="hidden" name="form_name" value="register">
                               {{ csrf_field() }}
                               <input type='hidden' name='form_name' value='register'> </input>
                               <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -242,7 +248,10 @@
                               <input id="lng" name="user_longitude" class="lon" type="hidden" value="@yield('user_longitude')">
                               <input id="address" name="user_address" class="adress" type="hidden" value="@yield('user_address')">
 
-                              <script>
+                               <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_0JrPnBAl85q8GhoExBWLry7hat2u8p4&callback=myMap"
+                                      type="text/javascript"></script>
+                                 <script>
+
                                   function myMap() {
                                       var uluru = {lat: 31.200092, lng: 29.918739};
                                       var mapProp= {
@@ -297,8 +306,8 @@
                                           }
                                       });
                                   }
-                              </script>
-
+                              </script>      
+                        
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn">
@@ -432,11 +441,13 @@
         });
 
     });
+
     @if (count($errors) > 0 and  old('form_name') === 'register')
         $('#register').modal('show');
     @elseif (count($errors) > 0 and  ! old('form_name') )
       $('#login').modal('show');
     @endif
+
 
 
  </script>

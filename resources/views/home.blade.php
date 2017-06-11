@@ -79,8 +79,8 @@
 </section>
 @endif
 
-
 @if(! $events_attended_by_user->isEmpty())
+
   <section class="slide">
         <br><br>
     <div class="container ">
@@ -123,6 +123,7 @@
       </div>
     </div>
   </section>
+
 @endif
 <br>
   @if(!empty($user_subscribed_categories))

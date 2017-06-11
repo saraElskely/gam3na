@@ -20,6 +20,7 @@
 <tbody>
 
   @foreach($subcategories as $subcategory)
+
   <tr>
   <td>{{$subcategory->id}}</td>
   <td><a href="subcategories/{{$subcategory->id}}">{{$subcategory->subcategory_name}}</a></td>
@@ -29,8 +30,6 @@
 
   <td>
 
-
-    {{-- <a href="subcategories/{{$subcategory->id}}">Show</a> --}}
    <a href="subcategories/{{$subcategory->id}}/edit" class="glyphicon glyphicon-pencil"></a>
    <form action='subcategories/{{$subcategory->id}}' method="POST">
    {{csrf_field()}}

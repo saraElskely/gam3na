@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use App\User;
 use DB;
+use Validator;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -93,6 +95,5 @@ class LoginController extends Controller
         }
         return redirect('home');
     }
-
 
 }
