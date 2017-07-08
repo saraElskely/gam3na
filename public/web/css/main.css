@@ -347,13 +347,13 @@ footer{
    -o-transform: scale(1.1);
 }
 .txt-railway{
-  color: white;
+  /* color: white; */
   padding: -18px;
-  position: relative;
-  top: 37px;
+  /* position: relative; */
+  /* top: 37px; */
 }
 .fa {
-   font-size: 38px;
+   font-size: 43px;
    color: white;
    -webkit-transform: scale(0.8);
    -moz-transform: scale(0.8);
@@ -771,7 +771,7 @@ input[type=submit]:hover {
 }
 
 input[type=file] {
-  display: none;
+  /* display: none; */
 }
 .myUL{
     list-style-type: none;
@@ -850,4 +850,12 @@ h3 {
 .row {
     margin-right: -15px;
     /* margin-left: 78px; */
+}
+.createAct{
+
+background-color: #df4864;
+}
+.navbar-nav li a:hover, .navbar-nav li.active a {
+    color: #286bce;
+    background-color: #df4864!important;
 }

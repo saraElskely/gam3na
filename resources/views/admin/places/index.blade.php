@@ -6,37 +6,41 @@
   @endif
 
 <a href="places/create" class="btn btn-default">Add New</a>
-<br> <br>
-<table class="rwd-table">
+<br> 
+<center>
+              <h1 style=color:grey >Places</h1>
+                </center>
+                <br>
+<table class="table table-bordered drop-shadow lifted">
 <thead>
 <tr class="rwd-table">
-  <th>ID</th>
-  <th>Name</th>
-  <th>Description</th>
-  <th>Photo</th>
-  <th>details_address</th>
-  <th>Address</th>
+  <th><h1>ID</h1></th>
+  <th><h1>Name</h1></th>
+  <th><h1>Description</h1></th>
+  <th><h1>Photo</h1></th>
+  <th><h1>Details_address</h1></th>
+  <th><h1>Address</h1></th>
   </tr>
 </thead>
 <tbody>
 
   @foreach($places as $place)
   <tr>
-  <td>{{$place->id}}</td>
-  <td>{{$place->place_name}}</td>
-  <td>{{$place->place_description}}</td>
+  <td><h2 style=color:grey>{{$place->id}}</h2></td>
+  <td><h2 style=color:grey>{{$place->place_name}}</h2></td>
+  <td><h2 style=color:grey>{{$place->place_description}}</h2></td>
 
   <td><img src={{asset("/upload/image/$place->place_photo")}} width="42" height="42" ></td>
-  <td>{{$place->place_details_address}}</td>
-  <td>{{$place->place_address}}</td>
+  <td><h2 style=color:grey>{{$place->place_details_address}}</h2></td>
+  <td><h2 style=color:grey>{{$place->place_address}}</h2></td>
 
 
 
 
-  <td>
+  <td   style=color:grey >
 
     <a href="places/{{$place->id}}/edit" class="glyphicon glyphicon-pencil"></a>
-    <a href="places/{{$place->id}}" class="glyphicon glyphicon-tag"></a>
+   
    <form action='places/{{$place->id}}' method="POST" >
    {{csrf_field()}}
    {{method_field('DELETE')}}

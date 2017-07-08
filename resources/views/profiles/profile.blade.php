@@ -17,21 +17,26 @@
           <div class="profile-head">
               <div class="col-md- col-sm-4 col-xs-12">
                 <img src={{asset("/upload/image/$user->user_photo")}} class="img-responsive" >
-                <h6>{{$user->name}}</h6>
+                {{-- <h6>{{$user->name}}</h6> --}}
               </div><!--col-md-4 col-sm-4 col-xs-12 close-->
               <div class="col-md-5 col-sm-5 col-xs-12">
                   <h5>{{$user->name}}</h5>
-                  <p>{{$user->job}} </p>
                   <ul>
-                      <li><span class="glyphicon glyphicon-briefcase"></span> {{$user->date_of_birth}}</li>
-                      <li><span class="glyphicon glyphicon-map-marker"></span>{{$user->gender}}</li>
-                      <li><span class="glyphicon glyphicon-home"></span> {{$user->address}}</li>
-                      <li><span class="glyphicon glyphicon-phone"></span> <a href="#" title="call">(+021) 956 789123</a></li>
-                      <li><span class="glyphicon glyphicon-envelope"></span><a href="#" title="mail">{{$user->email}} </a>
-                        <button type="button" class="btn btn-lg btni" data-toggle="modal" data-target="#editProfile">
+                      <li><i class="fa fa-building-o" aria-hidden="true"></i>{{$user->job}} </li>
+                      <li><i class="fa fa-calendar" aria-hidden="true"></i> {{$user->date_of_birth}}</li>
+                      <li><span class="fa fa-venus-mars"></span>{{$user->gender}}</li>
+                      <li><i class="fa fa-map-marker" aria-hidden="true"></i> {{$user->address}}</li>
+                      <li><i class="fa fa-mobile" aria-hidden="true"></i>{{$user->mobile}}</a></li>
+                      <li><i class="fa fa-envelope" aria-hidden="true"></i><a href="{{$user->email}}" title="mail">{{$user->email}} </a></li>
+                      <li>  <button type="button" class="btn btn-lg btni" data-toggle="modal" data-target="#editProfile">
                          Edit Profile
                         </button>
-                        
+
+
+
+
+
+
                         <div class="modal fade" id="editProfile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" data-backdrop="false">
                           <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -48,6 +53,7 @@
 
                                         <div class="">
                                             <input id="name" type="text" placeholder="Jone" class="form-control" name="name" value='{{$user->name}}' required autofocus>
+                                            <small  class="form-text text-muted">couldn't start with (numbers,hyphens,_,-,.)</small>
 
                                             @if ($errors->has('name'))
                                                 <span class="help-block">
@@ -101,8 +107,10 @@
                                           <label for="gender" class="control-label">Gender</label>
 
                                           <div class="">
-                                            <input id="gender" type="text" class="form-control" name="gender" value="{{$user->gender}}" required >
-
+                                            <select name="gender">
+                                              <option value="female">female</option>
+                                              <option value="male">male</option>
+                                            </select>
 
                                               @if ($errors->has('gender'))
                                                   <span class="help-block">
@@ -130,6 +138,7 @@
 
                                         <div class="">
                                             <input id="mobile" type="tel" placeholder="012-3456-7890" class="form-control" name="mobile" value="{{ old('mobile') }}">
+                                            <small  class="form-text text-muted">should start with 2</small>
 
                                             @if ($errors->has('mobile'))
                                                 <span class="help-block">
@@ -138,12 +147,71 @@
                                             @endif
                                         </div>
                                     </div>
+                                    <label for="user_address" class="control-label">Address</label>
 
                                     <div id="googleMap" style="width:100%;height:400px;">
                                     </div>
                                     <input id="lat" name="user_latitude" class="lat" type="hidden" value="@yield('user_latitude')">
                                     <input id="lng" name="user_longitude" class="lon" type="hidden" value="@yield('user_longitude')">
                                     <input id="address" name="user_address" class="adress" type="hidden" value="@yield('user_address')">
+
+                                    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_0JrPnBAl85q8GhoExBWLry7hat2u8p4&callback=myMap"
+                                            type="text/javascript"></script>
+                                    <script>
+                                        function myMap() {
+                                            var uluru = {lat: 31.200092, lng: 29.918739};
+                                            var mapProp= {
+                                                center:new google.maps.LatLng(31.200092,29.918739),
+                                                zoom:5,
+                                            };
+                                            var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+                                            var geocoder = new google.maps.Geocoder;
+                                            var address = document.getElementById('address').value;
+                                            var longt = document.getElementById('lng').value;
+                                            var latt = document.getElementById('lat').value;
+                                            latt=parseFloat(latt);
+                                            longt=parseFloat(longt);
+                                            if(latt && longt){
+                                                console.log(latt, longt);
+                                                var u = {lat: parseFloat(latt), lng: parseFloat(longt)};
+                                                var marker = new google.maps.Marker({
+                                                    position: u,
+                                                    map: map,
+                                                });
+                                            }else{
+                                                var marker = new google.maps.Marker({
+                                                    position: uluru,
+                                                    map: map,
+                                                });
+                                            }
+                                            google.maps.event.addListener(map, 'click', function(event) {
+                                                // alert(event.latLng);
+                                                placeMarker(map, event.latLng ,marker,geocoder);
+                                            });
+                                            $('#editProfile').on('shown.bs.modal',function(){
+                                              google.maps.event.trigger(map,'resize');
+                                            });
+                                        }
+                                        function placeMarker(map, location ,marker,geocoder) {
+                                            marker = marker.setPosition(location);
+                                            map.panTo(location);
+                                            $('.lat').val(location.lat());
+                                            $('.lon').val(location.lng());
+                                            geocoder.geocode({'location': location}, function(results, status) {
+                                                if (status === 'OK') {
+                                                    if (results[1]) {
+                                                        map.setZoom(11);
+                                                        $('.adress').val(results[1].formatted_address);
+                                                    } else {
+                                                        window.alert('No results found');
+                                                    }
+                                                } else {
+                                                    window.alert('Geocoder failed due to: ' + status);
+                                                }
+                                            });
+                                        }
+                                    </script>
+
 
                                     <div class="modal-footer">
                                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -156,6 +224,7 @@
                             </div>
                           </div>
                         </div>
+
                       </li>
                   </ul>
 
@@ -164,23 +233,59 @@
       </div><!--container close-->
   </section>
 
+
+
+  @if(!empty($user->events))
+    <section id="activity">
+        <h1 class="text-center fonti"> Your Activities </h1>
+        <div class="container">
+        <div class="row">
+          @foreach ($user->events as $event)
+            <div class="col-xs-12 col-sm-6 col-md-6">
+                <div class="well well-sm">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-4">
+                            <img src={{ asset("/upload/image/$event->event_photo") }} alt="" class="img-rounded img-responsive" />
+                        </div>
+                        <div class="col-sm-6 col-md-8 par">
+                          <h2><a href="/event/{{$event->id}}/checkevent">{{$event->event_name}}</a> </h2>
+                          <p><i class="fa fa-map-marker" aria-hidden="true"></i>{{$event->event_address}}</p>
+                          <p><i class="fa fa-calendar" aria-hidden="true"></i>{{date('d-M-Y',strtotime($event->event_date))}}
+                             <i class="fa fa-clock-o" aria-hidden="true"></i>{{date('H:i',strtotime($event->event_date))}}</p>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        @endforeach
+        </div>
+      </div>
+    </section>
+  @endif
+
+
+
+
   <section id="activity">
-      <h1 class="text-center fonti"> Activity </h1>
+      <h1 class="text-center fonti"> Joined Activities </h1>
       <div class="container">
       <div class="row">
         @foreach ($user_attendance as $event)
           <div class="col-xs-12 col-sm-6 col-md-6">
-              <div class="well well-sm">
+              <div class="well well-sm1">
                   <div class="row">
                       <div class="col-sm-6 col-md-4">
                           <img src={{ asset("/upload/image/$event->event_photo") }} alt="" class="img-rounded img-responsive" />
                       </div>
                       <div class="col-sm-6 col-md-8 par">
-                        {{$event->event_name}} <br>
-                        {{$event->event_description}}
+                        <h2><a href="/event/{{$event->id}}/checkevent">{{$event->event_name}}</a> </h2>
+                        <p><i class="fa fa-map-marker" aria-hidden="true"></i>{{$event->event_address}}</p>
+                        <p><i class="fa fa-calendar" aria-hidden="true"></i>{{date('d-M-Y',strtotime($event->event_date))}}
+                           <i class="fa fa-clock-o" aria-hidden="true"></i>{{date('H:i',strtotime($event->event_date))}}</p>
 
                       </div>
-                      <button type="button" class="btn  bton">Delete</button>
+
                   </div>
               </div>
           </div>
@@ -201,15 +306,11 @@
                 <div class="post-module">
                   <!-- Thumbnail-->
                   <div class="thumbnail">
-                    <div class="date"> <a href="#0">
-                      <div class="day"><i class="fa fa-times" aria-hidden="true"></i></div>
-                      </a> </div>
                     <img src= {{ asset("/upload/image/$category->category_photo") }} class="img-responsive" alt=""> </div>
                   <!-- Post Content-->
                   <div class="post-content">
                     <div class="category"><a href="{{ route('categories.show', $category->id) }}">{{$category->category_name}}</a></div>
-                    <h1 class="title">Lorem Ipsum</h1>
-                    <h2 class="sub_title">LEAD COORDINATOR</h2>
+                    <h2 class="sub_title">{{$category->category_description}}</h2>
                   </div>
                 </div>
               </div>
@@ -220,61 +321,7 @@
           <br><br>
     </section>
 
-    <script>
-        function myMap() {
-            var uluru = {lat: 31.200092, lng: 29.918739};
-            var mapProp= {
-                center:new google.maps.LatLng(31.200092,29.918739),
-                zoom:5,
-            };
-            var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
-            var geocoder = new google.maps.Geocoder;
-            var address = document.getElementById('address').value;
-            var longt = document.getElementById('lng').value;
-            var latt = document.getElementById('lat').value;
-            latt=parseFloat(latt);
-            longt=parseFloat(longt);
-            if(latt && longt){
-                console.log(latt, longt);
-                var u = {lat: parseFloat(latt), lng: parseFloat(longt)};
-                var marker = new google.maps.Marker({
-                    position: u,
-                    map: map,
-                });
-            }else{
-                var marker = new google.maps.Marker({
-                    position: uluru,
-                    map: map,
-                });
-            }
-            google.maps.event.addListener(map, 'click', function(event) {
-                // alert(event.latLng);
-                placeMarker(map, event.latLng ,marker,geocoder);
-            });
-            $('#editProfile').on('shown.bs.modal',function(){
-              google.maps.event.trigger(map,'resize');
-            });
-        }
-        function placeMarker(map, location ,marker,geocoder) {
-            marker = marker.setPosition(location);
-            map.panTo(location);
-            $('.lat').val(location.lat());
-            $('.lon').val(location.lng());
-            geocoder.geocode({'location': location}, function(results, status) {
-                if (status === 'OK') {
-                    if (results[1]) {
-                        map.setZoom(11);
-                        $('.adress').val(results[1].formatted_address);
-                    } else {
-                        window.alert('No results found');
-                    }
-                } else {
-                    window.alert('Geocoder failed due to: ' + status);
-                }
-            });
-        }
-    </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_0JrPnBAl85q8GhoExBWLry7hat2u8p4&callback=myMap"
-            type="text/javascript"></script>
+
+
 
 @endsection

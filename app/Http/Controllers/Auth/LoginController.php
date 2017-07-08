@@ -47,14 +47,14 @@ class LoginController extends Controller
     /**
      * Redirect the user to the Facbook authentication page.
      *
-     * @return Response    
+     * @return Response
      */
 
     protected function redirectTo()
     {
        $select=DB::table('users')->where('id','=',Auth::id())
             ->where('block','=',0)->get();
-            
+
         if(($select)->isEmpty()){
              return '/';
         }else{

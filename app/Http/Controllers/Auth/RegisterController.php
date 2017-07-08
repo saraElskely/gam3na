@@ -42,10 +42,10 @@ class RegisterController extends Controller
             'password' => 'required|min:6|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/|confirmed',
             'job' => 'nullable|max:255',
             'gender' => 'required',
-            'date_of_birth' => 'required|date|before:'.$before,
+            'date_of_birth' => 'required|date',
             'user_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 	        'mobile' =>  'nullable|regex:/(201)[0-9]{9}/|size:12',
-		
+
         ]);
     }
 

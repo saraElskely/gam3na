@@ -55,7 +55,7 @@ class Events extends Controller
         $event = new Event;
         $this->validate($request, [
             'event_name' => 'required|unique:events',
-            'event_description' => 'required|min:50',
+            'event_description' => 'required|min:5',
             'event_date' => 'required|after:today',
             'event_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'event_address' => 'required',
@@ -83,12 +83,12 @@ class Events extends Controller
         $event->event_latitude = $request->event_latitude;
 
         if ($event->save()) {
-            $user = User::all();
+            $user = User::where('id','!=',Auth::id())->get();
             Notification::send($user, new AddEvent($event));
             $data = 'we Have New Event ' . $event->event_name;
             StreamLabFacades::pushMessage('gam3na', 'AddEvent', $data);
         }
-        return redirect('event');
+        return redirect('/home');
 
     }
 
@@ -149,13 +149,15 @@ class Events extends Controller
         }
         $event->event_name = $request->event_name;
         $event->event_description = $request->event_description;
-        $event->event_date = $request->event_date;
+        if($request->event_date){
+          $event->event_date = $request->event_date;
+        }
         $event->event_address = $request->event_address;
         $event->event_longitude = $request->event_longitude;
         $event->event_latitude = $request->event_latitude;
         $event->save();
         session()->flash('message', 'updated successfully');
-        return redirect('event');
+        return redirect('/home');
     }
 
     /**
@@ -169,7 +171,7 @@ class Events extends Controller
         $item = Event::find($id);
         $item->delete();
         session()->flash('message', 'Deleted successfully');
-        return redirect('/event');
+        return redirect('/home');
     }
 
     public function user_attend($id)
@@ -213,14 +215,26 @@ class Events extends Controller
 
       public function calendar(){
         $today = Carbon::today();
-        $events = Event::orderBy('event_date','asc')->where('event_date','>',$today)->get();
+        $events = Event::orderBy('event_date','asc')->where('event_date','>',$today)
+        ->whereNotIn('id',function($query){
+          $query->select('event_id')
+          ->from('reports')
+          ->where('user_id',Auth::id());
+        })->get();
+
         return view('event.calendar',['events'=>$events]);
 
       }
       public function calendarM($month=01){
         $user = User::find(Auth::id());
         $attendance = $user->events_attend_by_user();
-        $user_attendance = Event::where('event_date','like','%-'.$month.'-%')->get();
+        $user_attendance = Event::where('event_date','like','%-'.$month.'-%')
+        ->whereNotIn('id',function($query){
+          $query->select('event_id')
+          ->from('reports')
+          ->where('user_id',Auth::id());
+        })->get();
+
         return $user_attendance ;
 
       }

@@ -17,4 +17,3 @@
 @section('editMethod')
 	{{method_field('PUT')}}
 @endsection
-

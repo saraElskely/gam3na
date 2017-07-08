@@ -42,7 +42,7 @@ Route::post('/contact','homeController@postcontact');
 Route::get('/home/{id}','homeController@show');
 
 Route::prefix('profile')->group(function(){
-	Route::get('/{id}','ssProfilecontroller@show');
+	Route::get('/{id}','Profilecontroller@show');
 	Route::get('/edit','Profilecontroller@editprofile')->name('profile.editprofile');
 	Route::put('/update','Profilecontroller@updateprofile')->name('profile.updateprofile');
 	Route::get('/','Profilecontroller@profile');
@@ -72,4 +72,3 @@ Route::get('MarkAllSeen','Events@AllSeen');
 //Social Media socialite routes
 Route::get('login/{service}', 'Auth\LoginController@redirectToProvider');
 Route::get('login/{service}/callback', 'Auth\LoginController@handleProviderCallback');
-

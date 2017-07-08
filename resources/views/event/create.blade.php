@@ -6,8 +6,8 @@
 
 @section('content')
 
-	<div class="jumbotron">
-		  <div class="headDiv">
+	<div class="jumbotron" style="background-image: url({{ asset("/web/images/f-01.png") }})">
+		<div class="headDiv" >
 			  <div class="container text-center">
 			    <h1 class="fonty">create activity</h1>
 			  </div>
@@ -39,7 +39,7 @@
 			                         <div class="form-group">
 			                          <label class="col-md-4 control-label" for="textarea">Description</label>
 			                          <div class="col-md-8">
-			                            <textarea class="form-control" placeholder="Say somthing about your event" id="textarea" name= "event_description" value="@yield('editBody')">@yield('editBody')</textarea>
+			                            <textarea class="form-control" placeholder="Say somthing about your event" id="textarea" name= "event_description" value="" > @yield('event_description') </textarea>
 			                          </div>
 			                        </div>
 
@@ -60,10 +60,12 @@
 			                            </select>
 			                          </div>
 			                        </div>
-						        	 <div class="col-md-6">
+												 <div class="form-group">
+													 <label class="col-md-4 control-label" for="event_name">Event Photo</label>
+													 <div class="col-md-8">
 			                        <p><input type="file" id="id_photo" "file" name="event_photo"  value="@yield('editevent_photo')" /></p>
-
-											</div>
+													 </div>
+												 </div>
 			            <div id="googleMap" style="width:646px;height:400px;"></div>
 									<input id="lat" name="event_latitude" class="lat" type="hidden" value="@yield('event_latitude')">
 									<input id="lng" name="event_longitude" class="lon" type="hidden" value="@yield('event_longitude')">
@@ -72,7 +74,7 @@
 									<div class="form-group">
 										<div class=" grpbtn">
 												<a href="/event" class="btn btn-info">Cancel</a>
-													<button type="submit" class="btn btn-default submit "><i class="fa fa-paper-plane" aria-hidden="true"></i>  Create an Activity</button>
+													<button type="submit" class="btn btn-default submit ">Create an Activity</button>
 													 </div>
 										</div>
 
@@ -94,12 +96,11 @@
 										</div>
 										<div class="col-sm-6 col-md-8 ">
 														<ul class="myUL">
-																 <li><span class="glyphicon glyphicon glyphicon-user"></span> {{$place->place_name}}</li>
-																<li><span class=" glyphicon glyphicon-pencil"></span> {{$place->place_description}}</li>
-																<li><span class="glyphicon glyphicon-home"></span> <span class="place">{{$place->place_address}}</span></li>
-																<li><span class="glyphicon glyphicon-map-marker"></span>{{$place->place_details_address}}</li>
-																<li><span class="glyphicon glyphicon-phone"></span> tel</li>
-																<li></li>
+																 <li><i class="fa fa-building-o" aria-hidden="true"></i> {{$place->place_name}}</li>
+																<li><i class="fa fa-info" aria-hidden="true"></i> {{$place->place_description}}</li>
+																<li><i class="fa fa-globe" aria-hidden="true"></i>{{$place->place_address}}</li>
+																<li><i class="fa fa-map-marker" aria-hidden="true"></i>{{$place->place_details_address}}</li>
+
 														</ul>
 										</div>
 						</div>

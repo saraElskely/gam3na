@@ -23,8 +23,9 @@ body {
 }
 .par{
   /* margin-top: 35px; */
-  font-size: 21px;
-  padding: 18px;
+  font-size: 19px;
+  /* color: aqua; */
+  /* padding: 18px; */
 }
 .pagination>li>a{
   color: #1c9287;
@@ -247,11 +248,9 @@ header, footer, article, section, nav, {
 display:block;
 }
 
-img {
-max-width: 100%;
-}
+img {max-width: 100%;}
 
-a {color: #e6e1e3;/* text-decoration:none; */-webkit-transition: all .3s ease-in-out;-moz-transition: all .3s ease-in-out;-o-transition: all .3s ease-in-out;transition: all .3s ease-in-out;}
+a {color: #f7fbfc;text-decoration:none;-webkit-transition: all .3s ease-in-out;-moz-transition: all .3s ease-in-out;-o-transition: all .3s ease-in-out;transition: all .3s ease-in-out;}
 
 a:hover, a:focus { /* when you declare a hover state, make sure you declare a focus state as well *//* color: #000; */}
 
@@ -411,7 +410,7 @@ footer p {/* color: rgb(247, 251, 252); *//* margin-bottom: 0; *//* padding: 0; 
 .dark {background: #635d67;color: white;}
 #hero {
 position: relative;
-background: url(../images/bg.png) no-repeat center center fixed;
+background: url(../images/f-01.png) no-repeat center center fixed;
 -webkit-background-size: cover;
 -moz-background-size: cover;
 background-size: cover;
@@ -475,7 +474,7 @@ animation-iteration-count: infinite;
 animation-name: scroll;
 }
 /*Now the styles*/
-* {/* margin: 0; *//* padding: 0; */}
+* {margin: 0;padding: 0;}
 
 .accordian {width: 805px;overflow: hidden;margin: 108px auto;-moz-box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.35);}
 
@@ -943,7 +942,7 @@ padding: 0px;
   font-size: 14px;
 }
 
-.btn {/* display: block; */height: 60px;background-color: #1c9287;width: 60px;/* margin-left: 12px; */position: absolute;1c9287position: relativeright: 0pxbackground-color: beige;overflow: beige;right: 31px;top: 4em;/* text-decoration: none; *//* text-transform: uppercase; */color: white;2px */color: white;text-align: center;padding: 0px;border-radius: 50%;}
+.btn {/* display: block; */height: 60px;background-color: #1c9287;width: 60px;/* margin-left: 12px; */position: absolute;1c9287position: relativeright: 0pxbackground-color: beige;overflow: beige;right: 31px;top: 5em;/* text-decoration: none; *//* text-transform: uppercase; *//* color: white; */2px */color: white;text-align: center;padding: 0px;border-radius: 50%;}
 .bt{
   background-color: #1c9287;
   width: 60px;
@@ -1091,7 +1090,7 @@ span {
 }
 button{
   border: none;
-  background: transparent;
+  /* background: transparent; */
 }
 .opening-div h2
 {
@@ -1206,7 +1205,8 @@ button{
 
 }
 .btn:hover{
-  background-color: transparent;
+  background-color: #df4864;
+  color: white;
 }
 .fon{
   font-family: mySecondFont;
@@ -1271,7 +1271,7 @@ height: 500px;
 .well-sm {
     padding: 9px;
     border-radius: 3px;
-    height: 182px;
+    height: 227px;
   }
   .glyphicon-ok:before {
       content: "\e013";
@@ -1282,3 +1282,19 @@ height: 500px;
       content: "\e062";
       font-size: 24px;
   }
+  .img-rounded {
+      border-radius: 6px;
+      /* width: 150px; */
+      height: 150px;
+      text-align: center;
+  }
+  .ai{
+    color: #1c9287;
+  }
+  .ai:focus, .ai:hover {
+      color: #df4864;
+      text-decoration: none;
+  }
+.fa-color {
+      color: #818181;
+}

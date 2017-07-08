@@ -10,7 +10,7 @@
   <section>
   <div class="video-container">
   	   <video autoplay loop muted>
-  		     <source src= {{ asset("web/video/Sequence%2001_x264.mp4") }} type="video/mp4">
+  		     <source src= {{ asset("web/video/site.mp4") }} type="video/mp4">
   		     Your browser does not support the video tag.
   	   </video>
        <div class="overlay-desc">
@@ -40,8 +40,9 @@
         <div class="row text-center  ">
 
           <h2 class="fonti">About </h2><br>
-          <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h4><br>
-          <br><button class="btn btn-default btn-lg">Get in Touch</button>
+          <h4>The biggest disease known to mankind is loneliness"
+Gam3na gathering people to do to do more of what they want to do in life. It is organized around one simple idea: when we get together and do the things that matter to us, we’re at our best and Gam3na does that  It brings people together to do, explore, teach and learn the things that help them come alive.</h4><br>
+          <br>
         </div>
       </div>
   </div>
@@ -179,28 +180,27 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
               <script>
-              alert('saraaaaaaaaa');
               $(document).ready(function(){
 
-              $('#activity').on('click',function() {   
+              $('#activity').on('click',function() {
                 var b='{{Auth::guest()}}';
                 if(b == 1){
-                  alert(b);
+                  $('#login').modal('show');
                 }else{
                   window.location.href = '{{url("/event/create")}}';
                 }
-                
+
               });
-              $('#partner').on('click',function() {   
+              $('#partner').on('click',function() {
                 var b='{{Auth::guest()}}';
                 if(b == 1){
-                  alert(b);
+                  $('#login').modal('show');
                 }else{
                   window.location.href = '{{url("/event/calendar")}}';
                 }
-                
+
               });
-    
+
               });
               </script>
 

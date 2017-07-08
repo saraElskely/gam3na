@@ -10,15 +10,15 @@
 
 @section('content')
   <div class="sections " id="wrap">
-    <section id="hero" id="main">
-      <h1><span>Category</span><br>Ramadan</h1>
+    <section id="hero" id="main" >
+      <h1><span>Welcome</span><br>Gam3na</h1>
 
     </section>
 
 
 @if(!empty($events))
 <section id="activity" class="slide1">
-    <h1 class="text-center fonti" style="padding-bottom:4%">Recomended</h1>
+    <h1 class="text-center fonti" style="padding-bottom:4%">Recomended Activities</h1>
     <div class="container">
 
       <div class="row" >
@@ -28,11 +28,22 @@
                   <div class="row">
                       <div class="col-sm-6 col-md-4">
                         <a href="/event/{{$event->id}}/checkevent" >
+                          @if ($event->event_photo == 'null')
+                            <img src={{ asset ("/web/images/f-01.png") }} class="img-rounded img-responsive" />
+                          @else
                           <img src={{ asset ("/upload/image/$event->event_photo") }} class="img-rounded img-responsive" />
+                          @endif
+                        </a>
+                        <i class="fa fa-calendar fa-color"  aria-hidden="true"></i>{{date('d-m-Y',strtotime($event->event_date))}}
+                        <i class="fa fa-clock-o fa-color"  aria-hidden="true"></i>{{date('H:i', strtotime($event->event_date))}}
+                      </div>
+                      <div class="col-sm-6 col-md-8 par">
+                        <a href="/event/{{$event->id}}/checkevent" class="ai" >
+                            {{$event->event_name}}
                         </a>
                       </div>
                       <div class="col-sm-6 col-md-8 par">
-                            {{$event->event_name}}
+                            <i class="fa fa-map-marker fa-color"  aria-hidden="true"></i>{{$event->event_address}}
                       </div>
                       <button type="button"  id="attendedEvent{{$event->id}}" class="btn  bton"><span class="glyphicon glyphicon-plus" ></span></button>
                   </div>
@@ -45,6 +56,7 @@
                   $.ajax({url: "/event/{{$event->id}}/attendance", success: function(result){
                     if (result){
                       $("#event{{$event->id}}").remove();
+
                       $('.attend').append('<li id="event{{$event->id}}">\
                         <time datetime="2014-07-20">\
                           <span class="day">{{date('d',strtotime($event->event_date))}}</span>\
@@ -54,8 +66,8 @@
                         </time>\
                         <img alt="Independence Day" src={{ asset("/upload/image/$event->event_photo") }} />\
                         <div class="info">\
-                          <h2 class="title">{{$event->event_name}}</h2>\
-                          <p class="desc">{{$event->event_address}}</p>\
+                          <h2 class="title"><a href="/event/{{$event->id}}/checkevent" class="ai" >{{$event->event_name}}</a></h2>\
+                          <p class="desc"><i class="fa fa-map-marker fa-color"  aria-hidden="true"></i>{{$event->event_address}}</p>\
                           <button class="btn  bton" id="{{$event->id}}"><span class="glyphicon glyphicon-ok"></span></button>\
                         </div>\
                       </li>');
@@ -79,14 +91,15 @@
 </section>
 @endif
 
-@if(! $events_attended_by_user->isEmpty())
+
 
   <section class="slide">
         <br><br>
     <div class="container ">
       <div class="row">
-        <h1 class="text-center fonti">Your activity</h1>
+        <h1 class="text-center fonti">Your activities</h1>
           <ul class="event-list attend">
+            @if(! $events_attended_by_user->isEmpty())
             @foreach ($events_attended_by_user as $event)
 
             <li id="event{{$event->id}}">
@@ -96,12 +109,14 @@
                 <span class="year">{{date('Y',strtotime($event->event_date))}}</span>
                 <span class="time">ALL DAY</span>
               </time>
-
+              @if ($event->event_photo == 'null')
+                <img alt="Independence Day" src={{ asset("/web/images/f-01.png") }} />
+              @else
               <img alt="Independence Day" src={{ asset("/upload/image/$event->event_photo") }} />
-
+              @endif
               <div class="info">
-                <h2 class="title">{{$event->event_name}}</h2>
-                <p class="desc"><span class="glyphicon glyphicon-map-marker"></span> {{$event->event_address}}</p>
+                <h2 class="title"><a href="/event/{{$event->id}}/checkevent" class="ai" >{{$event->event_name}}</a></h2>
+                <p class="desc"><i class="fa fa-map-marker fa-color"  aria-hidden="true"></i> {{$event->event_address}}</p>
                 <button class="btn  bton" id="{{$event->id}}"><span class="glyphicon glyphicon-ok"></span></button>
               </div>
             </li>
@@ -119,12 +134,13 @@
                 });
               </script>
             @endforeach
+            @endif
           </ul>
       </div>
     </div>
   </section>
 
-@endif
+
 <br>
   @if(!empty($user_subscribed_categories))
   <section class="slide1">
@@ -142,7 +158,7 @@
                <!-- Post Content-->
                <div class="post-content">
                  <div class="category"><a href="{{ route('categories.show', $category->id) }}">{{$category->category_name}}</a></div>
-                 <h1 class="title">{{$category->category_name}}</h1>
+                 <h1 class="title">{{$category->category_description}}</h1>
                </div>
              </div>
            </div>

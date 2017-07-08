@@ -24,12 +24,21 @@
       </div> <!-- END row -->
 
   </header>
+
+
+
 <div class="sections " id="wrap">
   <section style="background: url({{ asset("/upload/image/$category->category_photo") }}) no-repeat center center fixed; background-size: cover;" id="hero" id="main">
-    <h1><span>Category</span><br>{{$category->category_name}}</h1>
+    <div class="overlay-desc">
+       <div class="opacity text-center">
+         <h1 class="font">Category </h1>
+           <h1>{{$category->category_name}}</h1>
+         <p></p>
+       </div>
+    </div>
   </section><!-- END hero -->
 
-
+<br><br>
   <div class="container">
 
   <section class="row" id="sec02">
@@ -37,7 +46,7 @@
     <div class="content">
       <div class="naccs">
         <div class="grid">
-    @if(!empty($category->subcategories))
+    @if(! empty($category->subcategories))
       @php
         $first_subcategory = $category->subcategories->first();
       @endphp
@@ -55,12 +64,14 @@
 </div>
 
     @endif
+
 <div class="col-xs-9">
-        <div class="gc gc--2-of-3">
-         <ul class="nacc">
+        <div >
+         <ul style="list-style-type:none">
 
              <li class="active ">
                <div class="events">
+                 @if(! $first_subcategory->events()->isEmpty())
                  @foreach ($first_subcategory->events() as $event)
                  <div class="event-block">
                      <div class="event-date eCol">
@@ -74,13 +85,16 @@
                        </a>
                        </div>
                        <div class="event-location">
-                        {{$event->event_description}}
+                         <span class="glyphicon glyphicon-map-marker"></span>
+                        {{$event->event_address}}
                        </div>
 
                    </div>
+                  </div>
                    @endforeach
-                 </div>
+                   @endif
                </li>
+
          </ul>
        </div>
 

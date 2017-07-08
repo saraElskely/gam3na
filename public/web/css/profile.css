@@ -1086,6 +1086,7 @@ h5{
 }
 .well-sm{
   background-color: #1c9287;
+  height: 252px;
 }
 .txt-railway{
       margin-bottom: -2%;
@@ -1470,4 +1471,12 @@ a{color: white;
 font-size: 24px;}
 .modal{
   margin-top:40px;
+}
+.img-rounded {
+    border-radius: 6px;
+    height: 217px;
+}
+.well-sm1 {
+    background-color: #314644;
+    height: 280px;
 }

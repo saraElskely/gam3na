@@ -48,12 +48,13 @@ body {
   padding: 1% 2%;
   margin-top:0;
   font-size: 18px;
-  background-color:  black;
+  background-color: #df4864;
 }
 
 .jumbotron{
   background-color: rgb(26, 123, 114);
   height: 250px;
+  opacity: 1;
 }
 .tab_content{
   background: rgb(255, 255, 255);
@@ -94,9 +95,9 @@ body {
   margin-left: 12%;
   margin-bottom: 2%;
   background-color:#fff;
-  height: 112px;
+  height: 141px;
   text-align: center;
-  padding: 0%;
+  /* padding: 0%; */
   width: 76%;
   /* max-width: 100%; */
   cursor:pointer;
@@ -118,20 +119,21 @@ body {
   float:left;
 }
 .event-date1 .eDate{
-  font-size: 39px;
+  /* font-size: 39px; */
   /* font-weight:100; */
 }
 .event-date1 .eMonth{
   font-weight:bold;
 }
 .event-details1{
-  padding: 1%;
-
-  float:left;
+  padding: 0%;
+  text-align: left;
 }
 .event-name1{
   font-weight:bold;
-  margin:
+  margin:;
+  position: relative;
+  left: 37px;
 }
 .event-action1{
   float:right;
@@ -167,6 +169,17 @@ input[type=text], input[type=password] {
 .grpbtn{
   position: absolute;
   /* bottom: 94px; */
-  right: 179px;
-  margin-top: -73px;
+  right: -215px;
+  /* margin-top: -73px; */
+}
+
+
+.glyphicon {
+    margin: 12px;
+    line-height: 0;
+    /* font-family: myFirstFont; */
+}
+a{
+  color: gray;
+  font-size: 28px;
 }

@@ -19,7 +19,7 @@
       ]) !!};
   </script>
     <style>
-    .unread{background-color:red;}
+    .unread{background-color:#de425f;}
     </style>
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -126,7 +126,7 @@
                           <form class="form-horizontal" role="form" method="POST" action="register" enctype="multipart/form-data">
                            <input type="hidden" name="form_name" value="register">
                               {{ csrf_field() }}
-                              <input type='hidden' name='form_name' value='register'> </input>
+                              {{-- <input type='hidden' name='form_name' value='register'> </input> --}}
                               <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                   <label for="name" class="control-label">Name<span style="color:red;font-family: monospace;">*</span></label>
                                   <div class="">
@@ -241,7 +241,7 @@
                                   </div>
                               </div>
                              <label for="user_address" class="control-label">Address</label>
-                 
+
                               <div id="googleMap" style="width:100%;height:400px;">
                               </div>
                               <input id="lat" name="user_latitude" class="lat" type="hidden" value="@yield('user_latitude')">
@@ -256,7 +256,7 @@
                                       var uluru = {lat: 31.200092, lng: 29.918739};
                                       var mapProp= {
                                           center:new google.maps.LatLng(31.200092,29.918739),
-                                          zoom:5,
+                                          zoom:8,
                                       };
                                       var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
                                       var geocoder = new google.maps.Geocoder;
@@ -306,8 +306,8 @@
                                           }
                                       });
                                   }
-                              </script>      
-                        
+                              </script>
+
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn">
@@ -322,6 +322,7 @@
             </li>
 
           @else
+            <li class="createAct"> <a href="{{url('/event/create')}}">CREATE ACTIVITY</a></li>
             <li role="presentation"><a href="{{url('/categories')}}">CATEGORIES</a></li>
             <li role="presentation"><a href="{{route('user.calendar')}}"> CALENDER </a></li>
             <li class="dropdown">
@@ -396,7 +397,7 @@
   	            <a href="https://twitter.com/Gam3naNetwork"><i class="fa fa-twitter-square fa-3x social"></i></a>
   	            <a href="https://www.instagram.com/?hl=en"><i class="fa fa-instagram fa-3x social"></i></a>
        </div>
-       <p>Copyright 2017 - <a href="mailto:" class="hyperln">Gam3na</a></p>
+       <p>Copyright 2017 &copy; <a href="mailto:" class="hyperln">Gam3na</a></p>
   </div>
   </footer>
 
@@ -441,18 +442,17 @@
         });
 
     });
-
+jQuery.noConflict();
     @if (count($errors) > 0 and  old('form_name') === 'register')
+    // alert('regester');
         $('#register').modal('show');
     @elseif (count($errors) > 0 and  ! old('form_name') )
+    // alert('login');
       $('#login').modal('show');
     @endif
 
-
-
  </script>
- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_0JrPnBAl85q8GhoExBWLry7hat2u8p4&callback=myMap"
-                 type="text/javascript"></script>
+
 
 </body>
 </html>

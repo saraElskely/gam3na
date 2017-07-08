@@ -38,9 +38,9 @@ class ReportsController extends Controller
         }
           if($count > 5){
            DB::table('events')->where('id','=',$event->id)->delete();
-          }  
+          }
 
-         return redirect('event');
+         return redirect('/home');
 
     }
 }

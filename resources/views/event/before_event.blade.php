@@ -11,18 +11,18 @@
 
 @section('content')
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="false">
+<div class="modal fade" id="report" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="false">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
 		<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		<h4 class="modal-title" id="myModalLabel"> Report</h4>
+		<h4 class="modal-title" id="myModalLabel"> Report Event </h4>
 		</div>
 
 		<form method="post" action="/event/{{$event->id}}/reports">
 		<div class="modal-body">
 					{{csrf_field()}}
-				<textarea name="report_content" cols="44" rows="3" placeeholder="Report this event" class="form-controller"></textarea>
+				<textarea name="report_content" cols="35" rows="3" placeeholder="Report this event" class="form-controller"></textarea>
 		</div>
 		  <div class="modal-footer">
 		    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -36,58 +36,94 @@
 
 
 	<section>
-		<div class="headDiv" style="background-image: url({{ asset("/upload/image/$event->event_photo") }})">
+		@if ($event->event_photo == 'null' )
+      <div class="headDiv" style="background-image: url({{ asset("/web/images/f-01.png") }})">
+    @else
+      <div class="headDiv" style="background-image: url({{ asset("/upload/image/$event->event_photo") }})">
+    @endif
 
 		    <h1 class="evName fonti">{{$event->event_name}}</h1>
-		    <div class="rigBtn">
-			    @if($event->user_attend_event->where('id', Auth::id())->isEmpty())
-						<button type="button" class="btn btn-lg btni" id="event{{$event->id}}notAttended" >
-							 <i class="fa fa-plus-circle" class="top-btn"></i>
-						 </button>
-						 <button type="button" class="btn btn-lg btni" style="display:none" id="event{{$event->id}}attended" >
- 							 <i class="fa fa-check" class="top-btn"></i>
- 						 </button>
-					@else
-						<button type="button" class="btn btn-lg btni" id="event{{$event->id}}attended">
-							 <i class="fa fa-check" class="top-btn" ></i>
-						 </button>
-						 <button type="button" class="btn btn-lg btni" style="display:none" id="event{{$event->id}}notAttended">
- 							 <i class="fa fa-plus-circle" class="top-btn"></i>
- 						 </button>
-					@endif
-				</div>
-				<div class="wrapper">
-							<div class="contact-form-page">
-							<div class="form-head">
-									<div class="header-btn">
-												<button type="button"  class="top-btn" href="#"><i class="fa fa-times" class="top-btn"></i></button>
-									</div>
-							</div>
-							<h1 class="fonti">Who are going to Activity</h1>
-							@if( ! $event->user_attend_event->isEmpty())
-								@foreach ($event->user_attend_event as $user)
-									<div class="module-comment-block ">
-										<div class="module-comment-avatar1">
-											<img src={{ asset("/upload/image/$user->user_photo") }} alt="My Name" class="myImg" width="50">
+				<div class="smallBtnDiv">
+					<button type="button" class="btn btn-lg btni" data-toggle="modal" data-target="#report" data-whatever="@mdo" >
+						 <i class="glyphicon glyphicon-ban-circle" class="top-btn"></i>
+					 </button>
+
+					 @if($event->user_id == Auth::id())
+					 <div class="dropdown" >
+	 				  <button  class="btn btn-lg btni"> ... </button>
+	 				  <div class="dropdown-content">
+	 								<a href="{{'/event/'.$event->id.'/edit'}}" >
+	 									<i class="glyphicon glyphicon-pencil" class=" top-btn"></i>edit
+	 								</a>
+	 							<form action="{{'/event/'.$event->id}}" class="form-group pull-right" method="post">
+	 									{{csrf_field()}}
+	 									{{method_field('DELETE')}}
+	 									<button  type="submit" class="more" >
+	 										<i class="glyphicon glyphicon-trash " class=" top-btn"></i> delete
+	 									</button>
+	 							</form>
+
+	 						@endif
+
+	 				  </div>
+	 				</div>
+			    <div class="rigBtn">
+				    @if($event->user_attend_event->where('id', Auth::id())->isEmpty())
+							<button type="button" class="btn btn-lg btni" id="event{{$event->id}}notAttended" >
+								 <i class="fa fa-plus-circle" class="top-btn"></i>
+							 </button>
+							 <button type="button" class="btn btn-lg btni" style="display:none" id="event{{$event->id}}attended" >
+	 							 <i class="fa fa-check" class="top-btn"></i>
+	 						 </button>
+						@else
+							<button type="button" class="btn btn-lg btni" id="event{{$event->id}}attended">
+								 <i class="fa fa-check" class="top-btn" ></i>
+							 </button>
+							 <button type="button" class="btn btn-lg btni" style="display:none" id="event{{$event->id}}notAttended">
+	 							 <i class="fa fa-plus-circle" class="top-btn"></i>
+	 						 </button>
+						@endif
+					</div>
+					<div class="wrapper">
+								<div class="contact-form-page">
+								<div class="form-head">
+										<div class="header-btn">
+													<button type="button"  class="top-btn" href="#"><i class="fa fa-times" class="top-btn"></i></button>
 										</div>
-										<div class="module-comment-text1">
-											<div>
-												<p class="pi"> <a href="{{'/profile/'.$user->id}}">{{$user->name}}</a> </p>
+								</div>
+								<h1 class="fonti">Who are going to Activity</h1>
+								@if( ! $event->user_attend_event->isEmpty())
+									@foreach ($event->user_attend_event as $user)
+										<div class="module-comment-block1">
+											<div class="module-comment-avatar1">
+												<img src={{ asset("/upload/image/$user->user_photo") }} alt="My Name" class="myImg" width="50">
+											</div>
+											<div class="module-comment-text2">
+												<div>
+													<p class="pi">
+														@if ($user->id == Auth::id())
+															<a href="/profile" class="user">
+														@else
+															<a href="{{'/profile/'.$user->id}}" class="user">
+														@endif
+															{{$user->name}}
+														</a>
+												 </p>
+												</div>
 											</div>
 										</div>
+									@endforeach
+								@else
+									<div class="module-comment-text2 ">
+										<div>
+											<p class="pi">no user attended {{$event->event_name}} event </p>
+										</div>
 									</div>
-								@endforeach
-							@else
-								<div class="module-comment-text1 ">
-									<div>
-										<p class="pi">no user attended {{$event->event_name}} event </p>
-									</div>
-								</div>
-							@endif
-						</div>
-					<button class="buttom-btn" ><i class="fa fa-users"></i></button>
+								@endif
+							</div>
+						<button class="buttom-btn" ><i class="fa fa-users"></i></button>
+					</div>
 				</div>
-
 		</div>
 
 </section>
@@ -98,13 +134,12 @@
         <div class="reveal">
             <div class= "col-sm-3">
                 <div class="profile-head ">
-                <h5>{{$event->event_name}}</h5>
+                <h3>{{$event->event_name}}</h3>
 
                 <ul>
-                    <li><span class="glyphicon glyphicon-briefcase"></span>{{date('d-m-Y',strtotime($event->event_date))}}</li>
-
-                     <li><span class="glyphicon glyphicon-time"></span>{{date('H:i', strtotime($event->event_date))}}</li>
-                      <li><span class="glyphicon glyphicon-map-marker"></span>{{$event->event_address}}</li>
+                    <li><i class="fa fa-calendar" aria-hidden="true"></i>{{date('d-m-Y',strtotime($event->event_date))}}</li>
+                     <li><i class="fa fa-clock-o" aria-hidden="true"></i>{{date('H:i', strtotime($event->event_date))}}</li>
+                      <li><i class="fa fa-map-marker" aria-hidden="true"></i>{{$event->event_address}}</li>
 
                 </ul>
                       <button onclick="$('.revealleft,.revealright').toggleClass('revealed');Launch()">Google Map<c x/button>
@@ -115,7 +150,7 @@
              <div class="col-sm-9 "  >
 
                 <h3 class="fonti"> Map</h3>
-                 <div id="googleMap" style="width:95%;height:300px;" > </div>
+                 <div id="googleMap" style="width:91%;height:300px;" > </div>
                   <input id="lat" name="event_latitude" class="lat" type="hidden" value={{$event->event_latitude}}>
           				<input id="lng" name="event_longitude" class="lon" type="hidden" value={{$event->event_longitude}}>
           				<input id="address" name="event_address" class="adress" type="hidden" value={{$event->event_address}}>
@@ -128,7 +163,7 @@
             <div class="col-sm-9 revealright"  >
 
                  <h1 class="fonti"> description</h1>
-                <p> {{$event->event_description}}</p>
+                <p class="text-center"> {{$event->event_description}}</p>
 
             </div>
 
@@ -140,13 +175,16 @@
     <h1 class="text-center fonti">Comments</h1>
     <div class="module-comment-block container">
   <div class="module-comment-avatar">
-    <img src={{ asset ("upload/image/Auth::user_photo()") }}  class="myImg" width="50">
+		@php
+			$photo = Auth::user()->user_photo;
+		@endphp
+    <img src={{ asset("/upload/image/$photo")}}  class="myImg" width="50">
   </div>
 
   <div class="cmnt">
      <form method="post" action="/event/{{$event->id}}/comments">
      	{{csrf_field()}}
-        <textarea name="comment_content" id="" cols="120" rows="3" placeholder="Add comment..."></textarea>
+        <textarea name="comment_content" id="" cols="145" rows="3" placeholder="Add comment..."></textarea>
         <div class="btoon">
             <button type="submit" class="btn " >
                        <span class="hvr-icon-wobble-horizontal">Send</span>
@@ -156,12 +194,15 @@
 
   </div>
 </div>
-
+@if(!empty($event->comments))
 @foreach($event->comments as $comment)
 		<div class="module-comment-block container">
 
+			@php
+				$userPhoto = $comment->user->user_photo;
+			@endphp
 		  <div class="module-comment-avatar">
-		    <img src={{ asset("upload/image/$comment->user->user_photo") }} class="myImg" width="50">
+		    <img src={{ asset("upload/image/$userPhoto ") }} class="myImg" width="50">
 		  </div>
 
 		  <div class="module-comment-text">
@@ -169,7 +210,7 @@
 		    <div><em>{{date('D',strtotime($event->event_date))}}</em></div>
 
 		    <div>
-		      <p> {{ $comment->comment_content }}</p>
+		      <pre> {{ $comment->comment_content }}</pre>
 		    </div>
 		      <div class="bottom-comment">
 		          <div class="comment-date">{{date('M d,y @ H:i',strtotime($comment->created_at))}}</div>
@@ -177,7 +218,7 @@
 		  </div>
 		</div> <!-- /module-comment-block -->
 	@endforeach
-
+@endif
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 						<script>
 						$(document).ready(function(){

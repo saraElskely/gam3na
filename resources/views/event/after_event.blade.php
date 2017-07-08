@@ -8,7 +8,11 @@
 @section('content')
 
 	<section>
-	    <div class="headDiv" style="background-image: url({{ asset("/upload/image/$event->event_photo") }})">
+    @if ($event->event_photo == 'null' )
+      <div class="headDiv" style="background-image: url({{ asset("/web/images/f-01.png") }})">
+    @else
+      <div class="headDiv" style="background-image: url({{ asset("/upload/image/$event->event_photo") }})">
+    @endif
 	        <h1 class="evName fonti">{{$event->event_name}}</h1>
 	        <div class="rigBtn">
 						{{-- {{dd($event->user_attend_event->where('id','=',Auth::id()))}} --}}
@@ -34,19 +38,27 @@
                   <h1 class="fonti">Who are going to Activity</h1>
                   @if( ! $event->user_attend_event->isEmpty())
         						@foreach ($event->user_attend_event as $user)
-                      <div class="module-comment-block ">
+                      <div class="module-comment-block1 ">
                         <div class="module-comment-avatar1">
                           <img src={{ asset("/upload/image/$user->user_photo") }} alt="My Name" class="myImg" width="50">
                         </div>
-                        <div class="module-comment-text1">
+                        <div class="module-comment-text2">
                           <div>
-                            <p class="pi"> <a href="{{'/profile/'.$user->id}}">{{$user->name}}</a> </p>
+                            <p class="pi">
+                              @if ($user->id == Auth::id())
+  															<a href="/profile" class="user">
+  														@else
+  															<a href="{{'/profile/'.$user->id}}" class="user">
+  														@endif
+                                {{$user->name}}
+                              </a>
+                            </p>
                           </div>
                         </div>
                       </div>
                     @endforeach
                   @else
-                    <div class="module-comment-text1 ">
+                    <div class="module-comment-text2 ">
         							<div>
         								<p class="pi">no user attended {{$event->event_name}} event </p>
         							</div>
@@ -57,7 +69,7 @@
             </div>
 
             <div class="rating left">
-              <div class="stars right">
+              <div class="staticStar">
                 @php
                   if ($event->averageRating) {
                     $rate = $event->averageRating;
@@ -67,10 +79,10 @@
                 @endphp
 
                  @for ($i=0; $i < $rate ; $i++)
-                   <a class="star rated"></a>
+                   <i class="glyphicon glyphicon-star"></i>
                  @endfor
                  @for ($i=0; $i < 5-$rate; $i++)
-                   <a class="star"></a>
+                   <i class="glyphicon glyphicon-star-empty"></i>
                  @endfor
              </div>
           </div>
@@ -83,15 +95,13 @@
 	        <div class="reveal">
 	            <div class= "col-sm-3">
 	                <div class="profile-head ">
-	                    <h5>{{$event->event_name}}</h5>
-	                    <p> Gategory</p>
+	                    <h3>{{$event->event_name}}</h3>
+
 	                    <ul>
-	                        <li><span class="glyphicon glyphicon-briefcase"></span>{{date('d-M-Y',strtotime($event->event_date))}}</li>
-	                         <li><span class="glyphicon glyphicon-time"></span>{{date('H:i:s',strtotime($event->event_date))}}</li>
-	                        <li><span class="glyphicon glyphicon-map-marker"></span> city</li>
-	                        <li><span class="glyphicon glyphicon-home"></span> place</li>
-	                        <li><span class="glyphicon glyphicon-phone"></span> <a href="#" title="call">tel</a></li>
-	                        <li></li>
+	                        <li><i class="fa fa-calendar" aria-hidden="true"></i>{{date('d-M-Y',strtotime($event->event_date))}}</li>
+	                        <li><i class="fa fa-clock-o" aria-hidden="true"></i>{{date('H:i',strtotime($event->event_date))}}</li>
+	                        <li><i class="fa fa-map-marker" aria-hidden="true"></i> {{$event->event_address}}</li>
+
 	                    </ul>
 	                    <button onclick="$('.revealleft,.revealright').toggleClass('revealed');Launch()">Google Map</button>
 	               </div>
@@ -99,8 +109,8 @@
 
 
 	             <div class="col-sm-9 "  >
-                  <h3 class="fonti"> Map</h3>
-                  <div id="googleMap" style="width:95%;height:300px;" > </div>
+                  <h3 class="fonti"> Map </h3>
+                  <div id="googleMap" style="width:91%;height:300px;" class="text-center" > </div>
                   <input id="lat" name="event_latitude" class="lat" type="hidden" value={{$event->event_latitude}}>
           				<input id="lng" name="event_longitude" class="lon" type="hidden" value={{$event->event_longitude}}>
           				<input id="address" name="event_address" class="adress" type="hidden" value={{$event->event_address}}>
@@ -110,7 +120,7 @@
 	            <div class="col-sm-9 revealright"  >
 
 	                <h1 class="fonti"> description</h1>
-	                <p> {{$event->event_description}}</p>
+	                <p class="text-center"> {{$event->event_description}}</p>
 
                     <div class="rating left">
    	                  <div class="stars right">
@@ -133,27 +143,33 @@
 	    <h1 class="text-center fonti">Reviews</h1>
 	    <div class="module-comment-block container">
 	      <div class="module-comment-avatar">
-	        <img src="images/pp.jpg" alt="My Name" class="myImg" width="50">
+          @php
+      			$photo = Auth::user()->user_photo;
+      		@endphp
+          <img src={{ asset("/upload/image/$photo")}}  class="myImg" width="50">
 	      </div>
 	      <div class="cmnt">
 	         <form method="post" action="/event/{{$event->id}}/reviews">
 						 {{csrf_field()}}
-	            <textarea name="review_content" placeeholder="Review our event" id="" cols="120px" rows="3"></textarea>
+	            <textarea name="review_content" placeeholder="Review our event" id="" cols="145" rows="3"></textarea>
 	            <div class="btoon">
 	                <button type="submit" class="btn " >
 	                           <span class="hvr-icon-wobble-horizontal">Send</span>
 	                </button>
 	             </div>
 	         </form>
-					 @include('event.partials.errors')
+					 {{-- @include('event.partials.errors') --}}
 	      </div>
 	    </div>
 
 			@if(!empty( $event->reviews))
 				@foreach($event->reviews as $review)
 					<div class="module-comment-block container">
+            @php
+      				$userPhoto = $review->user->user_photo;
+      			@endphp
 						<div class="module-comment-avatar">
-							<img src="images/pp.jpg" alt="My Name" class="myImg" width="50">
+							<img src={{ asset("/upload/image/$userPhoto ")}} alt="My Name" class="myImg" width="50">
 						</div>
 
 						<div class="module-comment-text">
@@ -188,7 +204,12 @@
       <div class="modal-body">
         <form method="post" action="/event/{{$event->id}}/photos" enctype="multipart/form-data">
               {{ csrf_field() }}
-           <input type="file" name="user_event_photo" class="text-center  custom-file-input">
+           <input type="file" name="user_event_photo" class="text-center  custom-file-input"></input>
+           @if ($errors->has('user_event_photo'))
+               <span class="help-block">
+                   <strong>{{ $errors->first('user_event_photo') }}</strong>
+               </span>
+           @endif
            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
            <button type="submit" class="btn ">
                Upload
@@ -200,9 +221,10 @@
 </div>
 
 <script type="text/javascript">
-@if (count($errors) > 0)
-    $('#uploadPhoto').modal('show');
-@endif
+  jQuery.noConflict();
+  @if (count($errors) > 0 )
+      $('#uploadPhoto').modal('show');
+  @endif
 </script>
 
 
@@ -210,7 +232,7 @@
     <div class="container sec03">
     <h1 class="text-center fonti">Images</h1>
             <div class="righti" >
-              <button type="button" class="btn btn-lg btni" data-toggle="modal" data-target="#uploadPhoto" data-whatever="@mdo">
+              <button type="button" class="btn btn-lg" data-toggle="modal" data-target="#uploadPhoto" data-whatever="@mdo">
                   <span class="hvr-icon-down">Upload image</span>
                </button>
             </div>

@@ -86,7 +86,7 @@
                 <div class="row">
                   <div class="col-sm-12">
                     <ul class="nav nav-pills nav-stacked">
-											<li><a href="/admin">home</a></li>
+											<li><a href="/admin">Home</a></li>
                       <li ><a href="/admin/admins">All Admins</a></li>
                       <li ><a href="/admin/users">Users</a></li>
                       <li> <a href="/admin/categories">Categories</a> </li>

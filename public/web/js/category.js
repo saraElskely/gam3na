@@ -30,7 +30,7 @@ $(document).on("click", ".naccs .menu div", function() {
 														 </div>\
 														 <div class="event-details eCol">\
 															 <div class="event-name"><a href="/event/'+event.id+'/checkevent">'+event.event_name+'</a></div>\
-															 <div class="event-location">'+event.event_description+'</div>\
+															 <div class="event-location"><span class="glyphicon glyphicon-map-marker"></span>'+event.event_address+'</div>\
 													 </div>');
 					});
 				}

@@ -2,25 +2,33 @@
 
 @section('content')
 
-<center>
-<div > <h1>{{(Route::currentRouteName())}}place</h1></div>
-</center>
-<center>
+<div class="jumbotron" style=" background-color:#d26868">
+      <div class="headDiv">
+        <div class="container text-center" >
+          <h1 class="fonty" style="color:#ffffff">create place</h1>
+        </div>
+      </div>
+  </div>
+  <div class="container-fluid text-center">
+    <div class="cont content">
+      <div class="col-sm-8 text-left">
+
+    <center>
 <form class="form-horizontal" action="/admin/places/@yield('editid')" method="POST" enctype="multipart/form-data">
 
 {{csrf_field()}}
 @section('editmethod')
 @show
 <div class="form-group">
-<label for="place_name">Name</label>
+<label for="place_name" style="color:grey"><h1>Name</h1></label>
 <input type="text" name="place_name" value="@yield('editname')">
 </div>
 <div class="form-group">
-<label for="place_description">Description</label>
+<label for="place_description" style="color:grey"><h1>Description</h1></label>
 <input   type="text" name="place_description" value="@yield('editdescription')">
 <div class="form-group">
-  <label for="place_photo">Photo</label>
-  <input type="file" name="place_photo" value="@yield('editphoto')">
+ 
+  <input type="file"  style="color:grey"name="place_photo" value="@yield('editphoto')">
 </div>
 
 <div id="googleMap" style="width:80%;height:500px;"></div>
@@ -29,7 +37,7 @@
 <input id="address" name="place_address" class="address" type="hidden" value="@yield('editaddress')">
 
 <div class="form-group">
-  <label for="place_photo">place details </label>
+  <label for="place_photo" style="color:grey" ><h1>place details</h1></label>
   <input id="details_address" name="place_details_address" class="adress"  value="@yield('editdetailsaddress')">
 </div>
 
@@ -37,8 +45,13 @@
 <button type="submit" class="btn btn-primary">Submit</button>
 
 </form>
-@include('admin.places.errors')
+</form>
+</div>
+</div>
+</div>
+
 </center>
+
 <script>
   // var marker ;
   function myMap() {
@@ -108,4 +121,5 @@
 </script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_0JrPnBAl85q8GhoExBWLry7hat2u8p4&callback=myMap"
 type="text/javascript"></script>
+@include('admin.categories.errors')
 @endsection

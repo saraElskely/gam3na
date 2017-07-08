@@ -2,34 +2,42 @@
 
 @section('content')
 
-<center>
-<div > <h1>{{(Route::currentRouteName())}}User</h1></div>
-</center>
-<center>
+<div class="jumbotron" style=" background-color:#d26868">
+		  <div class="headDiv">
+			  <div class="container text-center" >
+			    <h1 class="fonty" style="color:#ffffff">Users</h1>
+			  </div>
+		  </div>
+	</div>
+	<div class="container-fluid text-center">
+	  <div class="cont content">
+	    <div class="col-sm-8 text-left">
+
+	  <center>
 <form class="form-horizontal" action="/admin/users/@yield('editid')" method="POST" enctype="multipart/form-data">
 
 {{csrf_field()}}
 @section('editmethod')
 @show
 <div class="form-group">
-<label for="name">Name</label>
+<label for="name" style="color:grey"><h2 id="hash">Name</h2></label>
 <input type="text" name="name" value="@yield('editname')">
 </div>
 
 <div class="form-group">
-<label for="password">password</label>
+<label for="password" style="color:grey"><h2 id="hash">password</h2></label>
 <input type="password" name="password" value="@yield('editpassword')">
 </div>
 
 <div class="form-group">
-<label for="email">Email</label>
+<label for="email" style="color:grey"><h2 id="hash">Email</h2></label>
 <input type="email" name="email" value="@yield('editemail')">
 </div>
 
 
 
 <div class="form-group">
-<label for="gender">gender</label>
+<label for="gender" style="color:grey"><h2 id="hash">gender</h2></label>
 <input type="text" name="gender"value="@yield('editgender')">
 </div>
 

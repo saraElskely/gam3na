@@ -1,14 +1,16 @@
 @extends('layouts.adminboard')
-@section('content')
+@section('content')    <center>
+              <h1 style=color:grey >Admins</h1>
+                </center>
 <a href="admins/create" class="btn btn-default">Add New</a>
 <br><br>
-<table class="rwd-table">
+<table class="table table-bordered drop-shadow lifted">
 <thead>
-<tr >
-  <th>ID</th>
-  <th>Name</th>
-  <th>Email</th>
-  <th>photo</th>
+<tr class="rwd-table text-center" >
+  <th><h1>ID</h1></th>
+  <th><h1>Name</h1></th>
+  <th><h1>Email</h1></th>
+  <th><h1>photo</h1></th>
   </tr>
 </thead>
 <tbody>
@@ -18,16 +20,6 @@
     <td>{{$admin->name}}</td>
     <td>{{$admin->email}}</td>
     <td><img src={{asset("/upload/image/$admin->photo")}} width="42" height="42" ></td>
-
-
-
- <td> <form action='admins/{{$admin->id}}' method="POST">
-           {{csrf_field()}}
-           {{method_field('DELETE')}}
-
-           <button type="submit" class="glyphicon glyphicon-trash"></button>
-           </form></td>
-    </td>
     </tr>
 
     </td>
